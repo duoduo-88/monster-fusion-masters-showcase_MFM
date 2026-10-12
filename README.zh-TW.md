@@ -13,6 +13,8 @@
 
 MFM Desktop 是使用 Microsoft Edge WebView2 的 Windows 免安裝桌面版本。下載 ZIP 並完整解壓縮後，執行 `MFMDesktop.exe` 即可。
 
+程式需要 Microsoft Edge WebView2 Evergreen Runtime。Windows 11 已內建，大多數 Windows 10 裝置也已安裝；若電腦缺少 Runtime，請至 [Microsoft 官方網站下載](https://developer.microsoft.com/microsoft-edge/webview2/)。
+
 Monster Fusion Masters 是一款原創競技策略棋盤遊戲。最初是我設計的實體桌遊，後來由 Codex 協助把既有設計逐步實作成軟體。
 
 ## 遊戲功能
