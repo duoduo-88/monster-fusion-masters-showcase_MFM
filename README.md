@@ -13,6 +13,8 @@
 
 MFM Desktop is a portable Windows application powered by Microsoft Edge WebView2. No installation is required: extract the ZIP and run `MFMDesktop.exe`.
 
+Requires the Microsoft Edge WebView2 Evergreen Runtime. It is included with Windows 11 and is already installed on most Windows 10 devices. If it is missing, [download the Runtime from Microsoft](https://developer.microsoft.com/microsoft-edge/webview2/).
+
 Monster Fusion Masters is an original competitive strategy board game. I designed it first as a physical tabletop game; Codex later helped turn that existing design into working software.
 
 ## Features
