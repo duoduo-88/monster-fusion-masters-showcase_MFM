@@ -6,6 +6,13 @@
 
 **Play / Live Game:** [https://mfm.monster-fusion-masters-online.workers.dev/](https://mfm.monster-fusion-masters-online.workers.dev/)
 
+## Play Monster Fusion Masters
+
+- [Play Online — Browser Version](https://mfm.monster-fusion-masters-online.workers.dev/)
+- [Download MFM Desktop — Windows x64](https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest)
+
+MFM Desktop is a portable Windows application powered by Microsoft Edge WebView2. No installation is required: extract the ZIP and run `MFMDesktop.exe`.
+
 Monster Fusion Masters is an original competitive strategy board game. I designed it first as a physical tabletop game; Codex later helped turn that existing design into working software.
 
 ## Features
@@ -103,4 +110,5 @@ The examples in this folder are small, general-purpose demonstrations. They are 
 ## Showcase assets
 
 The `assets/` folder contains the showcase cover and the four interface screenshots used above. A photo of the original physical edition can be added later.
+
 
