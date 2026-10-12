@@ -6,6 +6,13 @@
 
 **遊玩／線上版本：** [https://mfm.monster-fusion-masters-online.workers.dev/](https://mfm.monster-fusion-masters-online.workers.dev/)
 
+## 遊玩 Monster Fusion Masters
+
+- [線上遊玩 — 瀏覽器版本](https://mfm.monster-fusion-masters-online.workers.dev/)
+- [下載 MFM Desktop — Windows x64](https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest)
+
+MFM Desktop 是使用 Microsoft Edge WebView2 的 Windows 免安裝桌面版本。下載 ZIP 並完整解壓縮後，執行 `MFMDesktop.exe` 即可。
+
 Monster Fusion Masters 是一款原創競技策略棋盤遊戲。最初是我設計的實體桌遊，後來由 Codex 協助把既有設計逐步實作成軟體。
 
 ## 遊戲功能
@@ -103,4 +110,5 @@ Monster Fusion Masters 已成為免費遊玩的瀏覽器線上競技策略遊戲
 ## Showcase 圖片素材
 
 `assets/` 資料夾包含 Showcase 封面與上方四張介面截圖；之後也可補上實體棋盤照片。
+
 
