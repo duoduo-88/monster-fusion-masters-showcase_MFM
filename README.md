@@ -1,6 +1,6 @@
 # Monster Fusion Masters
 
-**Official game wiki (rules, scoring and development history):** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/) (requires GitHub Pages to be enabled)
+**Official game wiki (rules, scoring and development history):** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)
 
 **Showcase repository:** `monster-fusion-masters-showcase`
 
@@ -101,7 +101,21 @@ A beginner tutorial, an English and Traditional Chinese interface, and ongoing U
 
 The game is still in development. Codex helps with implementation, code analysis, debugging, regression fixes, refactoring, UI changes, and system improvements. I remain responsible for the original game design, rules, balance decisions, gameplay direction, and feature requirements.
 
-### 10. Current version
+### 10. Major feature milestones — 2026
+
+The following is a brief selection of major development milestones based on the production repository's Git history. These months reflect recorded development work, not necessarily public release dates.
+
+- **August | Online multiplayer prototype:** Published the first online prototype, developed synchronized multiplayer turns and game state, and added CPU opponents.
+- **August | Master AI V2:** Developed more advanced search, position evaluation, and strategic analysis, with continued work on defense, risk assessment, and computing efficiency.
+- **August–September | Presentation and localization:** Added interactive battle effects, Traditional Chinese support, background music, tutorials, and clearer gameplay guidance.
+- **September | Player colors and Color Lab:** Expanded customizable player tile colors and patterns with editing, previews, and shareable designs.
+- **September | Match replays:** Extended match replay features with record import and export for reviewing and sharing games.
+- **October | Knockout tournaments:** Introduced tournament lobbies, brackets, rounds, and match advancement.
+- **October | Player History and seasonal badges:** Added a player history page displaying seasonal and event badge records.
+- **October | Opening draw and Ranked format:** Introduced a player-interactive starting-order draw, switched Ranked matches to a single round, and refined draw settlement.
+- **October | MFM Desktop:** Released a portable Windows x64 client built using Microsoft Edge WebView2.
+
+### 11. Current version
 
 Monster Fusion Masters is now a free-to-play, browser-based online competitive strategy game with real-time PvP, AI opponents, and ranked play. Development is ongoing.
 
