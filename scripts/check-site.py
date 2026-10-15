@@ -54,6 +54,40 @@ class WikiChecks(unittest.TestCase):
                         self.assertIsNotNone(content)
                         self.assertRegex(content.group(1), r'<(?:img|picture|video)\b', "Explanation lacks an illustration")
 
+    def test_index_markers_gallery_and_search_clarity(self):
+        """Keep decorative markers aligned and gallery screenshots fully visible."""
+        css = (ROOT / "wiki.css").read_text(encoding="utf-8")
+        self.assertIn(".nav-index{align-self:flex-start;padding-top:1em;", css)
+        self.assertIn(".entry-number{align-self:start;padding-top:1em;", css)
+        self.assertIn(".feature-gallery img{height:185px;object-fit:contain;object-position:center}", css)
+        self.assertIn(".feature-gallery img{height:140px}", css)
+        self.assertNotIn(".search-help", css)
+        self.assertIn(".search-status{", css)
+
+        for folder in ("", "en"):
+            prefix = ROOT / folder
+            index = (prefix / "index.html").read_text(encoding="utf-8")
+            modes = (prefix / "modes.html").read_text(encoding="utf-8")
+            with self.subTest(locale=folder or "zh-Hant", feature="markers"):
+                self.assertEqual(index.count('class="entry-number"'), 3)
+                for page in PAGES:
+                    article = (prefix / page).read_text(encoding="utf-8")
+                    self.assertEqual(article.count('class="nav-index"'), 4)
+
+            with self.subTest(locale=folder or "zh-Hant", feature="spectator"):
+                self.assertIn("spectator-seats.webp", modes)
+                self.assertEqual(modes.count("spectator-seats.webp"), 1)
+
+            for page in PAGES:
+                with self.subTest(locale=folder or "zh-Hant", page=page, feature="search"):
+                    article = (prefix / page).read_text(encoding="utf-8")
+                    self.assertNotIn('class="search-help"', article)
+                    self.assertNotIn('aria-describedby="wiki-search-help"', article)
+                    self.assertIn('id="wiki-search-input"', article)
+                    self.assertIn('aria-controls="wiki-search-results"', article)
+                    self.assertIn('class="search-status"', article)
+                    self.assertIn("wiki.css?v=20261016-markers-watch-search1", article)
+
     def test_editorial_media_placement_and_contribution_ownership(self):
         """Keep visual examples in their canonical article and community actions in the rail."""
         import re
