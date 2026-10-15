@@ -43,7 +43,7 @@ class WikiChecks(unittest.TestCase):
         for folder in ("", "en"):
             for name, sections in {
                 "rules.html": ("board", "tiles", "placement", "connections", "scoring", "turns"),
-                "modes.html": ("game-modes", "rounds", "ranked", "features"),
+                "modes.html": ("rounds", "ranked", "features"),
                 "index.html": ("overview", "quick-start", "origin"),
                 "history.html": ("timeline",),
             }.items():
@@ -53,6 +53,56 @@ class WikiChecks(unittest.TestCase):
                         content = re.search(r'<section[^>]*id="' + section + r'"[^>]*>(.*?)</section>', html, re.S)
                         self.assertIsNotNone(content)
                         self.assertRegex(content.group(1), r'<(?:img|picture|video)\b', "Explanation lacks an illustration")
+
+    def test_editorial_media_placement_and_contribution_ownership(self):
+        """Keep visual examples in their canonical article and community actions in the rail."""
+        import re
+        for folder in ("", "en"):
+            prefix = ROOT / folder
+            index = (prefix / "index.html").read_text(encoding="utf-8")
+            rules = (prefix / "rules.html").read_text(encoding="utf-8")
+            modes = (prefix / "modes.html").read_text(encoding="utf-8")
+
+            with self.subTest(locale=folder or "zh-Hant", article="index"):
+                self.assertNotIn('data-demo-gallery', index)
+                origin = re.search(r'<section[^>]+id="origin"[^>]*>(.*?)</section>', index, re.S)
+                self.assertIsNotNone(origin)
+                self.assertIn("original-tabletop-2020.webp", origin.group(1))
+
+            with self.subTest(locale=folder or "zh-Hant", article="rules"):
+                placement = re.search(r'<section[^>]+id="placement"[^>]*>(.*?)</section>', rules, re.S)
+                self.assertIsNotNone(placement)
+                self.assertEqual(placement.group(1).count('data-demo-gallery'), 1)
+                for clip in ("move-connect.gif", "move-close.gif", "move-chain.gif"):
+                    self.assertIn(clip, placement.group(1))
+                self.assertEqual(rules.count('data-demo-gallery'), 1)
+
+            with self.subTest(locale=folder or "zh-Hant", article="modes"):
+                section = re.search(r'<section[^>]+id="game-modes"[^>]*>(.*?)</section>', modes, re.S)
+                self.assertIsNotNone(section)
+                self.assertEqual(section.group(1).count('class="mode-card"'), 4)
+                self.assertNotIn("room-players.webp", section.group(1))
+                self.assertNotIn("ranked-panel.webp", section.group(1))
+                # The existing mode introduction still provides the lobby illustration.
+                overview = re.search(r'<section[^>]+id="overview"[^>]*>(.*?)</section>', modes, re.S)
+                self.assertIsNotNone(overview)
+                self.assertRegex(overview.group(1), r'<(?:img|picture|video)\b')
+
+            for page in PAGES:
+                html = (prefix / page).read_text(encoding="utf-8")
+                with self.subTest(locale=folder or "zh-Hant", article=page, component="contribute"):
+                    main = html.split("</main>", 1)[0]
+                    self.assertNotIn("wiki-contribution", main)
+                    rail = html.split('<aside class="right-rail">', 1)[1].split("</aside>", 1)[0]
+                    self.assertEqual(rail.count('class="reference-card frame wiki-contribution"'), 1)
+                    self.assertLess(rail.index('class="contents-panel frame"'),
+                                    rail.index('class="reference-card frame wiki-contribution"'))
+                    self.assertIn("issues/new?template=wiki-suggestion.yml", rail)
+
+                with self.subTest(locale=folder or "zh-Hant", article=page, component="download"):
+                    archive = html.split('<div class="reference-card frame">', 1)[1].split("</div>", 1)[0]
+                    self.assertIn("releases/tag/v0.1.1", archive)
+                    self.assertEqual(archive.count("releases/tag/v0.1.1"), 1)
 
     def test_every_article_has_a_complete_english_counterpart(self):
         for name in PAGES:

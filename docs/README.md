@@ -15,8 +15,8 @@
 - `wiki-search-index.js`：由 `scripts/build-search-index.py` 從雙語文章產生的本地搜尋索引。
 - `wiki.js`：記住語言偏好、切換時保留文章與章節、手機目錄收合、依桌面內部捲動或手機頁面捲動追蹤目前章節。
 
-- `wiki-media.js`：切換三段實際落子 GIF、預設自動播放動圖，並支援減少動態效果的系統偏好。
-- `assets/media/`：局部棋盤、棋子與牌庫、封閉／DEAD、計分範例、遊戲功能截圖，以及目前 CLASSIC 階級徽章動圖；來源與擷取說明見該目錄的 README。
+- `wiki-media.js`：在遊戲規則的合法落子章節切換三段實際落子 GIF、預設自動播放動圖，並支援減少動態效果的系統偏好。
+- `assets/media/`：局部棋盤、棋子與牌庫、封閉／DEAD、計分範例、實體桌遊照片、遊戲功能截圖，以及目前 CLASSIC 階級徽章動圖；來源與擷取說明見該目錄的 README。
 
 
 兩種語言皆為完整的 HTML，無需前端框架或建置程序。停用 JavaScript 仍能閱讀所有文章並透過語言連結切換。語言偏好儲存在本站的 `mfm:wiki:language`，不存取遊戲帳號資料。所有站內路徑均相對於目前頁面，適用於 GitHub Pages 專案子路徑。
@@ -48,7 +48,7 @@ node --test scripts/test-search.mjs
 
 ## 社群修訂建議
 
-八個中英文百科頁面的文章底部都提供「提出修訂建議／Suggest an edit」連結，連到 Showcase 公開倉庫的 GitHub Issue Form（`.github/ISSUE_TEMPLATE/wiki-suggestion.yml`）。投稿者須登入 GitHub，內容會公開；維護者審核並確認內容後，再更新正式 Wiki。此流程不允許訪客直接修改網頁或私人主專案原始碼，也不使用新的後端服務。
+八個中英文百科頁面皆在右側欄的最下方，以獨立公開資訊區塊提供「提出修訂建議／Suggest an edit」連結，連到 Showcase 公開倉庫的 GitHub Issue Form（`.github/ISSUE_TEMPLATE/wiki-suggestion.yml`）。投稿者須登入 GitHub，內容會公開；維護者審核並確認內容後，再更新正式 Wiki。此流程不允許訪客直接修改網頁或私人主專案原始碼，也不使用新的後端服務。
 
 ## 更新原則與素材
 
