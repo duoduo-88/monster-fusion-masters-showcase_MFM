@@ -30,11 +30,30 @@ class Page(HTMLParser):
                 self.languages[attrs["data-language"]] = attrs["href"]
         if tag in ("img", "script") and "src" in attrs:
             self.assets.append(attrs["src"])
+        for key in ("data-animation", "data-still", "data-demo-src", "data-demo-still"):
+            if key in attrs:
+                self.assets.append(attrs[key])
         if tag == "link" and attrs.get("rel") == "stylesheet":
             self.assets.append(attrs["href"])
 
 
 class WikiChecks(unittest.TestCase):
+    def test_game_explanations_have_local_visual_examples(self):
+        import re
+        for folder in ("", "en"):
+            for name, sections in {
+                "rules.html": ("board", "tiles", "placement", "connections", "scoring", "turns"),
+                "modes.html": ("game-modes", "rounds", "ranked", "features"),
+                "index.html": ("overview", "quick-start", "origin"),
+                "history.html": ("timeline",),
+            }.items():
+                html = (ROOT / folder / name).read_text(encoding="utf-8")
+                for section in sections:
+                    with self.subTest(page=f"{folder}/{name}", section=section):
+                        content = re.search(r'<section[^>]*id="' + section + r'"[^>]*>(.*?)</section>', html, re.S)
+                        self.assertIsNotNone(content)
+                        self.assertRegex(content.group(1), r'<(?:img|picture|video)\b', "Explanation lacks an illustration")
+
     def test_every_article_has_a_complete_english_counterpart(self):
         for name in PAGES:
             with self.subTest(page=name):

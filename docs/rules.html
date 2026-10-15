@@ -10,6 +10,7 @@
   <link rel="alternate" hreflang="en" href="./en/rules.html">
   <link rel="stylesheet" href="./wiki.css">
   <script src="./wiki.js" defer></script>
+  <script src="./wiki-media.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -36,23 +37,23 @@
   <h1>遊戲規則</h1>
   <p>《Monster Fusion Masters》是一款運用六角棋子拼接、封閉白色區域取得分數的回合制策略遊戲。以下整理線上版目前採用的基本規則。</p>
   <p class="version-note">版本參照：Competitive Rule / Rule 20200629；線上玩法核對日期：2026-10-16。</p>
-</section>
+<figure class="guide-figure intro-visual"><img class="" src="./assets/media/battle-overview.webp" alt="從白邊的連接，到封閉後變成玩家顏色。" width="549" height="613" loading="lazy" decoding="async"><figcaption>從白邊的連接，到封閉後變成玩家顏色。</figcaption></figure></section>
 
 <section class="section" id="board">
   <span class="eyebrow">01 / BOARD</span>
   <h2>棋盤</h2>
   <p>棋盤由 <strong>61 個六角格</strong>構成，中心向外延伸四圈。每格最多放置一枚棋子，已佔用或超出棋盤的位置不可落子。</p>
   <p>棋盤上的棋子會影響相鄰格的合法方向與連通狀態，因此落子不只是填空格，也會改變後續可行的組合。</p>
-</section>
+<figure class="guide-figure board-map"><img class="" src="./assets/media/board.webp" alt="完整 61 格棋盤：中心一格，向外四圈；座標協助辨認落子位置。" width="894" height="754" loading="lazy" decoding="async"><figcaption>完整 61 格棋盤：中心一格，向外四圈；座標協助辨認落子位置。</figcaption></figure></section>
 <section class="section" id="tiles">
   <span class="eyebrow">02 / TILES</span>
   <h2>棋子與牌庫</h2>
   <p>每枚棋子有六條邊，每條邊為白色或黑色。按照白邊數量，棋子分為 <strong>0 至 6 白邊</strong>的七類；同一類仍可能有不同白邊排列及內部連通形態。</p>
-  <div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">白邊數</th><th scope="col">每局牌庫數量</th></tr></thead>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的資料表"><table class="data-table"><thead><tr><th scope="col">白邊數</th><th scope="col">每局牌庫數量</th></tr></thead>
     <tbody><tr><td>0 邊</td><td>2</td></tr><tr><td>1 邊</td><td>16–30</td></tr><tr><td>2 邊</td><td>8–15</td></tr><tr><td>3 邊</td><td>8–15</td></tr><tr><td>4 邊</td><td>4</td></tr><tr><td>5 邊</td><td>2</td></tr><tr><td>6 邊</td><td>2</td></tr></tbody>
   </table></div>
   <div class="note"><strong>牌庫組成：</strong>1 白邊的棋子數量是 2 白邊／3 白邊各自數量的兩倍；這三類隨當局抽選數量變化。每位玩家手牌最多 5 枚。</div>
-</section>
+<div class="tile-catalog"><figure class="tile-family"><div class="tile-family-label"><strong>0 白邊</strong><span>每局 2</span></div><img class="" src="./assets/media/tiles-0.webp" alt="遊戲中 0 白邊棋子的各種排列與中央連通形態" width="200" height="100" loading="lazy" decoding="async"></figure><figure class="tile-family"><div class="tile-family-label"><strong>1 白邊</strong><span>每局 16–30</span></div><img class="" src="./assets/media/tiles-1.webp" alt="遊戲中 1 白邊棋子的各種排列與中央連通形態" width="200" height="100" loading="lazy" decoding="async"></figure><figure class="tile-family"><div class="tile-family-label"><strong>2 白邊</strong><span>每局 8–15</span></div><img class="" src="./assets/media/tiles-2.webp" alt="遊戲中 2 白邊棋子的各種排列與中央連通形態" width="600" height="100" loading="lazy" decoding="async"></figure><figure class="tile-family"><div class="tile-family-label"><strong>3 白邊</strong><span>每局 8–15</span></div><img class="" src="./assets/media/tiles-3.webp" alt="遊戲中 3 白邊棋子的各種排列與中央連通形態" width="600" height="200" loading="lazy" decoding="async"></figure><figure class="tile-family"><div class="tile-family-label"><strong>4 白邊</strong><span>每局 4</span></div><img class="" src="./assets/media/tiles-4.webp" alt="遊戲中 4 白邊棋子的各種排列與中央連通形態" width="600" height="100" loading="lazy" decoding="async"></figure><figure class="tile-family"><div class="tile-family-label"><strong>5 白邊</strong><span>每局 2</span></div><img class="" src="./assets/media/tiles-5.webp" alt="遊戲中 5 白邊棋子的各種排列與中央連通形態" width="200" height="100" loading="lazy" decoding="async"></figure><figure class="tile-family"><div class="tile-family-label"><strong>6 白邊</strong><span>每局 2</span></div><img class="" src="./assets/media/tiles-6.webp" alt="遊戲中 6 白邊棋子的各種排列與中央連通形態" width="200" height="100" loading="lazy" decoding="async"></figure></div><p class="visual-note">圖中呈現遊戲內牌庫的各種形態；棋子可以旋轉。圖樣數量不等於每局牌庫張數。</p></section>
 <section class="section" id="placement">
   <span class="eyebrow">03 / PLACEMENT</span>
   <h2>合法落子</h2>
@@ -63,23 +64,23 @@
     <li>若任一接觸邊不符，該方向與位置不能落子，需重新選擇。</li>
   </ol>
   <p>遊戲畫面可用落子預覽確認合法位置；手牌也可以重新排列，並不改變棋子的屬性。</p>
-</section>
+<figure class="guide-figure "><img class="" src="./assets/media/move-connect.webp" data-animation="./assets/media/move-connect.gif" data-still="./assets/media/move-connect.webp" alt="逐步落子示範：每一條接觸邊都必須同色配對。" width="640" height="380" loading="lazy" decoding="async"><figcaption>逐步落子示範：每一條接觸邊都必須同色配對。</figcaption></figure><button class="motion-toggle" type="button" data-motion-toggle hidden aria-pressed="false" data-pause-label="暫停動圖" data-play-label="播放動圖">暫停動圖</button></section>
 <section class="section" id="connections">
   <span class="eyebrow">04 / CONNECTIONS</span>
   <h2>白色連通、封閉與 DEAD</h2>
-  <p>白色邊相接後，會依棋子本身的連通形態形成一個或多個白色區域。<strong>不只是相鄰就會合併，還要看棋子內部的白邊是否相通。</strong></p>
+  <p>白色邊相接後，會依棋子本身的連通形態形成一個或多個白色區域。<strong>不只是相鄰就會合併，還要看棋子內部的白邊是否相通。</strong></p><div class="connection-grid"><figure class="guide-figure connection-example"><img class="" src="./assets/media/connection-open.webp" alt="連通：白邊已接在一起，仍有尚未封閉的出口。" width="332" height="276" loading="lazy" decoding="async"><figcaption>連通：白邊已接在一起，仍有尚未封閉的出口。</figcaption></figure><figure class="guide-figure connection-example"><img class="" src="./assets/media/connection-closed.webp" alt="封閉：所有出口封住，區域轉成玩家顏色並得分。" width="332" height="276" loading="lazy" decoding="async"><figcaption>封閉：所有出口封住，區域轉成玩家顏色並得分。</figcaption></figure><figure class="guide-figure connection-example"><img class="" src="./assets/media/connection-dead.webp" alt="DEAD：白邊通向棋盤外緣，區域變灰；紅邊標示外緣出口。" width="341" height="313" loading="lazy" decoding="async"><figcaption>DEAD：白邊通向棋盤外緣，區域變灰；紅邊標示外緣出口。</figcaption></figure></div>
   <p>當一個白色連通區域沒有任何未封閉的出口時，會形成可計分的封閉圖形。同一個已計分區域不會因重複判定而重複得分。</p>
   <p>若白色連通區域朝棋盤外緣延伸，因出口已無棋盤空格可延續，遊戲會標示為 <strong>DEAD</strong>。DEAD 與成功封閉不同，不能單純當作封閉得分。</p>
-</section>
+<h3 class="subheading">相同白邊排列，也可能有不同連通方式</h3><div class="visual-pair center-comparison"><figure class="guide-figure "><img class="" src="./assets/media/connection-split.webp" alt="中央不連通：兩端白邊屬於不同區域。" width="202" height="202" loading="lazy" decoding="async"><figcaption>中央不連通：兩端白邊屬於不同區域。</figcaption></figure><figure class="guide-figure "><img class="" src="./assets/media/connection-center.webp" alt="中央連通：相同白邊排列可以連成同一區域。" width="202" height="202" loading="lazy" decoding="async"><figcaption>中央連通：相同白邊排列可以連成同一區域。</figcaption></figure></div></section>
 <section class="section" id="scoring">
   <span class="eyebrow">05 / SCORING</span>
   <h2>封閉計分表</h2>
-  <p>封閉區域的分數由該白色連通區域涵蓋的<strong>不同棋子格數</strong>決定。</p>
-  <div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">封閉區域棋子數</th><th scope="col">得分</th></tr></thead><tbody>
-    <tr><td>2</td><td>1</td></tr><tr><td>3</td><td>2</td></tr><tr><td>4</td><td>4</td></tr><tr><td>5</td><td>7</td></tr><tr><td>6</td><td>10</td></tr><tr><td>7 以上</td><td>棋子數 × 2</td></tr>
-  </tbody></table></div>
+  <p>封閉區域的分數由該白色連通區域涵蓋的<strong>不同棋子格數</strong>決定。</p><p class="visual-note">編號標出不同棋子格；同一格在同一個連通區域中只算一次。以下皆為遊戲實際判定的封閉範例。</p><div class="scoring-gallery"><figure class="score-example"><div class="annotated-board" style="width:min(100%,221.86px)"><img class="" src="./assets/media/score-2.webp" alt="2 枚不同棋子構成一個封閉區域" width="195" height="167" loading="lazy" decoding="async"><span class="tile-number" style="left:33.333%;top:38.922%">1</span><span class="tile-number" style="left:66.667%;top:61.078%">2</span></div><figcaption><strong>2 格 <span aria-hidden="true">→</span> <b>1</b> 分</strong></figcaption></figure><figure class="score-example"><div class="annotated-board" style="width:min(100%,242.16px)"><img class="" src="./assets/media/score-3.webp" alt="3 枚不同棋子構成一個封閉區域" width="260" height="204" loading="lazy" decoding="async"><span class="tile-number" style="left:25.0%;top:31.863%">1</span><span class="tile-number" style="left:50.0%;top:50.0%">2</span><span class="tile-number" style="left:75.0%;top:68.137%">3</span></div><figcaption><strong>3 格 <span aria-hidden="true">→</span> <b>2</b> 分</strong></figcaption></figure><figure class="score-example"><div class="annotated-board" style="width:min(100%,256.22px)"><img class="" src="./assets/media/score-4.webp" alt="4 枚不同棋子構成一個封閉區域" width="325" height="241" loading="lazy" decoding="async"><span class="tile-number" style="left:20.0%;top:26.971%">1</span><span class="tile-number" style="left:40.0%;top:42.324%">2</span><span class="tile-number" style="left:60.0%;top:57.676%">3</span><span class="tile-number" style="left:80.0%;top:73.029%">4</span></div><figcaption><strong>4 格 <span aria-hidden="true">→</span> <b>4</b> 分</strong></figcaption></figure><figure class="score-example"><div class="annotated-board" style="width:min(100%,266.55px)"><img class="" src="./assets/media/score-5.webp" alt="5 枚不同棋子構成一個封閉區域" width="390" height="278" loading="lazy" decoding="async"><span class="tile-number" style="left:16.667%;top:23.381%">1</span><span class="tile-number" style="left:33.333%;top:36.691%">2</span><span class="tile-number" style="left:50.0%;top:50.0%">3</span><span class="tile-number" style="left:66.667%;top:63.309%">4</span><span class="tile-number" style="left:83.333%;top:76.619%">5</span></div><figcaption><strong>5 格 <span aria-hidden="true">→</span> <b>7</b> 分</strong></figcaption></figure><figure class="score-example"><div class="annotated-board" style="width:min(100%,266.55px)"><img class="" src="./assets/media/score-6.webp" alt="6 枚不同棋子構成一個封閉區域" width="390" height="278" loading="lazy" decoding="async"><span class="tile-number" style="left:16.667%;top:23.381%">1</span><span class="tile-number" style="left:33.333%;top:36.691%">2</span><span class="tile-number" style="left:50.0%;top:50.0%">3</span><span class="tile-number" style="left:66.667%;top:63.309%">4</span><span class="tile-number" style="left:83.333%;top:76.619%">5</span><span class="tile-number" style="left:83.333%;top:50.0%">6</span></div><figcaption><strong>6 格 <span aria-hidden="true">→</span> <b>10</b> 分</strong></figcaption></figure><figure class="score-example"><div class="annotated-board" style="width:min(100%,266.55px)"><img class="" src="./assets/media/score-7.webp" alt="7 枚不同棋子構成一個封閉區域" width="390" height="278" loading="lazy" decoding="async"><span class="tile-number" style="left:16.667%;top:23.381%">1</span><span class="tile-number" style="left:33.333%;top:36.691%">2</span><span class="tile-number" style="left:50.0%;top:50.0%">3</span><span class="tile-number" style="left:66.667%;top:63.309%">4</span><span class="tile-number" style="left:83.333%;top:76.619%">5</span><span class="tile-number" style="left:83.333%;top:50.0%">6</span><span class="tile-number" style="left:66.667%;top:36.691%">7</span></div><figcaption><strong>7 格 <span aria-hidden="true">→</span> <b>14</b> 分</strong></figcaption></figure></div>
+
   <p>1 枚棋子不構成有效得分區域；更大的封閉圖形通常能取得更高分數，但也更需要保留安全的延伸方向。</p>
-</section>
+<details class="score-reference"><summary>展開計分速查表</summary><div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的資料表"><table class="data-table"><thead><tr><th scope="col">封閉區域棋子數</th><th scope="col">得分</th></tr></thead><tbody>
+    <tr><td>2</td><td>1</td></tr><tr><td>3</td><td>2</td></tr><tr><td>4</td><td>4</td></tr><tr><td>5</td><td>7</td></tr><tr><td>6</td><td>10</td></tr><tr><td>7 以上</td><td>棋子數 × 2</td></tr>
+  </tbody></table></div></details></section>
 <section class="section" id="turns">
   <span class="eyebrow">06 / MATCH FLOW</span>
   <h2>回合、PASS 與對局</h2>
@@ -88,7 +89,7 @@
   <p>一般對戰採 <strong>3 局</strong>；Ranked 積分對戰採 <strong>1 局</strong>。對戰最終結果由實際局數及系統結算規則決定。</p>
   <div class="note"><strong>提醒：</strong>不同模式可設定回合時間；逾時可能自動 PASS。正式對戰判定以當前線上遊戲為準。</div>
   <p><a href="./modes.html">繼續閱讀：模式與 Ranked 制度 →</a></p>
-</section></main>
+<figure class="guide-figure "><img class="" src="./assets/media/hand-controls.webp" alt="回合操作區：旋轉、選擇手牌、PASS 與確認落子。" width="1100" height="111" loading="lazy" decoding="async"><figcaption>回合操作區：旋轉、選擇手牌、PASS 與確認落子。</figcaption></figure><figure class="guide-figure small-detail"><img class="" src="./assets/media/match-status.webp" alt="對局狀態會顯示目前局數與回合；一般對戰為三局。" width="140" height="78" loading="lazy" decoding="async"><figcaption>對局狀態會顯示目前局數與回合；一般對戰為三局。</figcaption></figure></section></main>
       <aside class="right-rail">
         <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">03 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">01</span>規則簡介</a></li><li><a href="#board"><span aria-hidden="true">02</span>棋盤</a></li><li><a href="#tiles"><span aria-hidden="true">03</span>棋子與牌庫</a></li><li><a href="#placement"><span aria-hidden="true">04</span>合法落子</a></li><li><a href="#connections"><span aria-hidden="true">05</span>封閉與 DEAD</a></li><li><a href="#scoring"><span aria-hidden="true">06</span>封閉計分</a></li><li><a href="#turns"><span aria-hidden="true">07</span>回合與對局</a></li></ol></details></nav>
         <div class="reference-card frame"><span class="panel-label">公開資料</span><p>原創桌遊，持續進化。</p><a href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM">SHOWCASE <span aria-hidden="true">↗</span></a><a href="./history.html#sources">資料來源 <span aria-hidden="true">↗</span></a></div>

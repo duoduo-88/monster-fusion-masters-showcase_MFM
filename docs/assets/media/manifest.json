@@ -1,0 +1,464 @@
+{
+  "board": {
+    "width": 894,
+    "height": 754,
+    "frames": 1
+  },
+  "connection-center": {
+    "width": 202,
+    "height": 202,
+    "frames": 1
+  },
+  "connection-closed": {
+    "points": 2,
+    "tiles": 3,
+    "width": 332,
+    "height": 276,
+    "frames": 1
+  },
+  "connection-dead": {
+    "dead": 1,
+    "width": 341,
+    "height": 313,
+    "frames": 1
+  },
+  "connection-open": {
+    "width": 332,
+    "height": 276,
+    "frames": 1
+  },
+  "connection-split": {
+    "width": 202,
+    "height": 202,
+    "frames": 1
+  },
+  "move-chain": {
+    "duration": 80,
+    "width": 640,
+    "height": 380,
+    "frames": 46
+  },
+  "move-close": {
+    "duration": 80,
+    "width": 640,
+    "height": 380,
+    "frames": 31
+  },
+  "move-connect": {
+    "duration": 80,
+    "width": 640,
+    "height": 380,
+    "frames": 20
+  },
+  "rank-bronze": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 89,
+    "animation": "rank-bronze.animated.webp"
+  },
+  "rank-diamond": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 90,
+    "animation": "rank-diamond.animated.webp"
+  },
+  "rank-gold": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 90,
+    "animation": "rank-gold.animated.webp"
+  },
+  "rank-master": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 90,
+    "animation": "rank-master.animated.webp"
+  },
+  "rank-placement": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 1
+  },
+  "rank-platinum": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 90,
+    "animation": "rank-platinum.animated.webp"
+  },
+  "rank-silver": {
+    "duration": 80,
+    "width": 224,
+    "height": 224,
+    "frames": 89,
+    "animation": "rank-silver.animated.webp"
+  },
+  "score-2": {
+    "points": 1,
+    "tiles": 2,
+    "width": 195,
+    "height": 167,
+    "frames": 1,
+    "labels": [
+      {
+        "x": 33.333,
+        "y": 38.922,
+        "text": "1"
+      },
+      {
+        "x": 66.667,
+        "y": 61.078,
+        "text": "2"
+      }
+    ]
+  },
+  "score-3": {
+    "points": 2,
+    "tiles": 3,
+    "width": 260,
+    "height": 204,
+    "frames": 1,
+    "labels": [
+      {
+        "x": 25.0,
+        "y": 31.863,
+        "text": "1"
+      },
+      {
+        "x": 50.0,
+        "y": 50.0,
+        "text": "2"
+      },
+      {
+        "x": 75.0,
+        "y": 68.137,
+        "text": "3"
+      }
+    ]
+  },
+  "score-4": {
+    "points": 4,
+    "tiles": 4,
+    "width": 325,
+    "height": 241,
+    "frames": 1,
+    "labels": [
+      {
+        "x": 20.0,
+        "y": 26.971,
+        "text": "1"
+      },
+      {
+        "x": 40.0,
+        "y": 42.324,
+        "text": "2"
+      },
+      {
+        "x": 60.0,
+        "y": 57.676,
+        "text": "3"
+      },
+      {
+        "x": 80.0,
+        "y": 73.029,
+        "text": "4"
+      }
+    ]
+  },
+  "score-5": {
+    "points": 7,
+    "tiles": 5,
+    "width": 390,
+    "height": 278,
+    "frames": 1,
+    "labels": [
+      {
+        "x": 16.667,
+        "y": 23.381,
+        "text": "1"
+      },
+      {
+        "x": 33.333,
+        "y": 36.691,
+        "text": "2"
+      },
+      {
+        "x": 50.0,
+        "y": 50.0,
+        "text": "3"
+      },
+      {
+        "x": 66.667,
+        "y": 63.309,
+        "text": "4"
+      },
+      {
+        "x": 83.333,
+        "y": 76.619,
+        "text": "5"
+      }
+    ]
+  },
+  "score-6": {
+    "points": 10,
+    "tiles": 6,
+    "width": 390,
+    "height": 278,
+    "frames": 1,
+    "labels": [
+      {
+        "x": 16.667,
+        "y": 23.381,
+        "text": "1"
+      },
+      {
+        "x": 33.333,
+        "y": 36.691,
+        "text": "2"
+      },
+      {
+        "x": 50.0,
+        "y": 50.0,
+        "text": "3"
+      },
+      {
+        "x": 66.667,
+        "y": 63.309,
+        "text": "4"
+      },
+      {
+        "x": 83.333,
+        "y": 76.619,
+        "text": "5"
+      },
+      {
+        "x": 83.333,
+        "y": 50.0,
+        "text": "6"
+      }
+    ]
+  },
+  "score-7": {
+    "points": 14,
+    "tiles": 7,
+    "width": 390,
+    "height": 278,
+    "frames": 1,
+    "labels": [
+      {
+        "x": 16.667,
+        "y": 23.381,
+        "text": "1"
+      },
+      {
+        "x": 33.333,
+        "y": 36.691,
+        "text": "2"
+      },
+      {
+        "x": 50.0,
+        "y": 50.0,
+        "text": "3"
+      },
+      {
+        "x": 66.667,
+        "y": 63.309,
+        "text": "4"
+      },
+      {
+        "x": 83.333,
+        "y": 76.619,
+        "text": "5"
+      },
+      {
+        "x": 83.333,
+        "y": 50.0,
+        "text": "6"
+      },
+      {
+        "x": 66.667,
+        "y": 36.691,
+        "text": "7"
+      }
+    ]
+  },
+  "tiles-0": {
+    "variants": 2,
+    "width": 200,
+    "height": 100,
+    "frames": 1
+  },
+  "tiles-1": {
+    "variants": 2,
+    "width": 200,
+    "height": 100,
+    "frames": 1
+  },
+  "tiles-2": {
+    "variants": 6,
+    "width": 600,
+    "height": 100,
+    "frames": 1
+  },
+  "tiles-3": {
+    "variants": 8,
+    "width": 600,
+    "height": 200,
+    "frames": 1
+  },
+  "tiles-4": {
+    "variants": 6,
+    "width": 600,
+    "height": 100,
+    "frames": 1
+  },
+  "tiles-5": {
+    "variants": 2,
+    "width": 200,
+    "height": 100,
+    "frames": 1
+  },
+  "tiles-6": {
+    "variants": 2,
+    "width": 200,
+    "height": 100,
+    "frames": 1
+  },
+  "lobby-room-list": {
+    "width": 975,
+    "height": 694,
+    "frames": 1,
+    "source": "lobby.png",
+    "crop": [
+      330,
+      86,
+      1305,
+      780
+    ]
+  },
+  "ranked-panel": {
+    "width": 293,
+    "height": 170,
+    "frames": 1,
+    "source": "lobby.png",
+    "crop": [
+      18,
+      430,
+      311,
+      600
+    ]
+  },
+  "room-players": {
+    "width": 618,
+    "height": 305,
+    "frames": 1,
+    "source": "room.png",
+    "crop": [
+      17,
+      172,
+      635,
+      477
+    ]
+  },
+  "room-controls": {
+    "width": 296,
+    "height": 335,
+    "frames": 1,
+    "source": "room.png",
+    "crop": [
+      1290,
+      549,
+      1586,
+      884
+    ]
+  },
+  "spectator-seats": {
+    "width": 618,
+    "height": 305,
+    "frames": 1,
+    "source": "room.png",
+    "crop": [
+      650,
+      172,
+      1268,
+      477
+    ]
+  },
+  "color-lab": {
+    "width": 382,
+    "height": 580,
+    "frames": 1,
+    "source": "color-lab.png",
+    "crop": [
+      809,
+      12,
+      1191,
+      592
+    ]
+  },
+  "hand-controls": {
+    "width": 1100,
+    "height": 111,
+    "frames": 1,
+    "source": "battle.png",
+    "crop": [
+      12,
+      771,
+      1188,
+      890
+    ]
+  },
+  "match-status": {
+    "width": 140,
+    "height": 78,
+    "frames": 1,
+    "source": "battle.png",
+    "crop": [
+      750,
+      94,
+      890,
+      172
+    ]
+  },
+  "game-log": {
+    "width": 260,
+    "height": 304,
+    "frames": 1,
+    "source": "battle.png",
+    "crop": [
+      925,
+      451,
+      1185,
+      755
+    ]
+  },
+  "battle-overview": {
+    "width": 549,
+    "height": 613,
+    "frames": 1,
+    "source": "battle.png",
+    "crop": [
+      185,
+      112,
+      734,
+      725
+    ]
+  },
+  "board-colors": {
+    "width": 784,
+    "height": 850,
+    "frames": 1,
+    "source": "showcase-cover.png",
+    "crop": [
+      633,
+      165,
+      1588,
+      1200
+    ]
+  }
+}
