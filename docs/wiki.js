@@ -52,11 +52,23 @@
   window.addEventListener("hashchange", () => selectSection(location.hash.slice(1) || "overview"));
   for (const link of tocLinks) link.addEventListener("click", () => selectSection(link.hash.slice(1)));
   if (!("IntersectionObserver" in window)) return;
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) if (entry.isIntersecting) selectSection(entry.target.id);
-  }, { rootMargin: "-5% 0px -65% 0px", threshold: 0 });
-  for (const link of tocLinks) {
-    const section = document.getElementById(link.hash.slice(1));
-    if (section) observer.observe(section);
-  }
+  const desktopArticleScroll = window.matchMedia("(min-width: 761px)");
+  const article = document.querySelector(".page");
+  let sectionObserver;
+  const observeSections = () => {
+    sectionObserver?.disconnect();
+    sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) selectSection(entry.target.id);
+    }, {
+      root: desktopArticleScroll.matches ? article : null,
+      rootMargin: "-5% 0px -65% 0px",
+      threshold: 0
+    });
+    for (const link of tocLinks) {
+      const section = document.getElementById(link.hash.slice(1));
+      if (section) sectionObserver.observe(section);
+    }
+  };
+  observeSections();
+  desktopArticleScroll.addEventListener?.("change", observeSections);
 })();
