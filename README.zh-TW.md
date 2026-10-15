@@ -1,5 +1,7 @@
 # Monster Fusion Masters
 
+**官方遊戲百科（規則、計分與開發歷史）：** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)（需啟用 GitHub Pages）
+
 **Showcase 儲存庫名稱：** `monster-fusion-masters-showcase`
 
 ![Monster Fusion Masters Showcase 封面](assets/showcase-cover.png?v=d8be5338)
