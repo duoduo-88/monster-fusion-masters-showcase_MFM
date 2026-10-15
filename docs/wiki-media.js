@@ -2,11 +2,8 @@
 (() => {
   "use strict";
   const images = [...document.querySelectorAll("img[data-animation]")];
-  const controls = [...document.querySelectorAll("[data-motion-toggle]")];
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let saved = null;
-  try { saved = localStorage.getItem("mfm:wiki:motion"); } catch { /* Optional preference. */ }
-  let paused = saved === "paused" || (!saved && reduced.matches);
+  let paused = reduced.matches;
   const renderImage = image => {
     const source = paused || document.hidden ? image.dataset.still : image.dataset.animation;
     // Avoid restarting every GIF when a reader changes just one example.
@@ -14,18 +11,7 @@
   };
   const syncMotion = () => {
     images.forEach(renderImage);
-    for (const control of controls) {
-      control.hidden = false;
-      control.removeAttribute("aria-pressed");
-      control.textContent = paused ? control.dataset.playLabel : control.dataset.pauseLabel;
-    }
   };
-  for (const control of controls) control.addEventListener("click", () => {
-    paused = !paused;
-    saved = paused ? "paused" : "play";
-    try { localStorage.setItem("mfm:wiki:motion", saved); } catch { /* Still usable. */ }
-    syncMotion();
-  });
   for (const gallery of document.querySelectorAll("[data-demo-gallery]")) {
     const image = gallery.querySelector("img");
     const caption = gallery.querySelector(".demo-caption");
@@ -41,7 +27,8 @@
   }
   document.addEventListener("visibilitychange", syncMotion);
   reduced.addEventListener?.("change", event => {
-    if (!saved) { paused = event.matches; syncMotion(); }
+    paused = event.matches;
+    syncMotion();
   });
   syncMotion();
 })();

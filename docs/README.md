@@ -13,7 +13,7 @@
 - `wiki-search-index.js`：由 `scripts/build-search-index.py` 從雙語文章產生的本地搜尋索引。
 - `wiki.js`：記住語言偏好、切換時保留文章與章節、手機目錄收合、依桌面內部捲動或手機頁面捲動追蹤目前章節。
 
-- `wiki-media.js`：切換三段實際落子 GIF、暫停／播放動圖，並支援減少動態效果的系統偏好。
+- `wiki-media.js`：切換三段實際落子 GIF、預設自動播放動圖，並支援減少動態效果的系統偏好。
 - `assets/media/`：局部棋盤、棋子與牌庫、封閉／DEAD、計分範例、遊戲功能截圖，以及目前 CLASSIC 階級徽章動圖；來源與擷取說明見該目錄的 README。
 
 
