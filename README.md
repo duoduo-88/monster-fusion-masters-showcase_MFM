@@ -2,7 +2,7 @@
 
 **Showcase repository:** `monster-fusion-masters-showcase`
 
-![Monster Fusion Masters showcase cover](assets/showcase-cover.png)
+![Monster Fusion Masters showcase cover](assets/showcase-cover.png?v=d8be5338)
 
 **Play / Live Game:** [https://mfm.monster-fusion-masters-online.workers.dev/](https://mfm.monster-fusion-masters-online.workers.dev/)
 
