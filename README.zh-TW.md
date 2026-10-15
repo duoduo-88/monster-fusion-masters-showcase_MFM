@@ -2,7 +2,7 @@
 
 **Showcase 儲存庫名稱：** `monster-fusion-masters-showcase`
 
-![Monster Fusion Masters Showcase 封面](assets/showcase-cover.png)
+![Monster Fusion Masters Showcase 封面](assets/showcase-cover.png?v=d8be5338)
 
 **遊玩／線上版本：** [https://mfm.monster-fusion-masters-online.workers.dev/](https://mfm.monster-fusion-masters-online.workers.dev/)
 
