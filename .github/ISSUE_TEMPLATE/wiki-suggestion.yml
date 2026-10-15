@@ -1,0 +1,56 @@
+name: "Wiki 修訂建議 / Suggest a wiki edit"
+description: "回報百科錯誤、內容過時或提出補充建議 / Report incorrect or outdated wiki content"
+title: "[Wiki] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        歡迎協助完善 Monster Fusion Masters Wiki！
+        Please use this form to suggest changes to the public wiki.
+
+        此表單建立的 Issue 為公開內容，請勿提交個人敏感資訊、未公開原始碼或帳號憑證。
+        Issues are public. Do not include private information, unpublished code, or credentials.
+  - type: dropdown
+    id: page
+    attributes:
+      label: "百科頁面 / Wiki page"
+      description: "請選擇需要修改的文章 / Select the article"
+      options:
+        - "首頁 / Home"
+        - "遊戲規則 / Game rules"
+        - "模式與競技 / Modes and ranked"
+        - "開發歷史 / Development history"
+        - "其他 / Other"
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: "章節或網址 / Section or URL"
+      description: "可貼上 Wiki 的頁面或章節連結 / Optional article or section link"
+      placeholder: "https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/rules.html#scoring"
+    validations:
+      required: false
+  - type: textarea
+    id: problem
+    attributes:
+      label: "問題或補充內容 / Problem or missing information"
+      description: "請具體描述哪裡有錯、過時或缺漏 / Describe what should be improved"
+      placeholder: "目前文章寫的是…… / The article currently says..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "建議修改方式 / Suggested revision"
+      description: "若有適合的修正文句，請一併提供 / Optional proposed wording"
+      placeholder: "建議改成…… / I suggest changing it to..."
+    validations:
+      required: false
+  - type: textarea
+    id: references
+    attributes:
+      label: "參考資料 / References"
+      description: "相關規則、資料來源或公開連結 / Supporting public sources or links"
+    validations:
+      required: false
