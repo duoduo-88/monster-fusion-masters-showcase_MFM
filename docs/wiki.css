@@ -160,9 +160,9 @@ figcaption a{text-decoration:none}
 .entry p{font-size:14px;line-height:1.75;color:var(--muted)}
 .entry:hover{background:#0b130e}
 .entry:hover h3{color:var(--accent)}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;list-style:none;padding:0;counter-reset:steps}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;list-style:none;padding:0}
 .steps li{margin:0;border-top:2px solid #3d5141;padding-top:10px}
-.steps li::before{counter-increment:steps;content:"0" counter(steps);display:block;font:12px/1.6 var(--font);color:var(--gold);margin-bottom:8px}
+.steps li::before{content:"-";display:block;font:12px/1.6 var(--font);color:var(--gold);margin-bottom:8px}
 .steps strong{display:block;font-size:16px;line-height:1.5;margin-bottom:6px;color:var(--accent)}
 .steps li>span{font-size:13px;line-height:1.75;display:block;color:var(--muted)}
 .contents-panel{padding:17px 13px 13px}
@@ -318,3 +318,5 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 @media(max-width:760px){.search-panel{padding:13px}.search-panel .panel-label{margin-bottom:9px}.search-field input{font-size:16px;min-height:44px}.search-help{margin-top:7px}.search-results a{padding:13px 5px}.search-results strong{font-size:16px}.search-result-snippet{font-size:13px}.search-result-page{font-size:12px}}
 
 .demo-controls button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.section ol:not(.steps):not(.timeline){list-style-type:"-  "}
