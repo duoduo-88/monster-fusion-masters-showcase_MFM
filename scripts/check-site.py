@@ -98,6 +98,9 @@ class WikiChecks(unittest.TestCase):
                     self.assertLess(rail.index('class="contents-panel frame"'),
                                     rail.index('class="reference-card frame wiki-contribution"'))
                     self.assertIn("issues/new?template=wiki-suggestion.yml", rail)
+                    self.assertIn('class="pixel-btn cyan" href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new?template=wiki-suggestion.yml"', rail)
+                    self.assertNotIn("需登入 GitHub", rail)
+                    self.assertNotIn("Requires GitHub sign-in", rail)
 
                 with self.subTest(locale=folder or "zh-Hant", article=page, component="download"):
                     archive = html.split('<div class="reference-card frame">', 1)[1].split("</div>", 1)[0]
@@ -154,6 +157,8 @@ class WikiChecks(unittest.TestCase):
         self.assertIn('--mfm-scroll-size:12px', css)
         self.assertIn('--mfm-scroll-content-gutter:14px', css)
         self.assertIn('.wiki-scroll-rail', css)
+        self.assertIn(".reference-card:not(.wiki-contribution)>a", css)
+        self.assertIn(".wiki-contribution>.pixel-btn", css)
         self.assertIn('scrollbar-width:none', css)
         self.assertIn('overflow-y:auto', css)
         self.assertNotIn("BoutiqueBitmap9x9", css)

@@ -48,7 +48,7 @@ node --test scripts/test-search.mjs
 
 ## 社群修訂建議
 
-八個中英文百科頁面皆在右側欄的最下方，以獨立公開資訊區塊提供「提出修訂建議／Suggest an edit」連結，連到 Showcase 公開倉庫的 GitHub Issue Form（`.github/ISSUE_TEMPLATE/wiki-suggestion.yml`）。投稿者須登入 GitHub，內容會公開；維護者審核並確認內容後，再更新正式 Wiki。此流程不允許訪客直接修改網頁或私人主專案原始碼，也不使用新的後端服務。
+八個中英文百科頁面皆在右側欄的最下方，以獨立公開資訊區塊提供「提出修訂建議／Suggest an edit」按鈕，連到 Showcase 公開倉庫的 GitHub Issue Form（`.github/ISSUE_TEMPLATE/wiki-suggestion.yml`）。投稿者須登入 GitHub，內容會公開；維護者審核並確認內容後，再更新正式 Wiki。此流程不允許訪客直接修改網頁或私人主專案原始碼，也不使用新的後端服務。
 
 ## 更新原則與素材
 
