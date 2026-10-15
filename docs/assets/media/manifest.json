@@ -341,30 +341,6 @@
       780
     ]
   },
-  "ranked-panel": {
-    "width": 293,
-    "height": 170,
-    "frames": 1,
-    "source": "lobby.png",
-    "crop": [
-      18,
-      430,
-      311,
-      600
-    ]
-  },
-  "room-players": {
-    "width": 618,
-    "height": 305,
-    "frames": 1,
-    "source": "room.png",
-    "crop": [
-      17,
-      172,
-      635,
-      477
-    ]
-  },
   "room-controls": {
     "width": 296,
     "height": 335,
