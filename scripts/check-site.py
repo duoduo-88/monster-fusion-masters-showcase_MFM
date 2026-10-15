@@ -1,5 +1,6 @@
 """Check the deployed static pages without third-party dependencies."""
 from html.parser import HTMLParser
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import unittest
@@ -14,12 +15,19 @@ class Page(HTMLParser):
         self.ids, self.links, self.languages, self.assets = [], [], {}, []
         self.lang = None
         self.h1s = 0
+        self.canonicals, self.alternates, self.descriptions = [], {}, []
         self.feed(path.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if "id" in attrs:
             self.ids.append(attrs["id"])
+        if tag == "meta" and attrs.get("name") == "description":
+            self.descriptions.append(attrs.get("content", ""))
+        if tag == "link" and attrs.get("rel") == "canonical":
+            self.canonicals.append(attrs.get("href"))
+        if tag == "link" and attrs.get("rel") == "alternate" and attrs.get("hreflang"):
+            self.alternates[attrs["hreflang"]] = attrs.get("href")
         if tag == "html":
             self.lang = attrs.get("lang")
         if tag == "h1":
@@ -192,6 +200,31 @@ class WikiChecks(unittest.TestCase):
                     if url.fragment and target.suffix == ".html":
                         self.assertIn(unquote(url.fragment), Page(target).ids, f"Broken anchor: {href}")
 
+
+    def test_public_search_metadata_and_sitemap(self):
+        base = "https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/"
+        expected = {}
+        for name in PAGES:
+            zh = base if name == "index.html" else base + name
+            en = base + "en/" + name
+            for folder, canonical in (("", zh), ("en", en)):
+                page = Page(ROOT / folder / name)
+                with self.subTest(page=f"{folder}/{name}"):
+                    self.assertEqual(page.canonicals, [canonical])
+                    self.assertEqual(page.alternates, {"zh-Hant": zh, "en": en})
+                    self.assertEqual(len(page.descriptions), 1)
+                    self.assertTrue(page.descriptions[0].strip())
+                expected[canonical] = {"zh-Hant": zh, "en": en}
+        ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9",
+              "x": "http://www.w3.org/1999/xhtml"}
+        root = ET.parse(ROOT / "sitemap.xml").getroot()
+        found = {}
+        for item in root.findall("s:url", ns):
+            loc = item.findtext("s:loc", namespaces=ns)
+            self.assertNotIn(loc, found)
+            found[loc] = {link.attrib["hreflang"]: link.attrib["href"]
+                          for link in item.findall("x:link", ns)}
+        self.assertEqual(found, expected)
 
     def test_sidebar_and_font_layout_contract(self):
         css = (ROOT / "wiki.css").read_text(encoding="utf-8")
