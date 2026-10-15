@@ -135,7 +135,6 @@ li+li{margin-top:9px}
 .eyebrow{display:block;color:var(--muted);font-size:12px;line-height:1.5;letter-spacing:.02em;margin-bottom:12px}
 .hero .eyebrow{color:var(--gold)}
 .hero h1{margin-bottom:14px}
-.hero p{max-width:70ch}
 .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:23px}
 .text-link{font-size:14px;text-decoration:none;color:var(--muted)}
 .text-link:hover{color:var(--cyan)}
