@@ -82,6 +82,10 @@ class WikiChecks(unittest.TestCase):
         css = (ROOT / "wiki.css").read_text(encoding="utf-8")
         self.assertIn('font-family:"Cubic 11"', css)
         self.assertIn('scrollbar-gutter:stable', css)
+        self.assertIn('--mfm-scroll-size:12px', css)
+        self.assertIn('--mfm-scroll-content-gutter:14px', css)
+        self.assertIn('.wiki-scroll-rail', css)
+        self.assertIn('scrollbar-width:none', css)
         self.assertIn('overflow-y:auto', css)
         self.assertNotIn("BoutiqueBitmap9x9", css)
         self.assertNotIn("mfm-pixel.ttf", css)
@@ -98,6 +102,7 @@ class WikiChecks(unittest.TestCase):
                     self.assertNotIn('class="facts frame"', source)
                     self.assertNotIn('class="pixel-btn primary play-button"', source)
                     self.assertNotIn("BoutiqueBitmap9x9", source)
+                    self.assertNotIn("↗", source, "Northeast arrow must not return")
                     self.assertIn("Cubic11-LICENSE.txt", source)
 
 
