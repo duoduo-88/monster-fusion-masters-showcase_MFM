@@ -43,7 +43,7 @@ li+li{margin-top:9px}
 .left-rail,.right-rail{display:grid;align-content:start;gap:16px;min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto}
 :is(.left-rail,.right-rail)::-webkit-scrollbar{display:none;width:0;height:0}
 /* Scrollbar palette and geometry mirror the game's retro-scrollbar.css.
-   Native styling is a no-JS fallback; JS draws the persistent game rail on desktop. */
+   The article reserves its game rail in HTML; tables keep native scrollbar styling. */
 .page,.table-wrap{
   scrollbar-width:auto;
   scrollbar-color:var(--mfm-scroll-thumb) var(--mfm-scroll-track);
@@ -79,9 +79,9 @@ li+li{margin-top:9px}
   border:2px solid #000;
   background:var(--mfm-scroll-track);
 }
-/* Native bar width varies with Firefox/OS preferences; match the game using
-   its viewport-fixed self-drawn rail on the central article.
-   The style is opt-in so browsers without JS retain an accessible native bar. */
+/* The article has this class in its initial HTML, reserving the 14px gutter
+   before enhancement runs. JavaScript sizes and moves the thumb without
+   changing article geometry. Wheel, touch and keyboard scrolling remain native. */
 @media(min-width:761px){
   .page.wiki-scroll-rail{
     --wiki-scroll-thumb-h:28px;
