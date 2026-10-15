@@ -1,15 +1,17 @@
 # Monster Fusion Masters Wiki
 
-繁體中文與英文的公開靜態遊戲百科。沿用遊戲的六角點陣 Logo、黑色面板、像素字與灰／綠／金色系，上方為橫幅，下方為分類、文章與章節目錄。窄螢幕改為單欄與可收合的章節目錄。
+繁體中文與英文的公開靜態遊戲百科。沿用遊戲的六角點陣 Logo、黑色面板、像素字與灰／綠／金色系，上方為橫幅，下方為分類、文章與章節目錄。桌面版三欄同頂對齊，中央文章外框隨視窗高度伸縮，內容獨立捲動；桌面版沿用遊戲的 12px 自繪像素捲動軌、14px 內容預留空間與可拖曳的固定滑塊（Firefox 與 Chromium 外觀一致）。窄螢幕改為單欄、一般頁面捲動與可收合的章節目錄。所有連結的右上方向箭頭已移除。
 
 ## 頁面與語言
 
 - `index.html`、`rules.html`、`modes.html`、`history.html`：繁體中文。
 - `en/`：相同四篇文章的完整英文版。
 - `wiki.css`：本站唯一的版面樣式來源。
-- `wiki.js`：記住語言偏好、切換時保留文章與章節、手機目錄收合、目前章節標示。
+- `wiki.js`：記住語言偏好、切換時保留文章與章節、手機目錄收合、依桌面內部捲動或手機頁面捲動追蹤目前章節。
+
 - `wiki-media.js`：切換三段實際落子 GIF、暫停／播放動圖，並支援減少動態效果的系統偏好。
 - `assets/media/`：局部棋盤、棋子與牌庫、封閉／DEAD、計分範例、遊戲功能截圖，以及目前 CLASSIC 階級徽章動圖；來源與擷取說明見該目錄的 README。
+
 
 兩種語言皆為完整的 HTML，無需前端框架或建置程序。停用 JavaScript 仍能閱讀所有文章並透過語言連結切換。語言偏好儲存在本站的 `mfm:wiki:language`，不存取遊戲帳號資料。所有站內路徑均相對於目前頁面，適用於 GitHub Pages 專案子路徑。
 
@@ -44,5 +46,4 @@ node --test scripts/test-media.mjs
 - `assets/battle.png` 為既有公開 Showcase 的示範對局截圖。
 - `assets/mfm-wordmark.svg` 為遊戲品牌的靜態六角點陣字標，不載入遊戲 runtime。
 - 新增圖片皆為實際遊戲畫面或其繪製器的輸出。計分範例由遊戲判定後擷取，編號以 HTML 疊加，原始圖片維持局部截圖。
-- 整頁、側欄及橫向資料表使用遊戲配色的方角粗捲動條；Chromium 採自訂像素軌道與內框，其他瀏覽器保留可操作的加粗配色捲動條。
-- 字體隨站自帶，避免 CDN 連線影響排版：BoutiqueBitmap9x9 用於介面，Cubic11 用於長文。各自的授權與原作者資訊保留在 `fonts/BoutiqueBitmap9x9-LICENSE.txt` 與 `fonts/Cubic11-LICENSE.txt`。
+- 全站只使用隨站提供的 Cubic11（`fonts/mfm-reading.ttf`），不連接字體 CDN；授權與原作者資訊保留在 `fonts/Cubic11-LICENSE.txt`。

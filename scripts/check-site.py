@@ -97,5 +97,33 @@ class WikiChecks(unittest.TestCase):
                         self.assertIn(unquote(url.fragment), Page(target).ids, f"Broken anchor: {href}")
 
 
+    def test_sidebar_and_font_layout_contract(self):
+        css = (ROOT / "wiki.css").read_text(encoding="utf-8")
+        self.assertIn('font-family:"Cubic 11"', css)
+        self.assertIn('scrollbar-gutter:stable', css)
+        self.assertIn('--mfm-scroll-size:12px', css)
+        self.assertIn('--mfm-scroll-content-gutter:14px', css)
+        self.assertIn('.wiki-scroll-rail', css)
+        self.assertIn('scrollbar-width:none', css)
+        self.assertIn('overflow-y:auto', css)
+        self.assertNotIn("BoutiqueBitmap9x9", css)
+        self.assertNotIn("mfm-pixel.ttf", css)
+        self.assertFalse((ROOT / "fonts" / "mfm-pixel.ttf").exists())
+        for folder in ("", "en"):
+            for name in PAGES:
+                with self.subTest(folder=folder or "zh-Hant", page=name):
+                    source = (ROOT / folder / name).read_text(encoding="utf-8")
+                    note = source.index('class="rail-note frame"')
+                    reference = source.index('class="reference-card frame"')
+                    left_end = source.index("</aside>", source.index('class="left-rail"'))
+                    self.assertLess(note, reference)
+                    self.assertLess(reference, left_end)
+                    self.assertNotIn('class="facts frame"', source)
+                    self.assertNotIn('class="pixel-btn primary play-button"', source)
+                    self.assertNotIn("BoutiqueBitmap9x9", source)
+                    self.assertNotIn("↗", source, "Northeast arrow must not return")
+                    self.assertIn("Cubic11-LICENSE.txt", source)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
