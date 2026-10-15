@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="MFM 61 格六角棋盤遊戲規則：白邊與黑邊配對、封閉連通區域計分、手牌、回合及 DEAD 判定。">
+  <title>遊戲規則 | Monster Fusion Masters Wiki</title>
+  <link rel="stylesheet" href="./wiki.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-head frame">
+      <a class="brand" href="./index.html" aria-label="Monster Fusion Masters Wiki 首頁">
+        <span class="brand-mark" aria-hidden="true">⬡</span>
+        <span><span class="brand-name">MONSTER FUSION MASTERS</span><span class="brand-desc">OFFICIAL WIKI / 遊戲百科</span></span>
+      </a>
+      <div class="head-actions">
+        <a class="pixel-btn primary" href="https://mfm.monster-fusion-masters-online.workers.dev/">開始遊戲 ↗</a>
+        <a class="pixel-btn" href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM">SHOWCASE ↗</a>
+      </div>
+    </header>
+    <div class="layout">
+      <nav class="site-nav frame" aria-label="百科主選單">
+        <div class="nav-title">DATABASE / 目錄</div>
+        <a class="nav-link" href="./index.html"><span class="nav-index">01</span>首頁 <span class="muted">/ HOME</span></a>
+        <a class="nav-link" href="./rules.html" aria-current="page"><span class="nav-index">02</span>遊戲規則 <span class="muted">/ RULES</span></a>
+        <a class="nav-link" href="./modes.html"><span class="nav-index">03</span>模式與競技 <span class="muted">/ MODES</span></a>
+        <a class="nav-link" href="./history.html"><span class="nav-index">04</span>開發歷史 <span class="muted">/ HISTORY</span></a>
+        <hr class="nav-separator">
+        <p class="nav-extra">由 MFM 開發者維護的公開資料。規則以正式遊戲為準，服務內容可能隨版本更新。</p>
+      </nav>
+      <main class="page" id="main-content">
+<section class="hero frame">
+  <span class="eyebrow">01 / GAME RULES</span>
+  <h1>遊戲規則</h1>
+  <p>《Monster Fusion Masters》是一款運用六角棋子拼接、封閉白色區域取得分數的回合制策略遊戲。以下整理線上版目前採用的基本規則。</p>
+  <p class="muted">版本參照：Competitive Rule / Rule 20200629；線上玩法核對日期：2026-10-16。</p>
+</section>
+<section class="section frame" aria-label="本頁目錄">
+  <span class="eyebrow">INDEX / 本頁目錄</span>
+  <ul class="toc">
+    <li><a href="#board">棋盤</a></li><li><a href="#tiles">棋子</a></li><li><a href="#placement">落子</a></li>
+    <li><a href="#connections">封閉與 DEAD</a></li><li><a href="#scoring">計分</a></li><li><a href="#turns">回合與對局</a></li>
+  </ul>
+</section>
+<section class="section frame" id="board">
+  <span class="eyebrow">01 / BOARD</span>
+  <h2>棋盤</h2>
+  <p>棋盤由 <strong>61 個六角格</strong>構成，中心向外延伸四圈。每格最多放置一枚棋子，已佔用或超出棋盤的位置不可落子。</p>
+  <p>棋盤上的棋子會影響相鄰格的合法方向與連通狀態，因此落子不只是填空格，也會改變後續可行的組合。</p>
+</section>
+<section class="section frame" id="tiles">
+  <span class="eyebrow">02 / TILES</span>
+  <h2>棋子與牌庫</h2>
+  <p>每枚棋子有六條邊，每條邊為白色或黑色。按照白邊數量，棋子分為 <strong>0 至 6 白邊</strong>的七類；同一類仍可能有不同白邊排列及內部連通形態。</p>
+  <div class="table-wrap"><table class="data-table"><thead><tr><th>白邊數</th><th>每局牌庫數量</th></tr></thead>
+    <tbody><tr><td>0 邊</td><td>2</td></tr><tr><td>1 邊</td><td>16–30</td></tr><tr><td>2 邊</td><td>8–15</td></tr><tr><td>3 邊</td><td>8–15</td></tr><tr><td>4 邊</td><td>4</td></tr><tr><td>5 邊</td><td>2</td></tr><tr><td>6 邊</td><td>2</td></tr></tbody>
+  </table></div>
+  <div class="note"><strong>牌庫組成：</strong>1 白邊的棋子數量是 2 白邊／3 白邊各自數量的兩倍；這三類隨當局抽選數量變化。每位玩家手牌最多 5 枚。</div>
+</section>
+<section class="section frame" id="placement">
+  <span class="eyebrow">03 / PLACEMENT</span>
+  <h2>合法落子</h2>
+  <ol>
+    <li>從手牌選擇一枚棋子，必要時將它旋轉至想要的方向。</li>
+    <li>選擇棋盤內尚未被占用的格子。</li>
+    <li>所有與既有棋子接觸的邊必須配對：<strong>白邊接白邊、黑邊接黑邊</strong>。</li>
+    <li>若任一接觸邊不符，該方向與位置不能落子，需重新選擇。</li>
+  </ol>
+  <p>遊戲畫面可用落子預覽確認合法位置；手牌也可以重新排列，並不改變棋子的屬性。</p>
+</section>
+<section class="section frame" id="connections">
+  <span class="eyebrow">04 / CONNECTIONS</span>
+  <h2>白色連通、封閉與 DEAD</h2>
+  <p>白色邊相接後，會依棋子本身的連通形態形成一個或多個白色區域。<strong>不只是相鄰就會合併，還要看棋子內部的白邊是否相通。</strong></p>
+  <p>當一個白色連通區域沒有任何未封閉的出口時，會形成可計分的封閉圖形。同一個已計分區域不會因重複判定而重複得分。</p>
+  <p>若白色連通區域朝棋盤外緣延伸，因出口已無棋盤空格可延續，遊戲會標示為 <strong>DEAD</strong>。DEAD 與成功封閉不同，不能單純當作封閉得分。</p>
+</section>
+<section class="section frame" id="scoring">
+  <span class="eyebrow">05 / SCORING</span>
+  <h2>封閉計分表</h2>
+  <p>封閉區域的分數由該白色連通區域涵蓋的<strong>不同棋子格數</strong>決定。</p>
+  <div class="table-wrap"><table class="data-table"><thead><tr><th>封閉區域棋子數</th><th>得分</th></tr></thead><tbody>
+    <tr><td>2</td><td>1</td></tr><tr><td>3</td><td>2</td></tr><tr><td>4</td><td>4</td></tr><tr><td>5</td><td>7</td></tr><tr><td>6</td><td>10</td></tr><tr><td>7 以上</td><td>棋子數 × 2</td></tr>
+  </tbody></table></div>
+  <p>1 枚棋子不構成有效得分區域；更大的封閉圖形通常能取得更高分數，但也更需要保留安全的延伸方向。</p>
+</section>
+<section class="section frame" id="turns">
+  <span class="eyebrow">06 / MATCH FLOW</span>
+  <h2>回合、PASS 與對局</h2>
+  <p>每局開始時各玩家取得起始手牌；輪到玩家時會依牌庫與手牌上限補牌。玩家可以落子，或在需要時選擇 PASS。</p>
+  <p><strong>連續 PASS 達 3 次</strong>，會失去繼續參與該局的資格；已取得的本局分數仍保留。成功落子後，連續 PASS 計數會依遊戲流程重置。</p>
+  <p>一般對戰採 <strong>3 局</strong>；Ranked 積分對戰採 <strong>1 局</strong>。對戰最終結果由實際局數及系統結算規則決定。</p>
+  <div class="note"><strong>提醒：</strong>不同模式可設定回合時間；逾時可能自動 PASS。正式對戰判定以當前線上遊戲為準。</div>
+  <p><a href="./modes.html">繼續閱讀：模式與 Ranked 制度 →</a></p>
+</section></main>
+    </div>
+    <footer class="site-footer">
+      <span>© Monster Fusion Masters · 官方遊戲百科</span>
+      <span>字體 <a href="https://github.com/ACh-K/Cubic-11">Cubic11</a> · <a href="https://github.com/ACh-K/Cubic-11/blob/main/OFL.txt">授權</a> · <a href="./history.html#sources">資料來源</a></span>
+    </footer>
+  </div>
+</body>
+</html>
