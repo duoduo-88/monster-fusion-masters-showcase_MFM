@@ -129,6 +129,7 @@
     updateRail(element);
   }
   window.addEventListener("resize", () => scrollHosts.forEach(scheduleRail), { passive: true });
+  window.addEventListener("wiki:content-resize", () => scrollHosts.forEach(scheduleRail));
   desktopRail.addEventListener?.("change", () => scrollHosts.forEach(updateRail));
   const contents = document.querySelector(".contents-panel details");
   if (contents && window.matchMedia("(max-width: 1000px)").matches) contents.open = false;

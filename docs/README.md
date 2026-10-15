@@ -7,6 +7,8 @@
 - `index.html`、`rules.html`、`modes.html`、`history.html`：繁體中文。
 - `en/`：相同四篇文章的完整英文版。
 - `wiki.css`：本站唯一的版面樣式來源。
+- `wiki-search.js`：跨中英文的全文關鍵字搜尋，點選結果跳至對應語言的文章章節。索引只含公開百科內容，搜尋不傳送到外部服務。
+- `wiki-search-index.js`：由 `scripts/build-search-index.py` 從雙語文章產生的本地搜尋索引。
 - `wiki.js`：記住語言偏好、切換時保留文章與章節、手機目錄收合、依桌面內部捲動或手機頁面捲動追蹤目前章節。
 
 - `wiki-media.js`：切換三段實際落子 GIF、暫停／播放動圖，並支援減少動態效果的系統偏好。
@@ -20,8 +22,10 @@
 ```sh
 python -m http.server 8080 --directory docs
 python scripts/check-site.py
+python scripts/build-search-index.py --check
 node --test scripts/test-language.mjs
 node --test scripts/test-media.mjs
+node --test scripts/test-search.mjs
 ```
 
 開啟 http://127.0.0.1:8080/ 。檢查會核對雙語文章、語言切換的文章對應、章節 ID、站內連結及素材檔案。互動驗證包括語言偏好、切換後的章節位置，以及桌面／手機版面。
@@ -41,6 +45,7 @@ node --test scripts/test-media.mjs
 ## 更新原則與素材
 
 - 修改文章時同步更新兩種語言，並保留相同章節 ID，讓語言切換維持閱讀位置。
+- 文章更新後執行 `python scripts/build-search-index.py`，同步更新搜尋索引；再執行 `--check` 確認沒有過期。
 - 核心玩法及數值須先核對遊戲規則；不把私人遊戲核心程式、機密或部署設定帶入此公開倉庫。
 - 歷史按可查來源撰寫，不捏造日期、報導或里程碑。
 - `assets/battle.png` 為既有公開 Showcase 的示範對局截圖。

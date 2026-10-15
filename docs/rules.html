@@ -8,9 +8,11 @@
   <title>遊戲規則 | Monster Fusion Masters Wiki</title>
   <link rel="alternate" hreflang="zh-Hant" href="./rules.html">
   <link rel="alternate" hreflang="en" href="./en/rules.html">
-  <link rel="stylesheet" href="./wiki.css?v=20261016-media1">
-  <script src="./wiki.js?v=20261016-media1" defer></script>
-  <script src="./wiki-media.js?v=20261016-media1" defer></script>
+  <link rel="stylesheet" href="./wiki.css?v=20261016-search1">
+  <script src="./wiki.js?v=20261016-search1" defer></script>
+  <script src="./wiki-media.js?v=20261016-search1" defer></script>
+  <script src="./wiki-search-index.js?v=20261016-search1" defer></script>
+  <script src="./wiki-search.js?v=20261016-search1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">跳至主要內容</a>
@@ -90,6 +92,15 @@
   <p><a href="./modes.html">繼續閱讀：模式與 Ranked 制度 →</a></p>
 <figure class="guide-figure "><img class="" src="./assets/media/hand-controls.webp" alt="回合操作區：旋轉、選擇手牌、PASS 與確認落子。" width="1100" height="111" loading="lazy" decoding="async"><figcaption>回合操作區：旋轉、選擇手牌、PASS 與確認落子。</figcaption></figure><figure class="guide-figure small-detail"><img class="" src="./assets/media/match-status.webp" alt="對局狀態會顯示目前局數與回合；一般對戰為三局。" width="140" height="78" loading="lazy" decoding="async"><figcaption>對局狀態會顯示目前局數與回合；一般對戰為三局。</figcaption></figure></section></main>
       <aside class="right-rail">
+        <section class="search-panel frame" data-wiki-search hidden aria-label="搜尋百科">
+          <form role="search" aria-label="搜尋百科">
+            <label class="panel-label" for="wiki-search-input">搜尋 / SEARCH</label>
+            <div class="search-field"><input id="wiki-search-input" type="search" placeholder="封閉 / DEAD…" autocomplete="off" spellcheck="false" maxlength="160" aria-describedby="wiki-search-help" aria-controls="wiki-search-results"><button class="search-clear" type="button" aria-label="清除搜尋" hidden>×</button></div>
+            <p class="search-help" id="wiki-search-help">中文 / English · 搜尋全部文章</p>
+          </form>
+          <p class="search-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+          <ol class="search-results" id="wiki-search-results" hidden></ol>
+        </section>
         <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">02 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">01</span>規則簡介</a></li><li><a href="#board"><span aria-hidden="true">02</span>棋盤</a></li><li><a href="#tiles"><span aria-hidden="true">03</span>棋子與牌庫</a></li><li><a href="#placement"><span aria-hidden="true">04</span>合法落子</a></li><li><a href="#connections"><span aria-hidden="true">05</span>封閉與 DEAD</a></li><li><a href="#scoring"><span aria-hidden="true">06</span>封閉計分</a></li><li><a href="#turns"><span aria-hidden="true">07</span>回合與對局</a></li></ol></details></nav>
       </aside>
     </div>

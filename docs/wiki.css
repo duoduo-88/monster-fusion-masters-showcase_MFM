@@ -296,3 +296,25 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .score-reference summary{cursor:pointer;color:var(--gold);font:14px/1.6 var(--font)}
 .score-reference .table-wrap{margin-bottom:0}
 @media(max-width:760px){.demo-stage{height:auto;aspect-ratio:640/380;max-height:300px}.demo-caption{min-height:88px}}
+
+/* Bilingual keyword search sits above the article contents in the right rail. */
+.search-panel{padding:15px 12px 13px;min-width:0}
+.search-panel .panel-label{display:block;margin-bottom:12px;color:var(--cyan)}
+.search-field{position:relative}
+.search-field input{display:block;width:100%;min-width:0;min-height:42px;padding:9px 29px 9px 9px;border:1px solid var(--line);border-radius:0;background:#000;color:var(--ink);font:13px/1.6 var(--font);appearance:none}
+.search-field input::placeholder{color:var(--muted);opacity:1}
+.search-field input::-webkit-search-cancel-button{appearance:none}
+.search-field input:focus-visible{outline:2px solid var(--game-accent);outline-offset:2px;border-color:var(--game-accent)}
+.search-clear{position:absolute;right:3px;top:4px;min-width:27px;min-height:34px;padding:0;border:0;background:#000;color:var(--muted);font:20px/1 var(--font);cursor:pointer}
+.search-clear:hover{color:var(--ink)}
+.search-clear:focus-visible{outline:2px solid var(--gold);outline-offset:0}
+.search-help,.search-status{font:11px/1.8 var(--font);color:var(--muted);margin-top:10px}
+.search-status{color:var(--gold)}
+.search-results{list-style:none;padding:0;margin:12px 0 0;border-top:1px solid var(--soft)}
+.search-results li+li{margin-top:0}
+.search-results a{display:block;padding:12px 3px;border-bottom:1px solid var(--soft);text-decoration:none;overflow-wrap:anywhere}
+.search-results a:hover,.search-results a:focus-visible{background:#0b180e;color:var(--accent)}
+.search-result-page{display:block;color:var(--gold);font:10px/1.7 var(--font);margin-bottom:4px}
+.search-results strong{display:block;color:var(--accent);font:14px/1.7 var(--font)}
+.search-result-snippet{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font:11px/1.8 var(--font);color:var(--muted);margin-top:6px}
+@media(max-width:760px){.search-panel{padding:13px}.search-panel .panel-label{margin-bottom:9px}.search-field input{font-size:16px;min-height:44px}.search-help{margin-top:7px}.search-results a{padding:13px 5px}.search-results strong{font-size:16px}.search-result-snippet{font-size:13px}.search-result-page{font-size:11px}}
