@@ -40,7 +40,7 @@
   // Mirrors the game's app-drawn persistent rail without importing its runtime.
   // Desktop-only styling preserves a normal document scrollbar on touch/mobile.
   const desktopRail = window.matchMedia("(min-width: 761px)");
-  const scrollHosts = [...document.querySelectorAll(".page,.left-rail,.right-rail")];
+  const scrollHosts = [...document.querySelectorAll(".page")];
   const pendingFrames = new WeakSet();
   const dimensions = element => {
     const height = Math.max(0, element.clientHeight);

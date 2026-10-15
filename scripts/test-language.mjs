@@ -46,7 +46,7 @@ function page({ language = 'zh-Hant', saved, search = '', hash = '', blocked = f
     documentElement: { lang: language },
     querySelectorAll(selector) {
       if (selector === 'a[data-language]') return links;
-      if (selector === '.page,.left-rail,.right-rail') return scrollHost ? [rail] : [];
+      if (selector === '.page') return scrollHost ? [rail] : [];
       return toc;
     },
     querySelector(selector) { return selector === '.page' ? article : { open: true }; },
