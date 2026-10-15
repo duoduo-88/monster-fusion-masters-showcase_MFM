@@ -1,6 +1,6 @@
 /* Public wiki presentation only. The game's runtime is not imported. */
 @font-face{font-family:"Cubic 11";src:url("./fonts/mfm-reading.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-:root{color-scheme:dark;--bg:#000;--panel:#050605;--ink:#f1eedc;--copy:#c4c4b6;--muted:#929487;--line:#48483f;--soft:#2c302a;--accent:#8dbf9e;--game-accent:#72aa83;--gold:#c8a951;--cyan:#6cbebc;--font:"Cubic 11",monospace;--scroll-track:#090b09;--scroll-thumb:#6f776b;--scroll-thumb-hover:#8dbf9e}
+:root{color-scheme:dark;--bg:#000;--panel:#050605;--ink:#f1eedc;--copy:#c4c4b6;--muted:#929487;--line:#48483f;--soft:#2c302a;--accent:#8dbf9e;--game-accent:#72aa83;--gold:#c8a951;--cyan:#6cbebc;--font:"Cubic 11",monospace;--mfm-scroll-size:12px;--mfm-scroll-rail-width:12px;--mfm-scroll-content-gutter:14px;--mfm-scroll-track:#0b0d0a;--mfm-scroll-track-line:#242720;--mfm-scroll-thumb:#666960;--mfm-scroll-thumb-edge:#353831;--mfm-scroll-hover:#8b7a42;--mfm-scroll-active:#4f6f59}
 *{box-sizing:border-box}
 html{scroll-padding-top:110px}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.8 var(--font);font-synthesis:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -41,11 +41,80 @@ li+li{margin-top:9px}
 .pixel-btn:active{transform:translate(2px,2px);box-shadow:1px 1px #191c18}
 .layout{display:grid;grid-template-columns:228px minmax(0,1fr) 206px;align-items:stretch;gap:16px;margin-top:16px;flex:1 1 auto;min-height:0}
 .left-rail,.right-rail{display:grid;align-content:start;gap:16px;min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto}
-.page,.left-rail,.right-rail,.table-wrap{scrollbar-color:var(--scroll-thumb) var(--scroll-track);scrollbar-width:thin}
-.page::-webkit-scrollbar,.left-rail::-webkit-scrollbar,.right-rail::-webkit-scrollbar,.table-wrap::-webkit-scrollbar{width:12px;height:12px}
-.page::-webkit-scrollbar-track,.left-rail::-webkit-scrollbar-track,.right-rail::-webkit-scrollbar-track,.table-wrap::-webkit-scrollbar-track{background:var(--scroll-track);border-left:1px solid var(--soft)}
-.page::-webkit-scrollbar-thumb,.left-rail::-webkit-scrollbar-thumb,.right-rail::-webkit-scrollbar-thumb,.table-wrap::-webkit-scrollbar-thumb{background:var(--scroll-thumb);border:3px solid var(--scroll-track);border-radius:0;background-clip:padding-box}
-.page::-webkit-scrollbar-thumb:hover,.left-rail::-webkit-scrollbar-thumb:hover,.right-rail::-webkit-scrollbar-thumb:hover,.table-wrap::-webkit-scrollbar-thumb:hover{background:var(--scroll-thumb-hover)}
+/* Scrollbar palette and geometry mirror the game's retro-scrollbar.css.
+   Native styling is a no-JS fallback; JS draws the persistent game rail on desktop. */
+.page,.left-rail,.right-rail,.table-wrap{
+  scrollbar-width:auto;
+  scrollbar-color:var(--mfm-scroll-thumb) var(--mfm-scroll-track);
+}
+:is(.page,.left-rail,.right-rail,.table-wrap)::-webkit-scrollbar{
+  width:var(--mfm-scroll-size);
+  height:var(--mfm-scroll-size);
+  background:#000;
+}
+:is(.page,.left-rail,.right-rail,.table-wrap)::-webkit-scrollbar-track{
+  border:2px solid #1f221d;
+  border-radius:0;
+  background:repeating-linear-gradient(180deg,transparent 0 3px,var(--mfm-scroll-track-line) 3px 4px),var(--mfm-scroll-track);
+  box-shadow:inset 0 0 0 1px #30332c;
+}
+:is(.page,.left-rail,.right-rail,.table-wrap)::-webkit-scrollbar-thumb{
+  min-width:28px;
+  min-height:28px;
+  border:2px solid #000;
+  border-radius:0;
+  background:linear-gradient(90deg,var(--mfm-scroll-thumb-edge) 0 2px,var(--mfm-scroll-thumb) 2px calc(100% - 2px),var(--mfm-scroll-thumb-edge) calc(100% - 2px));
+  box-shadow:inset 0 0 0 1px #7f8278;
+}
+:is(.page,.left-rail,.right-rail,.table-wrap)::-webkit-scrollbar-thumb:hover{
+  background:linear-gradient(90deg,#514725 0 2px,var(--mfm-scroll-hover) 2px calc(100% - 2px),#514725 calc(100% - 2px));
+  box-shadow:inset 0 0 0 1px #a8975b;
+}
+:is(.page,.left-rail,.right-rail,.table-wrap)::-webkit-scrollbar-thumb:active{
+  background:linear-gradient(90deg,#32483a 0 2px,var(--mfm-scroll-active) 2px calc(100% - 2px),#32483a calc(100% - 2px));
+  box-shadow:inset 0 0 0 1px #6f9079;
+}
+:is(.page,.left-rail,.right-rail,.table-wrap)::-webkit-scrollbar-corner{
+  border:2px solid #000;
+  background:var(--mfm-scroll-track);
+}
+/* Native bar width varies with Firefox/OS preferences; match the game using
+   its viewport-fixed self-drawn rail on the three static desktop scroll hosts.
+   The style is opt-in so browsers without JS retain an accessible native bar. */
+@media(min-width:761px){
+  .wiki-scroll-rail{
+    --wiki-scroll-thumb-h:28px;
+    --wiki-scroll-thumb-y:2px;
+    --wiki-scroll-thumb-color:var(--mfm-scroll-thumb);
+    --wiki-scroll-thumb-edge:var(--mfm-scroll-thumb-edge);
+    overflow-y:auto;
+    scrollbar-width:none;
+    scrollbar-gutter:auto;
+    padding-right:var(--mfm-scroll-content-gutter);
+    background-image:
+      linear-gradient(90deg,var(--wiki-scroll-thumb-edge) 0 2px,var(--wiki-scroll-thumb-color) 2px 8px,var(--wiki-scroll-thumb-edge) 8px 10px),
+      repeating-linear-gradient(180deg,var(--mfm-scroll-track) 0 3px,var(--mfm-scroll-track-line) 3px 4px);
+    background-position:
+      calc(100% - 2px) var(--wiki-scroll-thumb-y),
+      calc(100% - 1px) 0;
+    background-size:
+      10px var(--wiki-scroll-thumb-h),
+      var(--mfm-scroll-rail-width) 100%;
+    background-repeat:no-repeat;
+    background-attachment:scroll;
+  }
+  .wiki-scroll-rail::-webkit-scrollbar{width:0;height:0}
+  .wiki-scroll-rail[data-wiki-scroll-hover]{
+    --wiki-scroll-thumb-color:var(--mfm-scroll-hover);
+    --wiki-scroll-thumb-edge:#514725;
+  }
+  .wiki-scroll-rail[data-wiki-scroll-dragging]{
+    --wiki-scroll-thumb-color:var(--mfm-scroll-active);
+    --wiki-scroll-thumb-edge:#32483a;
+    cursor:ns-resize;
+    user-select:none;
+  }
+}
 .site-nav{padding:17px 12px 13px}
 .panel-label{display:block;font-size:13px;line-height:1.5;color:var(--muted);letter-spacing:.02em}
 .site-nav>.panel-label{padding:0 6px 16px}
