@@ -44,7 +44,7 @@ class WikiChecks(unittest.TestCase):
             for name, sections in {
                 "rules.html": ("board", "tiles", "placement", "connections", "scoring", "turns"),
                 "modes.html": ("rounds", "ranked", "features"),
-                "index.html": ("overview", "quick-start", "origin"),
+                "index.html": ("overview", "origin"),
                 "history.html": ("timeline",),
             }.items():
                 html = (ROOT / folder / name).read_text(encoding="utf-8")
@@ -68,6 +68,15 @@ class WikiChecks(unittest.TestCase):
                 origin = re.search(r'<section[^>]+id="origin"[^>]*>(.*?)</section>', index, re.S)
                 self.assertIsNotNone(origin)
                 self.assertIn("original-tabletop-2020.webp", origin.group(1))
+                quick_start = re.search(r'<section[^>]+id="quick-start"[^>]*>(.*?)</section>', index, re.S)
+                self.assertIsNotNone(quick_start)
+                step_items = re.findall(r'<li>(.*?)</li>', quick_start.group(1), re.S)
+                self.assertEqual(len(step_items), 4, "Quick start must retain exactly four steps")
+                self.assertNotRegex(quick_start.group(1), r'<(?:img|picture|video|figure)\b',
+                                    "The introductory steps should remain text-only")
+                for item in step_items:
+                    self.assertRegex(item, r'<strong>[^<]+</strong>', "Step title is required")
+                    self.assertRegex(item, r'<span>[^<]+</span>', "Step explanation is required")
 
             with self.subTest(locale=folder or "zh-Hant", article="rules"):
                 placement = re.search(r'<section[^>]+id="placement"[^>]*>(.*?)</section>', rules, re.S)
