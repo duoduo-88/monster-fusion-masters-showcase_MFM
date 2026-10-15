@@ -79,6 +79,28 @@
     </li>
   </ol>
 </section>
+
+<section class="section" id="design-rationale">
+  <span class="eyebrow">ORIGINAL DESIGN / 原始設計理念</span>
+  <h2>61 格棋盤與棋子配置的設計理念</h2>
+  <p>棋盤大小、棋子的種類與數量比例，以及封閉後的計分方式，是圍繞同一個目標設計的：讓玩家有足夠的時間與空間，嘗試拼出更大的怪物圖形。</p>
+  <div class="card-grid">
+    <article class="mode-card">
+      <span class="eyebrow">BOARD SIZE / 61 CELLS</span>
+      <h3>為什麼選擇 61 格？</h3>
+      <p>實體桌遊初期曾測試少一圈的 37 格棋盤，但實際對局很快就結束，棋子也容易碰到邊界，難以繼續向外延伸或拼出大型圖形。</p>
+      <p>改採 61 格，是希望讓單局時間維持在約十幾分鐘，同時保留足夠的拼接空間，在遊戲節奏與大型圖形的發展可能性之間取得平衡。</p>
+    </article>
+    <article class="mode-card">
+      <span class="eyebrow">TILES &amp; SCORING / 棋子與計分</span>
+      <h3>為什麼這樣分配棋子？</h3>
+      <p>不同白邊數的棋子並非平均分配；棋子數量比例與封閉計分規則是一起考量的，目的是鼓勵玩家發展大型圖形，而不只是頻繁完成小型封閉。</p>
+      <p>計分方式刻意讓大型封閉圖形比拆成多個小圖形有更高的得分效率；但延後封閉也意味著要承擔對手干擾、空間受限或無法完成圖形的風險。</p>
+    </article>
+  </div>
+  <div class="note"><strong>策略核心：</strong>玩家要選擇立即完成小圖形、先取得分數，還是繼續延伸、追求更大的回報？61 格棋盤、棋子配置與計分方式共同創造了這種取捨。</div>
+  <p>目前採用的具體規則請參閱<a href="./rules.html#tiles">棋子與牌庫</a>及<a href="./rules.html#scoring">封閉計分</a>。</p>
+</section>
 <section class="section" id="authorship">
   <span class="eyebrow">CREATOR / DESIGN OWNERSHIP</span>
   <h2>遊戲設計與程式協作</h2>
@@ -106,7 +128,7 @@
           <p class="search-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
           <ol class="search-results" id="wiki-search-results" hidden></ol>
         </section>
-        <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">02 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">-</span>開發歷史</a></li><li><a href="#timeline"><span aria-hidden="true">-</span>開發沿革</a></li><li><a href="#authorship"><span aria-hidden="true">-</span>設計與協作</a></li><li><a href="#sources"><span aria-hidden="true">-</span>資料來源</a></li></ol></details></nav>
+        <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">02 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">-</span>開發歷史</a></li><li><a href="#timeline"><span aria-hidden="true">-</span>開發沿革</a></li><li><a href="#design-rationale"><span aria-hidden="true">-</span>設計理念</a></li><li><a href="#authorship"><span aria-hidden="true">-</span>設計與協作</a></li><li><a href="#sources"><span aria-hidden="true">-</span>資料來源</a></li></ol></details></nav>
       
         <section class="reference-card frame wiki-contribution" aria-label="百科修訂建議"><span class="panel-label">協助完善 MFM WIKI</span><p>發現內容錯誤、過時或有補充建議？歡迎提出修訂建議。</p><a class="pixel-btn cyan" href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new?template=wiki-suggestion.yml" target="_blank" rel="noopener noreferrer">提出修訂建議</a></section>
       </aside>
