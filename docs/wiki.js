@@ -31,10 +31,89 @@
     for (const link of languageLinks) link.href = destination(link).href;
   };
   refreshLanguageLinks();
+  setupDesktopLaunch();
   for (const link of languageLinks) {
     link.addEventListener("click", event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       try { localStorage.setItem(storageKey, link.dataset.language); } catch { /* Links still work. */ }
+    });
+  }
+  // Desktop launch is owned here; the static href always remains the browser fallback.
+  function setupDesktopLaunch() {
+    const trigger = document.querySelector("[data-mfm-launch]");
+    const dialog = document.querySelector("#mfm-launch-dialog");
+    if (!trigger || typeof dialog?.showModal !== "function") return;
+    const platform = navigator.userAgentData?.platform || navigator.platform || "";
+    if (!/^(Windows|Win32|Win64|WinCE)$/i.test(platform)) return;
+    let animation = null;
+    let session = null;
+    let closing = false;
+    const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const center = "inset(49.5% 50% 49.5% 50%)";
+    const line = "inset(49.5% 0 49.5% 0)";
+    const open = "inset(0 0 0 0)";
+    const frame = (clipPath, offset, vertical, horizontal) => ({
+      clipPath, offset,
+      "--launch-frame-y":`${dialog.offsetHeight * vertical}px`,
+      "--launch-frame-x":`${dialog.offsetWidth * horizontal}px`
+    });
+    const stopAnimation = () => {
+      if (animation) { animation.onfinish = null; animation.cancel(); animation = null; }
+      delete dialog.dataset.animating;
+    };
+    const finishClose = () => {
+      stopAnimation();
+      session?.abort();
+      session = null;
+      dialog.close();
+      closing = false;
+      trigger.focus({ preventScroll: true });
+    };
+    const close = () => {
+      if (closing || !dialog.open) return;
+      closing = true;
+      stopAnimation();
+      if (reducedMotion() || typeof dialog.animate !== "function") { finishClose(); return; }
+      dialog.dataset.animating = "";
+      animation = dialog.animate([
+        frame(open,0,0,0), frame(line,0.72,0.495,0), frame(center,1,0.495,0.5)
+      ], {duration:180, easing:"cubic-bezier(0.4, 0, 0.6, 1)", fill:"both"});
+      animation.onfinish = finishClose;
+    };
+    const launch = () => {
+      // This stays synchronous inside a real click. A native prompt or exception
+      // supplies no reliable evidence of installation, permission or launch outcome.
+      try { window.location.assign("mfmdesktop://launch"); } catch { /* Choices stay available. */ }
+    };
+    trigger.addEventListener("click", event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (dialog.open) { event.preventDefault(); return; }
+      dialog.showModal();
+      event.preventDefault();
+      session = new AbortController();
+      const options = {signal:session.signal};
+      dialog.querySelector("[data-mfm-launch-retry]").addEventListener("click", launch, options);
+      dialog.querySelector("[data-mfm-launch-close]").addEventListener("click", close, options);
+      dialog.addEventListener("cancel", event => { event.preventDefault(); close(); }, options);
+      dialog.addEventListener("keydown", event => {
+        if (event.key !== "Tab") return;
+        const actions = [...dialog.querySelectorAll("a[href], button:not(:disabled)")];
+        const first = actions[0], last = actions.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }, options);
+      // Native dialog owns the top layer and inert background; Tab wraps the actions.
+      if (!reducedMotion() && typeof dialog.animate === "function") {
+        dialog.dataset.animating = "";
+        animation = dialog.animate([
+          frame(center,0,0.495,0.5), frame(line,0.36,0.495,0), frame(open,1,0,0)
+        ], {duration:260, easing:"cubic-bezier(0.16, 1, 0.3, 1)", fill:"both"});
+        animation.onfinish = stopAnimation;
+      }
+      launch();
     });
   }
   // Mirrors the game's app-drawn persistent rail without importing its runtime.
