@@ -1,5 +1,6 @@
 """Check the deployed static pages without third-party dependencies."""
 from html.parser import HTMLParser
+import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -148,8 +149,8 @@ class WikiChecks(unittest.TestCase):
 
                 with self.subTest(locale=folder or "zh-Hant", article=page, component="download"):
                     archive = html.split('<div class="reference-card frame">', 1)[1].split("</div>", 1)[0]
-                    self.assertIn("releases/tag/v0.1.1", archive)
-                    self.assertEqual(archive.count("releases/tag/v0.1.1"), 1)
+                    self.assertIn("releases/latest", archive)
+                    self.assertEqual(archive.count("releases/latest"), 1)
 
     def test_every_article_has_a_complete_english_counterpart(self):
         for name in PAGES:
@@ -179,6 +180,11 @@ class WikiChecks(unittest.TestCase):
 
     def test_local_navigation_assets_and_fragment_targets_exist(self):
         for path in ROOT.rglob("*.html"):
+            if path.parent == ROOT and re.fullmatch(r"google[0-9a-f]+\.html", path.name):
+                with self.subTest(verification=path.name):
+                    self.assertEqual(path.read_text(encoding="utf-8").strip(),
+                                     f"google-site-verification: {path.name}")
+                continue
             page = Page(path)
             with self.subTest(page=str(path.relative_to(ROOT))):
                 self.assertEqual(len(page.ids), len(set(page.ids)), "Duplicate IDs")

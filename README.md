@@ -2,7 +2,7 @@
 
 **Official game wiki (rules, scoring and development history):** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)
 
-**Showcase repository:** `monster-fusion-masters-showcase`
+**Showcase repository:** `monster-fusion-masters-showcase_MFM`
 
 ![Monster Fusion Masters showcase cover](assets/showcase-cover.png?v=d8be5338)
 
