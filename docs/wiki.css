@@ -1,5 +1,6 @@
 /* Public wiki presentation only. The game's runtime is not imported. */
 @font-face{font-family:"Cubic 11";src:url("./fonts/mfm-reading.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"MFM Pixel";src:url("./fonts/BoutiqueBitmap9x9_1.93.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
 :root{color-scheme:dark;--bg:#000;--panel:#050605;--ink:#f1eedc;--copy:#c4c4b6;--muted:#929487;--line:#48483f;--soft:#2c302a;--accent:#8dbf9e;--game-accent:#72aa83;--gold:#c8a951;--cyan:#6cbebc;--font:"Cubic 11",monospace;--mfm-scroll-size:12px;--mfm-scroll-rail-width:12px;--mfm-scroll-content-gutter:14px;--mfm-scroll-track:#0b0d0a;--mfm-scroll-track-line:#242720;--mfm-scroll-thumb:#666960;--mfm-scroll-thumb-edge:#353831;--mfm-scroll-hover:#8b7a42;--mfm-scroll-active:#4f6f59}
 *{box-sizing:border-box}
 html{scroll-padding-top:110px}
@@ -33,12 +34,33 @@ li+li{margin-top:9px}
 .language-switch a{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;padding:3px 8px;text-decoration:none;font-size:14px;color:var(--muted);border:1px solid transparent}
 .language-switch a[aria-current]{border-color:var(--game-accent);background:#102017;color:var(--accent)}
 .language-switch a:hover{color:var(--ink);background:#131811}
-.pixel-btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:42px;padding:7px 15px;background:#000;border:2px solid var(--line);box-shadow:3px 3px 0 #191c18;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.4}
+.pixel-btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:7px 15px;background:#000;border:2px solid var(--button-line,var(--line));box-shadow:3px 3px 0 var(--button-shadow,#191c18);color:var(--ink);text-decoration:none;font:inherit;font-size:15px;line-height:1.4;cursor:pointer}
 .pixel-btn.primary{border-color:var(--game-accent);color:var(--accent)}
 .pixel-btn.cyan{border-color:#416f70;color:var(--cyan)}
-.pixel-btn:hover{background:#101a13;color:#d9efdd;border-color:var(--accent)}
+.pixel-btn:hover{background:var(--button-hover-bg,#101a13);color:var(--button-hover-ink,#d9efdd);border-color:var(--button-hover-line,var(--accent));filter:brightness(var(--button-hover-brightness,1))}
 .pixel-btn.cyan:hover{border-color:var(--cyan);color:#b7ded7}
 .pixel-btn:active{transform:translate(2px,2px);box-shadow:1px 1px #191c18}
+/* Static counterpart of the game's room-action dialog and popup-presentation.
+   Native dialog supplies modality; wiki.js owns only launch and finite animations. */
+@property --launch-frame-y{syntax:"<length>";inherits:true;initial-value:0px}
+@property --launch-frame-x{syntax:"<length>";inherits:true;initial-value:0px}
+.mfm-launch-dialog{
+  --button-line:#73736b;--button-shadow:#222;
+  --button-hover-bg:#000;--button-hover-ink:var(--ink);--button-hover-line:#73736b;--button-hover-brightness:1.3;
+  box-sizing:border-box;width:min(520px,calc(100% - 28px));max-height:calc(100dvh - 28px);
+  margin:auto;padding:clamp(16px,4vw,24px);border:3px solid #777b72;border-radius:0;
+  overflow:auto;scrollbar-gutter:stable;color:#e9e6d6;font-family:"MFM Pixel",monospace;
+  background:radial-gradient(ellipse 80% 54% at 50% 26%,rgba(108,190,188,.13),transparent 68%),radial-gradient(ellipse 100% 90% at 50% 50%,transparent 54%,rgba(0,0,0,.74) 100%),repeating-linear-gradient(180deg,rgba(255,255,255,.015) 0 1px,transparent 1px 4px),#050605;
+  box-shadow:0 0 0 2px #050505,0 18px 60px #000,inset 0 0 0 2px #090909,inset 0 0 42px rgba(108,190,188,.035);
+}
+.mfm-launch-dialog[data-animating]::after{content:"";position:absolute;pointer-events:none;border:2px solid #777b72;inset:max(0px,calc(var(--launch-frame-y) - 3px)) max(0px,calc(var(--launch-frame-x) - 3px));z-index:1}
+.mfm-launch-dialog::backdrop{background:radial-gradient(ellipse at 50% 42%,rgba(108,190,188,.08),transparent 48%),rgba(0,0,0,.82)}
+.mfm-launch-dialog h2{margin:0 0 16px;font-size:22px;line-height:1.4;color:var(--game-accent);overflow-wrap:anywhere}
+.mfm-launch-copy{font-family:var(--font);font-size:16px;line-height:1.45}
+.mfm-launch-copy p{color:#b9b6a4}
+.mfm-launch-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:12px;margin-top:20px}
+.mfm-launch-actions .pixel-btn{min-width:0;text-align:center;overflow-wrap:anywhere}
+.mfm-launch-dialog .pixel-btn:focus-visible{outline:0;border-color:#e2e5d9;filter:brightness(1.5);box-shadow:3px 3px #303228,0 0 9px rgba(235,238,226,.42)}
 .layout{display:grid;grid-template-columns:228px minmax(0,1fr) 206px;align-items:stretch;gap:16px;margin-top:16px;flex:1 1 auto;min-height:0}
 .left-rail,.right-rail{display:grid;align-content:start;gap:16px;min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto}
 :is(.left-rail,.right-rail)::-webkit-scrollbar{display:none;width:0;height:0}
