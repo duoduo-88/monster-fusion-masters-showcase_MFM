@@ -41,7 +41,7 @@ class Page(HTMLParser):
         for key in ("data-animation", "data-still", "data-demo-src", "data-demo-still"):
             if key in attrs:
                 self.assets.append(attrs[key])
-        if tag == "link" and attrs.get("rel") == "stylesheet":
+        if tag == "link" and attrs.get("rel") in ("stylesheet", "icon"):
             self.assets.append(attrs["href"])
 
 
@@ -65,8 +65,8 @@ class WikiChecks(unittest.TestCase):
     def test_index_markers_gallery_and_search_clarity(self):
         """Keep decorative markers aligned and gallery screenshots fully visible."""
         css = (ROOT / "wiki.css").read_text(encoding="utf-8")
-        self.assertIn(".nav-index{align-self:flex-start;padding-top:1em;", css)
-        self.assertIn(".entry-number{align-self:start;padding-top:1em;", css)
+        self.assertIn(".nav-index{align-self:center;", css)
+        self.assertIn(".entry-number{align-self:center;", css)
         self.assertIn(".feature-gallery img{height:185px;object-fit:contain;object-position:center}", css)
         self.assertIn(".feature-gallery img{height:140px}", css)
         self.assertNotIn(".search-help", css)
@@ -94,7 +94,7 @@ class WikiChecks(unittest.TestCase):
                     self.assertIn('id="wiki-search-input"', article)
                     self.assertIn('aria-controls="wiki-search-results"', article)
                     self.assertIn('class="search-status"', article)
-                    self.assertIn("wiki.css?v=20261016-markers-watch-search1", article)
+                    self.assertIn("wiki.css?v=20261016-centermarkers-favicon1", article)
 
     def test_editorial_media_placement_and_contribution_ownership(self):
         """Keep visual examples in their canonical article and community actions in the rail."""
@@ -110,15 +110,8 @@ class WikiChecks(unittest.TestCase):
                 origin = re.search(r'<section[^>]+id="origin"[^>]*>(.*?)</section>', index, re.S)
                 self.assertIsNotNone(origin)
                 self.assertIn("original-tabletop-2020.webp", origin.group(1))
-                quick_start = re.search(r'<section[^>]+id="quick-start"[^>]*>(.*?)</section>', index, re.S)
-                self.assertIsNotNone(quick_start)
-                step_items = re.findall(r'<li>(.*?)</li>', quick_start.group(1), re.S)
-                self.assertEqual(len(step_items), 4, "Quick start must retain exactly four steps")
-                self.assertNotRegex(quick_start.group(1), r'<(?:img|picture|video|figure)\b',
-                                    "The introductory steps should remain text-only")
-                for item in step_items:
-                    self.assertRegex(item, r'<strong>[^<]+</strong>', "Step title is required")
-                    self.assertRegex(item, r'<span>[^<]+</span>', "Step explanation is required")
+                self.assertNotIn('id="quick-start"', index)
+                self.assertNotIn('href="#quick-start"', index)
 
             with self.subTest(locale=folder or "zh-Hant", article="rules"):
                 placement = re.search(r'<section[^>]+id="placement"[^>]*>(.*?)</section>', rules, re.S)
