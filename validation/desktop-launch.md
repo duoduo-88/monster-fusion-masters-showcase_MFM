@@ -1,6 +1,8 @@
 # Desktop-first Wiki entry
 
-Baseline remote `main` was verified on 2026-10-17 as `647bea5eeb9c1ea4a4c50f3aa35fa3282a704034`. Work is on `codex/desktop-launch-popup-20261017`. The existing untracked `.tmp/` directory was preserved and is excluded from this change. No open Showcase PRs existed at the start.
+Baseline remote `main` for the three-action follow-up was verified on 2026-10-17 as `a34d50b80c648a3cac537b061ed1d600f031a326`. Work is on `codex/wiki-launch-three-actions-20261017`. The existing untracked `.tmp/` directory was preserved and is excluded from this change. No open Showcase PRs existed at the start.
+
+The dialog now has three actions: download, browser play and close. Retry and its event binding were removed from both languages. The maximum width is 46rem so all three actions share one row on desktop; the existing auto-fit grid stacks or wraps them on narrow viewports.
 
 The Chinese and English homepage buttons retain the official browser game in their static `href`. On Windows, an ordinary unmodified click synchronously opens the native modal and attempts `mfmdesktop://launch` in that same user gesture. Non-Windows clients, unsupported dialog implementations, modified-link clicks and disabled JavaScript retain the browser link. The dialog never claims installation, permission or launch success/failure. Browser play is only selected by the player; there is no timer-based fallback or automatic second session.
 
@@ -36,7 +38,7 @@ node scripts/test-desktop-launch-browser.mjs
 
 The harness serves the real static pages and CSS, preserving the production script except for replacing the final OS dispatch call with a controlled refusal. It asserts the protocol is attempted while real browser user activation is still active, and verifies neutral choices remain available. This substitution prevents native external-app confirmation windows from consuming Playwright's keyboard tests; it does not claim the OS handler was installed, accepted or launched.
 
-Matrix: both languages at 320×480, 390×844, 900×700 and 1440×900; viewport bounds, text/button overflow, game font, focus/Tab/Escape, retry, reverse close, interrupted opening, reduced motion, unchanged article scroll/document geometry, non-Windows and no-JS fallbacks. Each engine runs ten cases. Screenshots are generated under `.tmp/desktop-launch-validation/` for inspection.
+Matrix: both languages at 320×480, 390×844, 900×700 and 1440×900; exactly three actions, desktop actions sharing one row, viewport bounds, text/button overflow, game font, focus/Tab/Escape, reverse close, interrupted opening, reduced motion, unchanged article scroll/document geometry, non-Windows and no-JS fallbacks. Each engine runs ten cases. Screenshots are generated under `.tmp/desktop-launch-validation/` for inspection.
 
 Selected Edge screenshots for review:
 
@@ -44,6 +46,6 @@ Selected Edge screenshots for review:
 
 ![Chinese popup on a mobile viewport](desktop-launch-mobile.png)
 
-All 30 browser cases passed on the Windows host: Chrome for Testing 151.0.7922.34, Firefox 153.0 and Edge 155.0.4283.45, ten cases each. The latest Showcase Release resolved to `v0.1.2` with the Windows x64 ZIP and checksum; the download button intentionally uses `releases/latest`, and no new Release is created. The web-game endpoint loaded in the actual desktop WebView.
+All 30 browser cases passed on the Windows host: Chrome for Testing 151.0.7922.34, Firefox 153.0 and Edge 155.0.4283.45, ten cases each. Showcase now has the protocol-capable Desktop `v0.1.3`; the download button continues to use `releases/latest`. This follow-up does not change desktop binaries or create a new Release. The web-game endpoint loaded in the actual desktop WebView during the original desktop validation.
 
 Actual Windows ShellExecute registration/handoff, Unicode/space/special-character paths, relocated-path refresh, same-process activation and hostile-argument rejection are covered in the companion desktop branch. Native browser-owned external-app confirmation/denial and unregistered-protocol chooser behavior remain a manual acceptance matrix; controlled refusal tests are not a substitute for those checks. A visible native-prompt inspection was stopped because the computer-use tool could not confidently determine the browser URL; no prompt was accepted. Do not merge or publish automatically.

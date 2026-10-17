@@ -57,20 +57,22 @@ try {
         await page.waitForFunction(() => document.querySelector('#mfm-launch-dialog').open && !document.querySelector('#mfm-launch-dialog').hasAttribute('data-animating'));
         const geometry = await page.locator('#mfm-launch-dialog').evaluate(dialog => {
           const r = dialog.getBoundingClientRect();
-          return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,overflow:dialog.scrollWidth > dialog.clientWidth + 1,buttons:[...dialog.querySelectorAll('.pixel-btn')].map(b => b.scrollWidth <= b.clientWidth + 1),font:getComputedStyle(dialog).fontFamily};
+          const buttons = [...dialog.querySelectorAll('.pixel-btn')];
+          return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,overflow:dialog.scrollWidth > dialog.clientWidth + 1,buttons:buttons.map(b => b.scrollWidth <= b.clientWidth + 1),buttonTops:buttons.map(b => b.getBoundingClientRect().top),font:getComputedStyle(dialog).fontFamily};
         });
         assert.ok(geometry.x >= 0 && geometry.y >= 0 && geometry.right <= width && geometry.bottom <= height, JSON.stringify(geometry));
         assert.equal(geometry.overflow, false);
         assert.ok(geometry.buttons.every(Boolean));
+        assert.equal(geometry.buttons.length,3);
+        if (width >= 900) assert.ok(geometry.buttonTops.every(y => Math.abs(y - geometry.buttonTops[0]) < 1),'desktop actions share one row');
         assert.match(geometry.font, /MFM Pixel/);
         assert.equal(await page.locator('#mfm-launch-dialog a').first().getAttribute('href'), 'https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest');
         for (let n=0;n<6;n++) {
           await page.keyboard.press('Tab');
           assert.ok(await page.evaluate(() => document.querySelector('#mfm-launch-dialog').contains(document.activeElement)));
         }
-        await page.locator('[data-mfm-launch-retry]').click();
         const attempts = await page.evaluate(() => window.__protocolAttempts);
-        assert.equal(attempts.length,2);
+        assert.equal(attempts.length,1);
         assert.ok(attempts.every(a => a.active && a.uri === 'mfmdesktop://launch'));
         assert.ok(page.url().startsWith(origin)); // No automatic second game session.
         if (width === 390) await page.screenshot({path:resolve(output,`${name}-${locale}-mobile.png`)});
@@ -113,7 +115,7 @@ try {
         cases++;
         await context.close();
       }
-      console.log(`${name} ${browser.version()}: bilingual/320/390/900/1440, keyboard, scroll, reduced motion, retry, non-Windows and no-JS passed`);
+      console.log(`${name} ${browser.version()}: bilingual/320/390/900/1440, three actions, desktop single row, keyboard, scroll, reduced motion, non-Windows and no-JS passed`);
     } finally { await browser.close(); }
   }
   console.log(`Wiki browser launch: ${cases} cases passed; screenshots: ${output}`);
