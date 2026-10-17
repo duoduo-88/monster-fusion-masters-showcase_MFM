@@ -92,7 +92,6 @@
       event.preventDefault();
       session = new AbortController();
       const options = {signal:session.signal};
-      dialog.querySelector("[data-mfm-launch-retry]").addEventListener("click", launch, options);
       dialog.querySelector("[data-mfm-launch-close]").addEventListener("click", close, options);
       dialog.addEventListener("cancel", event => { event.preventDefault(); close(); }, options);
       dialog.addEventListener("keydown", event => {

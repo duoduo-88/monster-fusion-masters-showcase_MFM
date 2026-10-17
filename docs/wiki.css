@@ -47,7 +47,7 @@ li+li{margin-top:9px}
 .mfm-launch-dialog{
   --button-line:#73736b;--button-shadow:#222;
   --button-hover-bg:#000;--button-hover-ink:var(--ink);--button-hover-line:#73736b;--button-hover-brightness:1.3;
-  box-sizing:border-box;width:min(520px,calc(100% - 28px));max-height:calc(100dvh - 28px);
+  box-sizing:border-box;width:min(46rem,calc(100% - 28px));max-height:calc(100dvh - 28px);
   margin:auto;padding:clamp(16px,4vw,24px);border:3px solid #777b72;border-radius:0;
   overflow:auto;scrollbar-gutter:stable;color:#e9e6d6;font-family:"MFM Pixel",monospace;
   background:radial-gradient(ellipse 80% 54% at 50% 26%,rgba(108,190,188,.13),transparent 68%),radial-gradient(ellipse 100% 90% at 50% 50%,transparent 54%,rgba(0,0,0,.74) 100%),repeating-linear-gradient(180deg,rgba(255,255,255,.015) 0 1px,transparent 1px 4px),#050605;
