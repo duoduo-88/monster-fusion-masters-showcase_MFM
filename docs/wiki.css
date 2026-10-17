@@ -1,12 +1,13 @@
 /* Public wiki presentation only. The game's runtime is not imported. */
 @font-face{font-family:"Cubic 11";src:url("./fonts/mfm-reading.ttf") format("truetype");font-weight:400;font-style:normal;font-display:block}
 @font-face{font-family:"MFM Pixel";src:url("./fonts/BoutiqueBitmap9x9_1.93.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
-:root{color-scheme:dark;--bg:#000;--panel:#050605;--ink:#f1eedc;--copy:#c4c4b6;--muted:#929487;--line:#48483f;--soft:#2c302a;--accent:#8dbf9e;--game-accent:#72aa83;--gold:#c8a951;--cyan:#6cbebc;--font:"Cubic 11",monospace;--mfm-scroll-size:12px;--mfm-scroll-rail-width:12px;--mfm-scroll-content-gutter:14px;--mfm-scroll-track:#0b0d0a;--mfm-scroll-track-line:#242720;--mfm-scroll-thumb:#666960;--mfm-scroll-thumb-edge:#353831;--mfm-scroll-hover:#8b7a42;--mfm-scroll-active:#4f6f59}
+/* Static presentation tokens from the game's competitive-rule.html and
+   desktop-layout.css. Keep the Wiki independent of the private game runtime. */
+:root{color-scheme:dark;--bg:#000;--panel:#000;--ink:#f1eedc;--copy:#c4c4b6;--muted:#8d8a7b;--line:#45453c;--soft:#2c302a;--accent:#72aa83;--game-accent:var(--accent);--gold:#c8a951;--cyan:#6cbebc;--font:"Cubic 11",monospace;--wiki-frame-width:min(100vw,calc(100dvh * 4 / 3));--wiki-frame-height:calc(var(--wiki-frame-width) * 3 / 4);--wiki-frame-pad:clamp(8px,calc(var(--wiki-frame-width) * .0095),14px);--wiki-frame-gap:var(--wiki-frame-pad);--wiki-header-height:clamp(54px,calc(var(--wiki-frame-height) * .0625),72px);--mfm-scroll-size:12px;--mfm-scroll-rail-width:12px;--mfm-scroll-content-gutter:14px;--mfm-scroll-track:#0b0d0a;--mfm-scroll-track-line:#242720;--mfm-scroll-thumb:#666960;--mfm-scroll-thumb-edge:#353831;--mfm-scroll-hover:#8b7a42;--mfm-scroll-active:#4f6f59}
 *{box-sizing:border-box}
 html{scroll-padding-top:110px}
 html.wiki-fonts-loading body{visibility:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.8 var(--font);font-synthesis:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.09) 3px 4px)}
 /* Static copy of the game loading presentation; no game runtime is imported. */
 .wiki-loading-overlay{display:none;position:fixed;inset:0;z-index:2147483000;align-items:center;justify-content:center;background:#050706;color:#f1eedc}
 html.wiki-fonts-loading .wiki-loading-overlay{display:flex;visibility:visible}
@@ -62,24 +63,26 @@ strong{color:var(--ink)}
 ul,ol{padding-left:24px;color:var(--copy)}
 li+li{margin-top:9px}
 ::selection{background:#244735;color:#fff}
-.site-shell{width:calc(100% - 32px);max-width:1600px;height:calc(100dvh - 14px);margin:14px auto 0;display:flex;flex-direction:column;overflow:hidden}
-.frame{border:3px solid var(--line);background:var(--panel);box-shadow:4px 4px 0 #111,inset 0 0 0 2px #090909}
-.site-head{position:relative;z-index:10;flex:none;min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:13px 14px 13px 18px}
+.site-shell{width:var(--wiki-frame-width);aspect-ratio:4/3;margin:0 auto;padding:var(--wiki-frame-pad);display:flex;flex-direction:column;overflow:hidden;container:wiki-frame / inline-size}
+.frame{border:3px solid var(--line);background:var(--panel);box-shadow:5px 5px 0 #000,inset 0 0 0 2px #090909,0 0 2px rgba(220,235,220,.09)}
+.site-head{position:relative;z-index:10;flex:none;height:var(--wiki-header-height);min-height:var(--wiki-header-height);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:7px 7px 7px 14px}
 .site-head::before{content:"";position:absolute;top:-15px;left:-3px;right:-3px;height:12px;background:var(--bg)}
 .brand{display:flex;align-items:center;gap:22px;min-width:0;color:var(--ink);text-decoration:none}
-.brand img{width:min(56vw,815px);height:auto;min-width:0}
+.brand img{width:min(814.02px,calc(100cqw - 176px));height:auto;min-width:0;filter:drop-shadow(0 0 1px rgba(255,255,255,.18))}
 .brand-tag{padding-left:20px;border-left:1px solid var(--line);color:var(--accent);font:13px/1.5 var(--font);letter-spacing:.06em;flex:none}
 .head-actions{display:flex;align-items:center;gap:12px;flex:none}
 .language-switch{display:flex;border:1px solid var(--line);padding:3px;gap:3px;background:#000}
 .language-switch a{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;padding:3px 8px;text-decoration:none;font-size:14px;color:var(--muted);border:1px solid transparent}
 .language-switch a[aria-current]{border-color:var(--game-accent);background:#102017;color:var(--accent)}
 .language-switch a:hover{color:var(--ink);background:#131811}
-.pixel-btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:7px 15px;background:#000;border:2px solid var(--button-line,var(--line));box-shadow:3px 3px 0 var(--button-shadow,#191c18);color:var(--ink);text-decoration:none;font:inherit;font-size:15px;line-height:1.4;cursor:pointer}
-.pixel-btn.primary{border-color:var(--game-accent);color:var(--accent)}
-.pixel-btn.cyan{border-color:#416f70;color:var(--cyan)}
-.pixel-btn:hover{background:var(--button-hover-bg,#101a13);color:var(--button-hover-ink,#d9efdd);border-color:var(--button-hover-line,var(--accent));filter:brightness(var(--button-hover-brightness,1))}
-.pixel-btn.cyan:hover{border-color:var(--cyan);color:#b7ded7}
-.pixel-btn:active{transform:translate(2px,2px);box-shadow:1px 1px #191c18}
+.pixel-btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:9px 12px;background:#000;border:2px solid var(--button-line,#737373);box-shadow:3px 3px 0 var(--button-shadow,#222),0 0 1.5px rgba(225,235,225,.1);color:var(--ink);text-decoration:none;font:inherit;font-size:15px;line-height:1.4;cursor:pointer;touch-action:manipulation}
+.pixel-btn.primary{border-color:var(--game-accent)}
+.pixel-btn.cyan{border-color:var(--cyan);color:var(--cyan)}
+.pixel-btn:hover{background:var(--button-hover-bg,#000);color:var(--button-hover-ink,var(--ink));border-color:var(--button-hover-line,#737373);filter:brightness(var(--button-hover-brightness,1.25))}
+.pixel-btn.primary:hover{border-color:var(--game-accent)}
+.pixel-btn.cyan:hover{border-color:var(--cyan);color:var(--cyan)}
+.pixel-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.pixel-btn:active{transform:translate(2px,2px);box-shadow:1px 1px #111}
 /* Static counterpart of the game's room-action dialog and popup-presentation.
    Native dialog supplies modality; wiki.js owns only launch and finite animations. */
 @property --launch-frame-y{syntax:"<length>";inherits:true;initial-value:0px}
@@ -101,8 +104,8 @@ li+li{margin-top:9px}
 .mfm-launch-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:12px;margin-top:20px}
 .mfm-launch-actions .pixel-btn{min-width:0;text-align:center;overflow-wrap:anywhere}
 .mfm-launch-dialog .pixel-btn:focus-visible{outline:0;border-color:#e2e5d9;filter:brightness(1.5);box-shadow:3px 3px #303228,0 0 9px rgba(235,238,226,.42)}
-.layout{display:grid;grid-template-columns:228px minmax(0,1fr) 206px;align-items:stretch;gap:16px;margin-top:16px;flex:1 1 auto;min-height:0}
-.left-rail,.right-rail{display:grid;align-content:start;gap:16px;min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto}
+.layout{display:grid;grid-template-columns:228px minmax(0,1fr) 206px;align-items:stretch;gap:var(--wiki-frame-gap);margin-top:var(--wiki-frame-gap);flex:1 1 auto;min-height:0}
+.left-rail,.right-rail{display:grid;align-content:start;gap:var(--wiki-frame-gap);min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto}
 :is(.left-rail,.right-rail)::-webkit-scrollbar{display:none;width:0;height:0}
 /* Scrollbar palette and geometry mirror the game's retro-scrollbar.css.
    The article reserves its game rail in HTML; tables keep native scrollbar styling. */
@@ -139,7 +142,7 @@ li+li{margin-top:9px}
 }
 :is(.page,.table-wrap)::-webkit-scrollbar-corner{
   border:2px solid #000;
-  background:var(--mfm-scroll-track);
+  background:linear-gradient(45deg,transparent 40%,#242620 40% 60%,transparent 60%),var(--mfm-scroll-track);
 }
 /* The article has this class in its initial HTML, reserving the 14px gutter
    before enhancement runs. JavaScript sizes and moves the thumb without
@@ -188,10 +191,10 @@ li+li{margin-top:9px}
 .nav-link[aria-current="page"]{border-color:var(--game-accent);background:#0b160e;color:var(--accent);box-shadow:inset 3px 0 var(--game-accent)}
 .nav-link[aria-current] .nav-index,.nav-link[aria-current] .nav-arrow{color:var(--accent)}
 .nav-link:hover{color:var(--accent);background:#0b100c}
-.rail-note{padding:17px 18px;border-color:#3e412d}
+.rail-note{padding:17px 18px}
 .rail-note p{font-size:14px;line-height:1.8;margin:11px 0 16px;color:var(--muted)}
 .rail-note .pixel-btn{display:flex;padding:8px;font-size:13px;gap:8px}
-.page{min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-gutter:stable;scroll-padding-top:18px}
+.page{min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-gutter:stable;scroll-padding-top:18px;container:wiki-article / inline-size}
 .page:focus{outline:none}
 .hero{padding:27px 28px 26px}
 .eyebrow{display:block;color:var(--muted);font-size:12px;line-height:1.5;letter-spacing:.02em;margin-bottom:12px}
@@ -206,13 +209,13 @@ li+li{margin-top:9px}
 .section p+ul,.section p+ol{margin-top:14px}
 .section ul+p,.section ol+p{margin-top:16px}
 .version-note{font-size:13px!important;line-height:1.7;color:var(--muted)!important;margin-top:15px!important}
-.game-figure{margin:0 28px 28px;border:1px solid #3c6060;background:#000}
-.figure-label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 13px;background:#0b1412;border-bottom:1px solid #3c6060;color:var(--cyan);font-size:12px;line-height:1.5}
+.game-figure{margin:0 28px 28px;border:1px solid var(--line);background:#000}
+.figure-label{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 13px;background:#0b1412;border-bottom:1px solid var(--line);color:var(--cyan);font-size:12px;line-height:1.5}
 .demo-label{color:var(--muted);font-size:12px}
 .game-preview{display:block;overflow:hidden;aspect-ratio:16/9}
 .game-preview img{width:100%;height:100%;object-fit:cover;object-position:50% 32%}
 .game-preview:hover img{opacity:.85}
-figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:10px 13px;border-top:1px solid #314543;font-size:12px;color:var(--muted)}
+figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:10px 13px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 figcaption a{text-decoration:none}
 .entry-list{display:grid}
 .entry{display:grid;grid-template-columns:26px minmax(0,1fr);align-items:center;gap:17px;padding:20px 7px;border-top:1px solid var(--soft);text-decoration:none}
@@ -234,7 +237,7 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .toc a:hover{color:var(--ink)}
 .toc a[aria-current="location"]{color:var(--accent);border-color:var(--game-accent);background:#0b130e}
 .toc a[aria-current] span{color:var(--accent)}
-.reference-card{padding:17px 17px 11px;border-color:#3d3c2a}
+.reference-card{padding:17px 17px 11px}
 .reference-card p{font-size:14px;line-height:1.75;color:var(--muted);margin:12px 0}
 .reference-card:not(.wiki-contribution)>a{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #343325;padding:11px 0;color:var(--gold);text-decoration:none;font:12px/1.5 var(--font)}
 .reference-card:not(.wiki-contribution)>a:hover{color:var(--ink)}
@@ -264,11 +267,14 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .footer-divider{padding:0 9px;color:#52594b}
 .skip-link{position:fixed;left:18px;top:-100px;z-index:30;background:#000;padding:10px 15px;border:2px solid var(--gold)}
 .skip-link:focus{top:10px}
-@media(min-width:761px){html,body{height:100%;overflow:hidden}}
-@media(min-width:1600px){.hero,.section{padding-left:34px;padding-right:34px}.game-figure{margin-left:34px;margin-right:34px}}
-@media(max-width:1260px){.layout{grid-template-columns:205px minmax(0,1fr) 182px;gap:13px}.brand-tag{display:none}.brand img{width:min(57vw,730px)}.head-actions{gap:9px}.site-head{gap:18px}.left-rail,.right-rail{gap:13px}.hero,.section{padding:24px}.game-figure{margin-left:24px;margin-right:24px}.nav-link{gap:9px;font-size:16px}}
-@media(max-width:1000px) and (min-width:761px){.layout{grid-template-columns:176px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:14px}.left-rail{grid-column:1;grid-row:1;overflow-y:auto}.right-rail{grid-column:1;grid-row:2;overflow-y:auto;max-height:40dvh}.page{grid-column:2;grid-row:1 / span 2}.toc{font-size:13px}.contents-panel{padding:12px}.nav-link{font-size:15px;gap:8px}.nav-link small{font-size:12px}.rail-note{padding:15px 13px}.rail-note .pixel-btn{font-size:12px}.brand img{width:55vw}}
-@media(max-width:760px){html{scroll-padding-top:160px}.site-shell{width:calc(100% - 24px);height:auto;margin-top:12px;display:block;overflow:visible}.site-head{position:sticky;top:9px;padding:14px;gap:15px;flex-wrap:wrap}.brand{width:100%;justify-content:space-between;gap:15px}.brand img{width:calc(100% - 80px);max-width:660px}.brand-tag{display:block;font-size:12px;padding-left:13px;line-height:1.4}.head-actions{width:100%;justify-content:flex-end}.language-switch a{min-height:37px;min-width:48px}.layout{display:flex;flex-direction:column;gap:13px;margin-top:13px;flex:none;min-height:auto}.left-rail,.right-rail{width:100%;display:grid;gap:13px;max-height:none;overflow:visible}.left-rail{order:1}.right-rail{order:2}.page{order:3;width:100%;min-height:auto;overflow:visible;scrollbar-gutter:auto}.site-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:8px}.site-nav>.panel-label{display:none}.nav-link{min-height:53px;justify-content:center;gap:0;padding:7px 3px;margin:0;font-size:14px;text-align:center}.nav-link small,.nav-index,.nav-arrow{display:none}.nav-link[aria-current="page"]{box-shadow:inset 0 -2px var(--game-accent)}.contents-panel{padding:11px 13px}.contents-panel summary{min-height:26px}.toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}.toc li+li{margin:0}.hero,.section{padding:22px}.hero h1{font-size:27px}.hero p{font-size:16px;line-height:1.9}.game-figure{margin:0 22px 22px}.hero-actions{gap:17px}.game-preview{aspect-ratio:4/3}.game-preview img{object-fit:contain}.entry{gap:11px;grid-template-columns:22px minmax(0,1fr);padding-top:18px;padding-bottom:18px}.entry h3{font-size:20px}.site-footer{font-size:12px;gap:7px;margin-top:20px}.data-table{font-size:14px}.data-table th,.data-table td{padding:9px 8px}.mode-card{padding:15px}.card-grid{gap:10px}}
+@media(min-width:761px){html,body{height:100%;overflow:hidden}body{display:grid;place-items:center}}
+/* Breakpoints follow the actual 4:3 frame, including wide, short windows. */
+@container wiki-frame (min-width:1600px){.hero,.section{padding-left:34px;padding-right:34px}.game-figure{margin-left:34px;margin-right:34px}}
+@container wiki-frame (max-width:1260px){.layout{grid-template-columns:205px minmax(0,1fr) 182px}.brand-tag{display:none}.brand img{width:min(814.02px,calc(100cqw - 160px))}.head-actions{gap:9px}.site-head{gap:18px}.hero,.section{padding:24px}.game-figure{margin-left:24px;margin-right:24px}.nav-link{gap:9px;font-size:16px}}
+@media(min-width:761px){
+  @container wiki-frame (max-width:1000px){.layout{grid-template-columns:176px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto}.left-rail{grid-column:1;grid-row:1;overflow-y:auto}.right-rail{grid-column:1;grid-row:2;overflow-y:auto;max-height:40dvh}.page{grid-column:2;grid-row:1 / span 2}.toc{font-size:13px}.contents-panel{padding:12px}.nav-link{font-size:15px;gap:8px}.nav-link small{font-size:12px}.rail-note{padding:15px 13px}.rail-note .pixel-btn{font-size:12px}}
+}
+@media(max-width:760px){html{scroll-padding-top:160px}.site-shell{width:calc(100% - 24px);height:auto;aspect-ratio:auto;margin-top:12px;padding:0;display:block;overflow:visible}.site-head{position:sticky;top:9px;height:auto;min-height:0;padding:14px;gap:15px;flex-wrap:wrap}.brand{width:100%;justify-content:space-between;gap:15px}.brand img{width:calc(100% - 80px);max-width:660px}.brand-tag{display:block;font-size:12px;padding-left:13px;line-height:1.4}.head-actions{width:100%;justify-content:flex-end}.language-switch a{min-height:37px;min-width:48px}.layout{display:flex;flex-direction:column;gap:13px;margin-top:13px;flex:none;min-height:auto}.left-rail,.right-rail{width:100%;display:grid;gap:13px;max-height:none;overflow:visible}.left-rail{order:1}.right-rail{order:2}.page{order:3;width:100%;min-height:auto;overflow:visible;scrollbar-gutter:auto}.site-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:8px}.site-nav>.panel-label{display:none}.nav-link{min-height:53px;justify-content:center;gap:0;padding:7px 3px;margin:0;font-size:14px;text-align:center}.nav-link small,.nav-index,.nav-arrow{display:none}.nav-link[aria-current="page"]{box-shadow:inset 0 -2px var(--game-accent)}.contents-panel{padding:11px 13px}.contents-panel summary{min-height:26px}.toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}.toc li+li{margin:0}.hero,.section{padding:22px}.hero h1{font-size:27px}.hero p{font-size:16px;line-height:1.9}.game-figure{margin:0 22px 22px}.hero-actions{gap:17px}.game-preview{aspect-ratio:4/3}.game-preview img{object-fit:contain}.entry{gap:11px;grid-template-columns:22px minmax(0,1fr);padding-top:18px;padding-bottom:18px}.entry h3{font-size:20px}.site-footer{font-size:12px;gap:7px;margin-top:20px}.data-table{font-size:14px}.data-table th,.data-table td{padding:9px 8px}.mode-card{padding:15px}.card-grid{gap:10px}}
 @media(max-width:420px){.site-shell{width:calc(100% - 18px);margin-top:9px}.site-head{padding:12px}.brand{gap:9px}.brand img{width:100%}.brand-tag{display:none}.nav-link{font-size:12px}.hero,.section{padding:19px}.game-figure{margin:0 19px 19px}.hero-actions{gap:14px}.hero-actions .pixel-btn{font-size:14px}.text-link{font-size:13px}.figure-label{font-size:12px;padding:8px 9px}.demo-label{font-size:12px}.entry p{font-size:13px}.card-grid{grid-template-columns:1fr}.version-note{font-size:12px!important}.footer-divider{padding:0 4px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
@@ -285,11 +291,11 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .visual-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:20px 0 15px;flex-wrap:wrap}
 .visual-heading h3{color:var(--accent);font-size:19px}
 [hidden]{display:none!important}
-.demo-gallery{border:1px solid #416b64;margin-top:25px;background:#000}
+.demo-gallery{border:1px solid var(--line);margin-top:25px;background:#000}
 .demo-gallery .figure-label{padding:9px 12px;min-height:48px}
 .demo-stage{height:310px;display:flex;align-items:center;justify-content:center;background:#000;overflow:hidden}
 .demo-stage img{width:100%;height:100%;object-fit:contain}
-.demo-caption{min-height:56px;display:block;font-size:13px;line-height:1.8;color:var(--copy);border-color:#314543}
+.demo-caption{min-height:56px;display:block;font-size:13px;line-height:1.8;color:var(--copy);border-color:var(--line)}
 .demo-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:11px;border-top:1px solid var(--soft)}
 .demo-controls button{min-width:0;min-height:43px;padding:8px 6px;background:#050805;border:1px solid var(--line);color:var(--muted);font:13px/1.5 var(--font);cursor:pointer}
 .demo-controls button[aria-pressed="true"]{color:var(--accent);border-color:var(--game-accent);background:#0b180e;box-shadow:inset 0 -2px #42684d}
@@ -344,7 +350,7 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .feature-gallery figcaption{font-size:12px;padding:10px}
 .timeline-visuals{margin:20px 0 27px}
 .timeline-visuals img{height:220px}
-@media(max-width:1150px){.rank-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.rank-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.entry{grid-template-columns:20px 72px minmax(0,1fr);gap:10px}.connection-grid{grid-template-columns:1fr}.connection-grid .guide-figure{display:grid;grid-template-columns:150px minmax(0,1fr)}.connection-grid img{height:140px}.connection-grid figcaption{border-top:0;border-left:1px solid var(--soft);display:flex;align-items:center}.feature-gallery{grid-template-columns:1fr}.feature-gallery .guide-figure{display:grid;grid-template-columns:155px minmax(0,1fr)}.feature-gallery img{height:140px}.feature-gallery figcaption{border-left:1px solid var(--soft);border-top:0;display:flex;align-items:center}}
+@container wiki-frame (max-width:1150px){.rank-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.rank-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.entry{grid-template-columns:20px 72px minmax(0,1fr);gap:10px}.connection-grid{grid-template-columns:1fr}.connection-grid .guide-figure{display:grid;grid-template-columns:150px minmax(0,1fr)}.connection-grid img{height:140px}.connection-grid figcaption{border-top:0;border-left:1px solid var(--soft);display:flex;align-items:center}.feature-gallery{grid-template-columns:1fr}.feature-gallery .guide-figure{display:grid;grid-template-columns:155px minmax(0,1fr)}.feature-gallery img{height:140px}.feature-gallery figcaption{border-left:1px solid var(--soft);border-top:0;display:flex;align-items:center}}
 @media(max-width:760px){.entry{grid-template-columns:72px minmax(0,1fr);gap:11px}.entry-number{display:none}.demo-controls{gap:5px;padding:8px}.demo-controls button{font-size:12px;min-height:48px}.demo-caption{font-size:12px}.tile-catalog{gap:11px}.tile-family-label{padding:9px;font-size:13px}.tile-family-label>span{font-size:12px}.visual-pair{gap:11px}.visual-pair img{height:155px}.visual-pair figcaption{padding:9px;font-size:12px}.rank-grid{gap:11px}.rank-card{padding:9px 7px 12px}.rank-card>img{width:100px;height:100px}.rank-card h3{font-size:18px}.rank-rating{font-size:13px}.rank-card figcaption>span{font-size:12px}.scoring-gallery{gap:12px}.tile-number{font-size:12px;width:19px;height:19px}.intro-visual>img{height:210px}.rank-mini span{font-size:12px}}
 @media(max-width:520px){.tile-catalog{grid-template-columns:1fr}.scoring-gallery{grid-template-columns:1fr}.connection-grid .guide-figure{grid-template-columns:125px minmax(0,1fr)}.connection-grid img{height:150px}.connection-grid figcaption{padding:9px;font-size:12px}.feature-gallery .guide-figure{grid-template-columns:120px minmax(0,1fr)}.feature-gallery img{height:140px}.visual-pair{grid-template-columns:1fr}.visual-pair img{height:190px}.center-comparison{grid-template-columns:repeat(2,minmax(0,1fr))}.center-comparison img{height:130px}.entry-thumb{height:67px}.demo-controls button{font-size:12px}.guide-figure figcaption{font-size:12px}.placement-state{padding:12px;gap:12px}.placement-state>img{width:52px;height:52px}.small-detail>img{max-height:200px}.intro-visual>img{height:190px}}
 
@@ -357,10 +363,10 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .search-panel{padding:15px 12px 13px;min-width:0}
 .search-panel .panel-label{display:block;margin-bottom:12px;color:var(--cyan)}
 .search-field{position:relative}
-.search-field input{display:block;width:100%;min-width:0;min-height:42px;padding:9px 29px 9px 9px;border:1px solid var(--line);border-radius:0;background:#000;color:var(--ink);font:13px/1.6 var(--font);appearance:none}
+.search-field input{display:block;width:100%;min-width:0;min-height:42px;padding:9px 29px 9px 9px;border:2px solid #5d5d54;border-radius:0;background:#000;color:#fff;font:13px/1.6 var(--font);appearance:none}
 .search-field input::placeholder{color:var(--muted);opacity:1}
 .search-field input::-webkit-search-cancel-button{appearance:none}
-.search-field input:focus-visible{outline:2px solid var(--game-accent);outline-offset:2px;border-color:var(--game-accent)}
+.search-field input:focus-visible{outline:0;border-color:#fff}
 .search-clear{position:absolute;right:3px;top:4px;min-width:27px;min-height:34px;padding:0;border:0;background:#000;color:var(--muted);font:20px/1 var(--font);cursor:pointer}
 .search-clear:hover{color:var(--ink)}
 .search-clear:focus-visible{outline:2px solid var(--gold);outline-offset:0}
@@ -378,3 +384,9 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .demo-controls button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 .section ol:not(.timeline){list-style-type:"-  "}
+
+/* Short landscape windows can have a narrow article inside a desktop frame.
+   Content cards must follow that reading column rather than the browser width. */
+@container wiki-article (max-width:480px){
+  .card-grid,.tile-catalog,.visual-pair,.scoring-gallery,.rank-grid{grid-template-columns:1fr}
+}
