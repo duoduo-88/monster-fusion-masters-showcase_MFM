@@ -3,7 +3,7 @@
   "use strict";
   const storageKey = "mfm:wiki:language";
   const currentLanguage = document.documentElement.lang;
-  const languageLinks = [...document.querySelectorAll("a[data-language]")];
+  let languageLinks = [...document.querySelectorAll("a[data-language]")];
   let visibleSection = location.hash.slice(1);
 
   // Static counterpart links also support GitHub Pages project subpaths.
@@ -32,12 +32,13 @@
   };
   refreshLanguageLinks();
   setupDesktopLaunch();
-  for (const link of languageLinks) {
+  const bindLanguageLinks = () => { for (const link of languageLinks) {
     link.addEventListener("click", event => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       try { localStorage.setItem(storageKey, link.dataset.language); } catch { /* Links still work. */ }
     });
-  }
+  } };
+  bindLanguageLinks();
   // Desktop launch is owned here; the static href always remains the browser fallback.
   function setupDesktopLaunch() {
     const trigger = document.querySelector("[data-mfm-launch]");
@@ -211,7 +212,7 @@
   desktopRail.addEventListener?.("change", () => scrollHosts.forEach(updateRail));
   const contents = document.querySelector(".contents-panel details");
   if (contents && window.matchMedia("(max-width: 1000px)").matches) contents.open = false;
-  const tocLinks = [...document.querySelectorAll(".toc a")];
+  let tocLinks = [...document.querySelectorAll(".toc a")];
   const selectSection = id => {
     visibleSection = id;
     refreshLanguageLinks();
@@ -243,4 +244,13 @@
   };
   observeSections();
   desktopArticleScroll.addEventListener?.("change", observeSections);
+  document.addEventListener?.("wiki:navigated", event => {
+    languageLinks = [...document.querySelectorAll("a[data-language]")];
+    if (event.detail.localeChanged) bindLanguageLinks();
+    if (event.detail.launchChanged) setupDesktopLaunch();
+    tocLinks = [...document.querySelectorAll(".toc a")];
+    selectSection(location.hash.slice(1) || "overview");
+    observeSections();
+    scrollHosts.forEach(scheduleRail);
+  });
 })();
