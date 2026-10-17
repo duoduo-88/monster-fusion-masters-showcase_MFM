@@ -7,6 +7,45 @@ html{scroll-padding-top:110px}
 html.wiki-fonts-loading body{visibility:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.8 var(--font);font-synthesis:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.09) 3px 4px)}
+/* Static copy of the game loading presentation; no game runtime is imported. */
+.wiki-loading-overlay{display:none;position:fixed;inset:0;z-index:2147483000;align-items:center;justify-content:center;background:#050706;color:#f1eedc}
+html.wiki-fonts-loading .wiki-loading-overlay{display:flex;visibility:visible}
+.mfm-loading-hexes{display:flex;align-items:center;justify-content:center;gap:14px;width:max-content;height:26px;animation:mfm-loading-hex-center 1380ms linear infinite}
+.mfm-loading-hexes>b{position:relative;display:block;width:22px;height:25.4px;flex:0 0 22px;background:#fff;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);opacity:0;transform-origin:center}
+.mfm-loading-hexes>b::after{content:"";position:absolute;inset:0;background:#050706;clip-path:inherit;transform:scale(.78)}
+.mfm-loading-hexes>b:first-child{animation:mfm-loading-hex-one 1380ms linear infinite}
+.mfm-loading-hexes>b:nth-child(2){animation:mfm-loading-hex-two 1380ms linear infinite}
+.mfm-loading-hexes>b:nth-child(3){animation:mfm-loading-hex-three 1380ms linear infinite}
+@keyframes mfm-loading-hex-center{
+  0%,23%{transform:translateX(36px)}
+  27%,41%{transform:translateX(18px)}
+  45%,100%{transform:translateX(0)}
+}
+@keyframes mfm-loading-hex-one{
+  0%,5%{opacity:0;transform:translateY(-8px) scale(.12)}
+  9%{opacity:1;transform:translateY(0) scale(.12)}
+  11%{transform:scale(.08);animation-timing-function:cubic-bezier(.2,.75,.25,1)}
+  19%{transform:scale(1.06);animation-timing-function:ease-out}
+  23%,78%{opacity:1;transform:scale(1)}
+  84%,100%{opacity:0;transform:scale(.6)}
+}
+@keyframes mfm-loading-hex-two{
+  0%,23%{opacity:0;transform:translateY(-8px) scale(.12)}
+  27%{opacity:1;transform:translateY(0) scale(.12)}
+  29%{transform:scale(.08);animation-timing-function:cubic-bezier(.2,.75,.25,1)}
+  37%{transform:scale(1.06);animation-timing-function:ease-out}
+  41%,78%{opacity:1;transform:scale(1)}
+  84%,100%{opacity:0;transform:scale(.6)}
+}
+@keyframes mfm-loading-hex-three{
+  0%,41%{opacity:0;transform:translateY(-8px) scale(.12)}
+  45%{opacity:1;transform:translateY(0) scale(.12)}
+  47%{transform:scale(.08);animation-timing-function:cubic-bezier(.2,.75,.25,1)}
+  55%{transform:scale(1.06);animation-timing-function:ease-out}
+  59%,78%{opacity:1;transform:scale(1)}
+  84%,100%{opacity:0;transform:scale(.6)}
+}
+@media (prefers-reduced-motion:reduce){.mfm-loading-hexes{animation:none;transform:none}.mfm-loading-hexes>b{animation:none!important;opacity:1;transform:none}}
 a{color:var(--cyan);text-underline-offset:4px}
 a:hover{color:#b7ded7}
 a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
