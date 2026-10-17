@@ -1,6 +1,6 @@
 # Monster Fusion Masters Wiki
 
-繁體中文與英文的公開靜態遊戲百科。沿用遊戲的六角點陣 Logo、黑色面板、像素字與灰／綠／金色系，上方為橫幅，下方為分類、文章與章節目錄。桌面版三欄同頂對齊，中央文章外框隨視窗高度伸縮，內容獨立捲動；桌面版沿用遊戲的 12px 自繪像素捲動軌、14px 內容預留空間與可拖曳的固定滑塊（Firefox 與 Chromium 外觀一致）。窄螢幕改為單欄、一般頁面捲動與可收合的章節目錄。所有連結的右上方向箭頭已移除。
+繁體中文與英文的公開靜態遊戲百科。沿用遊戲的六角點陣 Logo、黑色面板、像素字與灰／綠／金色系，上方為橫幅，下方為分類、文章與章節目錄。桌面版整體外框固定 4:3，在視窗內置中；橫幅高度、內距與區塊間隔沿用遊戲的連續尺寸規則。欄位依實際外框寬度調整，中央文章獨立捲動；桌面版沿用遊戲的 12px 自繪像素捲動軌、14px 內容預留空間與可拖曳的固定滑塊（Firefox 與 Chromium 外觀一致）。窄螢幕改為單欄、一般頁面捲動與可收合的章節目錄。所有連結的右上方向箭頭已移除。
 
 ## 頁面與語言
 
@@ -11,6 +11,7 @@
 - `index.html`、`rules.html`、`modes.html`、`history.html`：繁體中文。
 - `en/`：相同四篇文章的完整英文版。
 - `wiki.css`：本站唯一的版面樣式來源。
+- `crt-filter-v2.js`：遊戲 CRT 純顯示層的靜態副本，提供相同的光暈、掃描線、磷光顆粒與偏青玻璃效果；不含遊戲邏輯、帳號、網路請求或遊戲設定。它只擁有視覺濾鏡，不擁有 Wiki 排版。遊戲更新這層效果時需一併同步副本。比對紀錄見 `../validation/game-ui.md`。
 - `wiki-search.js`：跨中英文的全文關鍵字搜尋，點選結果跳至對應語言的文章章節。索引只含公開百科內容，搜尋不傳送到外部服務。
 - `wiki-search-index.js`：由 `scripts/build-search-index.py` 從雙語文章產生的本地搜尋索引。
 - `wiki.js`：記住語言偏好、切換時保留文章與章節、手機目錄收合、依桌面內部捲動或手機頁面捲動追蹤目前章節。
@@ -30,6 +31,10 @@ python scripts/build-search-index.py --check
 node --test scripts/test-language.mjs
 node --test scripts/test-media.mjs
 node --test scripts/test-search.mjs
+node --test scripts/test-desktop-launch.mjs
+# 已安裝 Playwright 與瀏覽器時：
+# MFM_TEST_BROWSERS=edge node scripts/test-ui-browser.mjs
+# MFM_TEST_BROWSERS=edge node scripts/test-desktop-launch-browser.mjs
 ```
 
 開啟 http://127.0.0.1:8080/ 。檢查會核對雙語文章、語言切換的文章對應、章節 ID、站內連結及素材檔案。互動驗證包括語言偏好、切換後的章節位置，以及桌面／手機版面。
