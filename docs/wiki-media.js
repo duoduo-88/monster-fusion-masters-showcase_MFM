@@ -1,7 +1,7 @@
 /* Local media only; the public wiki never loads the private game runtime. */
 (() => {
   "use strict";
-  const images = [...document.querySelectorAll("img[data-animation]")];
+  let images = [...document.querySelectorAll("img[data-animation]")];
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
   let paused = reduced.matches;
   const renderImage = image => {
@@ -12,7 +12,10 @@
   const syncMotion = () => {
     images.forEach(renderImage);
   };
-  for (const gallery of document.querySelectorAll("[data-demo-gallery]")) {
+  const boundGalleries = new WeakSet();
+  const bindGalleries = () => { for (const gallery of document.querySelectorAll("[data-demo-gallery]")) {
+    if (boundGalleries.has(gallery)) continue;
+    boundGalleries.add(gallery);
     const image = gallery.querySelector("img");
     const caption = gallery.querySelector(".demo-caption");
     const buttons = [...gallery.querySelectorAll("button[data-demo-src]")];
@@ -24,7 +27,13 @@
       for (const candidate of buttons) candidate.setAttribute("aria-pressed", String(candidate === button));
       renderImage(image);
     });
-  }
+  } };
+  bindGalleries();
+  document.addEventListener("wiki:navigated", () => {
+    images = [...document.querySelectorAll("img[data-animation]")];
+    bindGalleries();
+    syncMotion();
+  });
   document.addEventListener("visibilitychange", syncMotion);
   reduced.addEventListener?.("change", event => {
     paused = event.matches;

@@ -35,15 +35,15 @@
   }
   const panel = root.document.querySelector("[data-wiki-search]");
   if (!panel || !root.MFMWikiSearchIndex) return;
-  const language = root.document.documentElement.lang;
-  const english = language === "en";
+  let language = root.document.documentElement.lang;
+  let english = language === "en";
   const input = panel.querySelector("input");
   const list = panel.querySelector(".search-results");
   const status = panel.querySelector(".search-status");
   const clear = panel.querySelector(".search-clear");
   let matches = [];
   let composing = false;
-  const update = () => {
+  const render = () => {
     const query = input.value.trim();
     matches = search(root.MFMWikiSearchIndex, query, language);
     list.replaceChildren();
@@ -64,7 +64,8 @@
       title.textContent = result.title;
       heading.textContent = result.heading;
       snippet.textContent = result.snippet;
-      link.href = result.href;
+      // Resolve against the current locale, including after a partial language switch.
+      link.href = new URL(result.href, root.location.href).href;
       link.append(title, heading, snippet);
       item.append(link);
       list.append(item);
@@ -75,6 +76,19 @@
     // Search results change a desktop scroll host's content height.
     panel.dispatchEvent(new Event("wiki:content-resize", {bubbles: true}));
   };
+  const update = () => root.MFMWikiNavigation
+    ? root.MFMWikiNavigation.resizePanel(panel, render) : render();
+  root.document.addEventListener("wiki:navigated", event => {
+    if (!event.detail.localeChanged) return;
+    language = root.document.documentElement.lang;
+    english = language === "en";
+    panel.setAttribute("aria-label", english ? "Search the wiki" : "搜尋百科");
+    panel.querySelector("form").setAttribute("aria-label", english ? "Search the wiki" : "搜尋百科");
+    panel.querySelector("label").textContent = english ? "SEARCH / 搜尋" : "搜尋 / SEARCH";
+    input.placeholder = english ? "Closure / DEAD…" : "封閉 / DEAD…";
+    clear.setAttribute("aria-label", english ? "Clear search" : "清除搜尋");
+    update();
+  });
   input.addEventListener("input", update);
   input.addEventListener("compositionstart", () => { composing = true; });
   input.addEventListener("compositionend", () => { composing = false; update(); });
@@ -86,7 +100,11 @@
     event.preventDefault();
     if (composing) return;
     update();
-    if (matches.length) root.location.assign(new URL(matches[0].href, root.location.href).href);
+    if (matches.length) {
+      const href = new URL(matches[0].href, root.location.href).href;
+      if (root.MFMWikiNavigation) root.MFMWikiNavigation.navigate(href);
+      else root.location.assign(href);
+    }
   });
   panel.hidden = false;
 })(typeof window === "undefined" ? globalThis : window);

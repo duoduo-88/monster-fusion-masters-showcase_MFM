@@ -226,6 +226,7 @@ figcaption a{text-decoration:none}
 .entry:hover{background:#0b130e}
 .entry:hover h3{color:var(--accent)}
 .contents-panel{padding:17px 13px 13px}
+.search-panel[data-wiki-resizing],.contents-panel[data-wiki-resizing]{overflow:hidden;overflow:clip}
 .contents-panel summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 3px;list-style:none;cursor:pointer;min-height:24px}
 .contents-panel summary::-webkit-details-marker{display:none}
 .collapse-icon{width:7px;height:7px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);transform:rotate(45deg);margin:0 4px 4px 0}
