@@ -10,7 +10,24 @@
   <title>模式與競技 | Monster Fusion Masters Wiki</title>
   <link rel="alternate" hreflang="zh-Hant" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/modes.html">
   <link rel="alternate" hreflang="en" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/modes.html">
-  <link rel="stylesheet" href="./wiki.css?v=20261016-centermarkers-favicon1">
+  <link rel="preload" href="./fonts/mfm-reading.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./wiki.css?v=20261017-font-ready1">
+  <script data-wiki-font-boot="1">
+    (() => {
+      "use strict";
+      if (!document.fonts?.load) return;
+
+      const root = document.documentElement;
+      root.classList.add("wiki-fonts-loading");
+      const reveal = () => {
+        clearTimeout(timeout);
+        root.classList.remove("wiki-fonts-loading");
+      };
+      // Keep the articles accessible if the font server fails or stalls.
+      const timeout = setTimeout(reveal, 5000);
+      document.fonts.load('16px "Cubic 11"', "遊戲Game").then(reveal, reveal);
+    })();
+  </script>
   <script src="./wiki.js?v=20261016-sidebars1" defer></script>
   <script src="./wiki-media.js?v=20261016-motion1" defer></script>
   <script src="./wiki-search-index.js?v=20261016-cover1" defer></script>

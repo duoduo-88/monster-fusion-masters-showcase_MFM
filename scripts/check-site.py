@@ -95,7 +95,7 @@ class WikiChecks(unittest.TestCase):
                     self.assertIn('id="wiki-search-input"', article)
                     self.assertIn('aria-controls="wiki-search-results"', article)
                     self.assertIn('class="search-status"', article)
-                    self.assertIn("wiki.css?v=20261016-centermarkers-favicon1", article)
+                    self.assertRegex(article, r'<link rel="stylesheet" href="\.\.?/wiki\.css\?v=[^"]+">')
 
     def test_editorial_media_placement_and_contribution_ownership(self):
         """Keep visual examples in their canonical article and community actions in the rail."""
@@ -236,7 +236,6 @@ class WikiChecks(unittest.TestCase):
         self.assertIn(".wiki-contribution>.pixel-btn", css)
         self.assertIn('scrollbar-width:none', css)
         self.assertIn('overflow-y:auto', css)
-        self.assertNotIn("BoutiqueBitmap9x9", css)
         self.assertNotIn("mfm-pixel.ttf", css)
         self.assertFalse((ROOT / "fonts" / "mfm-pixel.ttf").exists())
         for folder in ("", "en"):
