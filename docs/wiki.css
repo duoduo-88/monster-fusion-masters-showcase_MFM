@@ -1,9 +1,10 @@
 /* Public wiki presentation only. The game's runtime is not imported. */
-@font-face{font-family:"Cubic 11";src:url("./fonts/mfm-reading.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Cubic 11";src:url("./fonts/mfm-reading.ttf") format("truetype");font-weight:400;font-style:normal;font-display:block}
 @font-face{font-family:"MFM Pixel";src:url("./fonts/BoutiqueBitmap9x9_1.93.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
 :root{color-scheme:dark;--bg:#000;--panel:#050605;--ink:#f1eedc;--copy:#c4c4b6;--muted:#929487;--line:#48483f;--soft:#2c302a;--accent:#8dbf9e;--game-accent:#72aa83;--gold:#c8a951;--cyan:#6cbebc;--font:"Cubic 11",monospace;--mfm-scroll-size:12px;--mfm-scroll-rail-width:12px;--mfm-scroll-content-gutter:14px;--mfm-scroll-track:#0b0d0a;--mfm-scroll-track-line:#242720;--mfm-scroll-thumb:#666960;--mfm-scroll-thumb-edge:#353831;--mfm-scroll-hover:#8b7a42;--mfm-scroll-active:#4f6f59}
 *{box-sizing:border-box}
 html{scroll-padding-top:110px}
+html.wiki-fonts-loading body{visibility:hidden}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.8 var(--font);font-synthesis:none;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(180deg,transparent 0 3px,rgba(0,0,0,.09) 3px 4px)}
 a{color:var(--cyan);text-underline-offset:4px}
