@@ -61,7 +61,7 @@ class WikiChecks(unittest.TestCase):
                     self.assertIn(game + "/terms", footer.group(1))
                     self.assertIn(game + "/privacy", footer.group(1))
                     self.assertIn('href="./about.html"', footer.group(1))
-                    self.assertIn('href="https://github.com/duoduo-88/monster-fusion-masters-online/issues/new/choose" target="_blank" rel="noopener noreferrer"', footer.group(1))
+                    self.assertIn('href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new/choose" target="_blank" rel="noopener noreferrer"', footer.group(1))
                     self.assertNotIn('class="footer-credits"', footer.group(1))
                     self.assertNotIn("CUBIC 11", footer.group(1))
                     for route in ("terms", "privacy"):
