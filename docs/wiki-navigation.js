@@ -1,11 +1,11 @@
-/* Keep the static HTML fallback; enhance only this wiki's eight article URLs. */
+/* Keep the static HTML fallback; enhance this wiki's bilingual article URLs. */
 (() => {
   "use strict";
   const article = document.querySelector(".page");
   const contents = document.querySelector(".contents-panel");
   if (!article || !contents || !window.fetch || !window.AbortController) return;
   const root = new URL(".", document.currentScript.src);
-  const pages = new Set(["index.html", "rules.html", "modes.html", "history.html"]
+  const pages = new Set(["index.html", "rules.html", "modes.html", "history.html", "about.html"]
     .flatMap(name => [new URL(name, root).pathname, new URL(`en/${name}`, root).pathname]));
   pages.add(root.pathname);
   pages.add(new URL("en/", root).pathname);
@@ -104,7 +104,7 @@
       replaceContent(".site-footer");
       document.querySelector(".skip-link").textContent = next.querySelector(".skip-link").textContent;
     } else {
-      const selected = next.querySelector('.site-nav a[aria-current="page"]').href;
+      const selected = next.querySelector('.site-nav a[aria-current="page"]')?.href;
       for (const link of document.querySelectorAll(".site-nav a")) {
         if (link.href === selected) link.setAttribute("aria-current", "page");
         else link.removeAttribute("aria-current");

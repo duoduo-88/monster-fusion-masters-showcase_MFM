@@ -266,7 +266,6 @@ details[open] .collapse-icon{transform:rotate(225deg);margin-top:6px}
 .site-footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;flex:none;margin-top:12px;padding:12px 0;border-top:1px solid var(--soft);font-size:12px;line-height:1.7;color:var(--muted)}
 .site-footer a{color:var(--muted)}
 .site-footer{align-items:center;background:var(--bg)}
-.site-footer .footer-credits{margin-left:auto}
 .site-footer .footer-nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-left:auto}
 .site-footer .footer-nav a{text-decoration:none;white-space:nowrap}
 .site-footer .footer-nav a+a::before{content:"/";display:inline-block;margin-right:12px;color:var(--line)}
