@@ -39,6 +39,7 @@ try{
       assert.equal(await links.nth(1).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&lang=${locale}`);
       assert.equal(await page.locator('.footer-credits').count(),0,'footer does not duplicate font attribution');
       assert.equal(await links.nth(2).getAttribute('target'),'_blank');
+      assert.equal(await links.nth(2).getAttribute('href'),'https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new/choose');
       const geometry=await page.evaluate(()=>{
         const footer=document.querySelector('.site-footer'),r=footer.getBoundingClientRect();
         return {overflow:document.documentElement.scrollWidth>innerWidth+1,
@@ -75,7 +76,7 @@ try{
   const popup=page.waitForEvent('popup');
   await page.locator('.footer-nav a').nth(2).click();
   const contact=await popup;await contact.waitForLoadState('domcontentloaded').catch(()=>{});
-  assert.ok(contact.url().startsWith('https://github.com/duoduo-88/monster-fusion-masters-online/issues/new/choose')||contact.url().startsWith('https://github.com/login'),'Contact opens GitHub');
+  assert.ok(contact.url().startsWith('https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new/choose')||contact.url().startsWith('https://github.com/login'),'Contact opens GitHub');
   await contact.close();
   assert.deepEqual(errors,[]);
   await writeFile(resolve(output,'report.json'),JSON.stringify(report,null,2));
