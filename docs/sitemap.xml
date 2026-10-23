@@ -40,4 +40,14 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/history.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/history.html"/>
   </url>
+  <url>
+    <loc>https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/about.html"/>
+  </url>
+  <url>
+    <loc>https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/about.html"/>
+  </url>
 </urlset>

@@ -47,6 +47,30 @@ class Page(HTMLParser):
 
 
 class WikiChecks(unittest.TestCase):
+    def test_footer_destinations_and_about_language_metadata(self):
+        base = "https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/"
+        game = "https://mfm.monster-fusion-masters-online.workers.dev"
+        for folder in ("", "en"):
+            for name in (*PAGES, "about.html"):
+                path = ROOT / folder / name
+                with self.subTest(page=str(path.relative_to(ROOT))):
+                    self.assertTrue(path.is_file(), "Missing About article")
+                    html = path.read_text(encoding="utf-8")
+                    footer = re.search(r'<footer class="site-footer">(.*?)</footer>', html, re.S)
+                    self.assertIsNotNone(footer)
+                    self.assertIn(game + "/terms", footer.group(1))
+                    self.assertIn(game + "/privacy", footer.group(1))
+                    self.assertIn('href="./about.html"', footer.group(1))
+                    self.assertIn('href="https://github.com/duoduo-88/monster-fusion-masters-online/issues/new/choose" target="_blank" rel="noopener noreferrer"', footer.group(1))
+                    self.assertIn("Cubic11-LICENSE.txt", footer.group(1))
+            if not (ROOT / folder / "about.html").is_file():
+                continue
+            page = Page(ROOT / folder / "about.html")
+            self.assertEqual(page.canonicals, [base + ("en/" if folder else "") + "about.html"])
+            self.assertEqual(page.alternates, {"zh-Hant": base + "about.html", "en": base + "en/about.html"})
+            self.assertEqual(page.h1s, 1)
+            self.assertEqual(set(page.languages), {"zh-Hant", "en"})
+
     def test_game_explanations_have_local_visual_examples(self):
         import re
         for folder in ("", "en"):
@@ -203,7 +227,7 @@ class WikiChecks(unittest.TestCase):
     def test_public_search_metadata_and_sitemap(self):
         base = "https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/"
         expected = {}
-        for name in PAGES:
+        for name in (*PAGES, "about.html"):
             zh = base if name == "index.html" else base + name
             en = base + "en/" + name
             for folder, canonical in (("", zh), ("en", en)):
