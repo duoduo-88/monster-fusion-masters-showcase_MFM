@@ -40,4 +40,4 @@ Full-page narrow screenshots preserve the Wiki's existing vertical document flow
 | 800 × 600 | [PNG](zh-Hant-wiki-800x600.png) | [PNG](en-wiki-800x600.png) | [PNG](zh-Hant-about-800x600.png) | [PNG](en-about-800x600.png) |
 | 375 × 812 | [PNG](zh-Hant-wiki-375x812.png) | [PNG](en-wiki-375x812.png) | [PNG](zh-Hant-about-375x812.png) | [PNG](en-about-375x812.png) |
 
-Independent Sol source review found no material finding. The companion game branch is `codex/login-legal-footer-20261024`; its About links target these static pages with explicit language parameters. Draft PR only; no merge or deployment.
+Independent Sol source review found no material finding. [Wiki Draft PR #22](https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/pull/22) accompanies [game Draft PR #231](https://github.com/duoduo-88/monster-fusion-masters-online/pull/231); the game's About links target these static pages with explicit language parameters. No merge or deployment.
