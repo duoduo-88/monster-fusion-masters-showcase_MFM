@@ -62,7 +62,13 @@ class WikiChecks(unittest.TestCase):
                     self.assertIn(game + "/privacy", footer.group(1))
                     self.assertIn('href="./about.html"', footer.group(1))
                     self.assertIn('href="https://github.com/duoduo-88/monster-fusion-masters-online/issues/new/choose" target="_blank" rel="noopener noreferrer"', footer.group(1))
-                    self.assertIn("Cubic11-LICENSE.txt", footer.group(1))
+                    self.assertNotIn('class="footer-credits"', footer.group(1))
+                    self.assertNotIn("CUBIC 11", footer.group(1))
+                    for route in ("terms", "privacy"):
+                        expected = game + "/" + route + "?from=wiki&lang=" + ("en" if folder else "zh-Hant")
+                        self.assertIn(expected, Page(path).links)
+        self.assertTrue((ROOT / "fonts" / "Cubic11-LICENSE.txt").is_file())
+        for folder in ("", "en"):
             if not (ROOT / folder / "about.html").is_file():
                 continue
             page = Page(ROOT / folder / "about.html")
@@ -275,7 +281,7 @@ class WikiChecks(unittest.TestCase):
                     self.assertNotIn('class="pixel-btn primary play-button"', source)
                     self.assertNotIn("BoutiqueBitmap9x9", source)
                     self.assertNotIn("↗", source, "Northeast arrow must not return")
-                    self.assertIn("Cubic11-LICENSE.txt", source)
+                    self.assertNotIn('class="footer-credits"', source)
 
 
 if __name__ == "__main__":

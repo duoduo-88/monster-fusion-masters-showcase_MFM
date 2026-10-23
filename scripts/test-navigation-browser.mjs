@@ -88,6 +88,30 @@ try {
       await page.waitForTimeout(250);
       assert.equal(await page.locator('h1').textContent(), '遊戲百科', 'the latest click wins');
       await page.unroute('**/history.html');
+      // About belongs to the same partial-navigation shell, despite having no
+      // selected category in the four-item article sidebar.
+      await page.evaluate(() => {
+        window.originalLeftRail = document.querySelector('.left-rail');
+        window.originalFooter = document.querySelector('.site-footer');
+      });
+      await page.locator('.footer-nav a').nth(3).click();
+      await page.waitForFunction(() => location.pathname.endsWith('/about.html') && document.querySelector('h1').textContent === '關於 MFM');
+      assert.equal(await page.evaluate(() => window.originalShell === document.querySelector('.site-shell')), true, 'About must update the article without a document reload');
+      assert.equal(await page.evaluate(() => window.originalArticle === document.querySelector('.page')), true);
+      assert.equal(await page.evaluate(() => window.originalLeftRail === document.querySelector('.left-rail')), true);
+      assert.equal(await page.evaluate(() => window.originalFooter === document.querySelector('.site-footer')), true);
+      assert.equal(await page.locator('.site-nav a[aria-current="page"]').count(), 0);
+      assert.ok(await page.locator('.toc a[href="#contact"]').count());
+      assert.equal(await search.inputValue(), 'DEAD');
+      await page.locator('[data-language="en"]').click();
+      await page.waitForFunction(() => document.documentElement.lang === 'en' && document.querySelector('h1').textContent === 'About MFM');
+      assert.equal(await page.evaluate(() => window.originalShell === document.querySelector('.site-shell')), true);
+      await page.goBack();
+      await page.waitForFunction(() => document.documentElement.lang === 'zh-Hant' && document.querySelector('h1').textContent === '關於 MFM');
+      assert.equal(await page.evaluate(() => window.originalShell === document.querySelector('.site-shell')), true);
+      await page.locator('.page a[href$="index.html"]').click();
+      await page.waitForFunction(() => document.querySelector('h1').textContent === '遊戲百科');
+      assert.equal(await page.evaluate(() => window.originalShell === document.querySelector('.site-shell')), true);
       await page.locator('.site-nav a[href$="modes.html"]').click();
       await page.waitForURL('**/modes.html');
       // Language changes keep the shell, search query and correct relative media URLs.

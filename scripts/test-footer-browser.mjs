@@ -35,8 +35,9 @@ try{
       const links=page.locator('.footer-nav a');
       assert.equal(await links.count(),4,'every article exposes four legal/info destinations');
       assert.deepEqual(await links.allTextContents(),locale==='en'?['TERMS','PRIVACY','CONTACT','ABOUT US']:['使用條款','隱私政策','聯絡','關於我們']);
-      assert.equal(await links.nth(0).getAttribute('href'),'https://mfm.monster-fusion-masters-online.workers.dev/terms');
-      assert.equal(await links.nth(1).getAttribute('href'),'https://mfm.monster-fusion-masters-online.workers.dev/privacy');
+      assert.equal(await links.nth(0).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/terms?from=wiki&lang=${locale}`);
+      assert.equal(await links.nth(1).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&lang=${locale}`);
+      assert.equal(await page.locator('.footer-credits').count(),0,'footer does not duplicate font attribution');
       assert.equal(await links.nth(2).getAttribute('target'),'_blank');
       const geometry=await page.evaluate(()=>{
         const footer=document.querySelector('.site-footer'),r=footer.getBoundingClientRect();
@@ -48,7 +49,7 @@ try{
       assert.equal(geometry.clipped,false,'footer text remains inside footer');
       assert.ok(parseFloat(geometry.font)>=12);
       await links.nth(0).focus();await page.keyboard.press('Tab');
-      assert.equal(await page.evaluate(()=>document.activeElement.href),'https://mfm.monster-fusion-masters-online.workers.dev/privacy');
+      assert.equal(await page.evaluate(()=>document.activeElement.href),`https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&lang=${locale}`);
       assert.notEqual(await links.nth(1).evaluate(a=>getComputedStyle(a).outlineStyle),'none');
       await links.nth(0).hover();assert.equal(await links.nth(0).evaluate(a=>getComputedStyle(a).color),'rgb(183, 222, 215)');
       await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo(0,0)});
@@ -64,9 +65,13 @@ try{
   }
   // Static fallback links work without JS; language switching retains About.
   await page.goto(`${origin}${base}about.html?lang=zh-Hant`);
+  await page.evaluate(()=>{window.footerShell=document.querySelector('.site-shell')});
   await page.locator('[data-language="en"]').click();await page.waitForURL('**/en/about.html?lang=en*');
+  assert.equal(await page.evaluate(()=>window.footerShell===document.querySelector('.site-shell')),true,'narrow About language switch preserves shell');
   await page.locator('.brand').click();await page.waitForURL('**/en/index.html*');
   await page.locator('.footer-nav a').nth(3).click();await page.waitForURL('**/en/about.html*');
+  await page.waitForFunction(()=>document.querySelector('h1').textContent==='About MFM');
+  assert.equal(await page.evaluate(()=>window.footerShell===document.querySelector('.site-shell')),true,'narrow About link updates only article');
   const popup=page.waitForEvent('popup');
   await page.locator('.footer-nav a').nth(2).click();
   const contact=await popup;await contact.waitForLoadState('domcontentloaded').catch(()=>{});
