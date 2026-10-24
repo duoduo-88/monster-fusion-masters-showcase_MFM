@@ -114,6 +114,51 @@ try {
           cases++;
         }
       }
+      // The requirements article must use the same partial navigation path as the
+      // existing wiki pages: no reload, persistent shell, updated ToC and history.
+      for (const locale of ['zh-Hant', 'en']) {
+        const folder = locale === 'en' ? 'en/' : '';
+        await page.setViewportSize({width:1280,height:720});
+        await page.goto(`${origin}/${folder}index.html?lang=${locale}`);
+        await page.evaluate(() => {
+          window.__wikiPartialShell = {
+            page:document.querySelector('.page'),
+            head:document.querySelector('.site-head'),
+            left:document.querySelector('.left-rail'),
+            right:document.querySelector('.right-rail'),
+            search:document.querySelector('[data-wiki-search]'),
+            footer:document.querySelector('.site-footer')
+          };
+        });
+        const shellIntact = () => page.evaluate(() => {
+          const kept = window.__wikiPartialShell;
+          return !!kept && kept.page === document.querySelector('.page')
+            && kept.head === document.querySelector('.site-head')
+            && kept.left === document.querySelector('.left-rail')
+            && kept.right === document.querySelector('.right-rail')
+            && kept.search === document.querySelector('[data-wiki-search]')
+            && kept.footer === document.querySelector('.site-footer');
+        });
+        await page.locator('.site-nav a[href="./requirements.html"]').click();
+        await page.waitForFunction(() =>
+          location.pathname.endsWith('/requirements.html')
+          && document.querySelector('.page h1')?.textContent.includes('requirements') ||
+          location.pathname.endsWith('/requirements.html')
+          && document.querySelector('.page h1')?.textContent.includes('系統需求')
+        );
+        assert.equal(await shellIntact(), true, `${name} ${locale}: wiki shell unchanged after switching to requirements`);
+        assert.equal(await page.locator('.site-nav a[aria-current="page"]').getAttribute('href'), './requirements.html');
+        assert.equal(await page.locator('.contents-panel .toc a[href="#hardware"]').count(), 1);
+        await page.goBack();
+        await page.waitForFunction(() =>
+          location.pathname.endsWith('/index.html') &&
+          (document.querySelector('.page h1')?.textContent.includes('遊戲百科') ||
+           document.querySelector('.page h1')?.textContent.includes('Game encyclopedia'))
+        );
+        assert.equal(await shellIntact(), true, `${name} ${locale}: wiki shell unchanged after back`);
+        assert.equal(await page.locator('.site-nav a[aria-current="page"]').getAttribute('href'), './index.html');
+        assert.equal(await page.locator('.contents-panel .toc a[href="#explore"]').count(), 1);
+      }
       await page.setViewportSize({width:1280,height:720});
       await page.goto(`${origin}/rules.html?lang=zh-Hant`);
       const search = page.locator('#wiki-search-input');
