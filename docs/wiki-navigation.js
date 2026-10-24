@@ -5,7 +5,7 @@
   const contents = document.querySelector(".contents-panel");
   if (!article || !contents || !window.fetch || !window.AbortController) return;
   const root = new URL(".", document.currentScript.src);
-  const pages = new Set(["index.html", "rules.html", "modes.html", "history.html", "about.html"]
+  const pages = new Set(["index.html", "rules.html", "modes.html", "requirements.html", "history.html", "about.html"]
     .flatMap(name => [new URL(name, root).pathname, new URL(`en/${name}`, root).pathname]));
   pages.add(root.pathname);
   pages.add(new URL("en/", root).pathname);
