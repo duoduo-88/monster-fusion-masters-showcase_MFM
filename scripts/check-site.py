@@ -7,7 +7,7 @@ from urllib.parse import unquote, urlsplit
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1] / "docs"
-PAGES = ("index.html", "rules.html", "modes.html", "history.html")
+PAGES = ("index.html", "rules.html", "modes.html", "requirements.html", "history.html")
 
 
 class Page(HTMLParser):
@@ -111,7 +111,7 @@ class WikiChecks(unittest.TestCase):
                 self.assertEqual(index.count('class="entry-number"'), 3)
                 for page in PAGES:
                     article = (prefix / page).read_text(encoding="utf-8")
-                    self.assertEqual(article.count('class="nav-index"'), 4)
+                    self.assertEqual(article.count('class="nav-index"'), 5)
 
             with self.subTest(locale=folder or "zh-Hant", feature="spectator"):
                 self.assertIn("spectator-seats.webp", modes)

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <link rel="canonical" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/requirements.html">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" sizes="500x500" href="./assets/mfm-favicon.png">
+  <meta name="description" content="MFM 系統需求、Windows WebView2 桌面版與實測效能參考。配備規格為初步估算。">
+  <title>系統需求 | Monster Fusion Masters Wiki</title>
+  <link rel="alternate" hreflang="zh-Hant" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/requirements.html">
+  <link rel="alternate" hreflang="en" href="https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/requirements.html">
+  <link rel="preload" href="./fonts/mfm-reading.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./wiki.css?v=20261024-footer2">
+  <script data-wiki-font-boot="1">
+    (() => {
+      "use strict";
+      if (!document.fonts?.load) return;
+
+      const root = document.documentElement;
+      root.classList.add("wiki-fonts-loading");
+      const reveal = () => {
+        clearTimeout(timeout);
+        root.classList.remove("wiki-fonts-loading");
+      };
+      // Keep the articles accessible if the font server fails or stalls.
+      const timeout = setTimeout(reveal, 5000);
+      const pageReady = new Promise(resolve => addEventListener("load", resolve, {once:true}));
+      Promise.allSettled([document.fonts.load('16px "Cubic 11"', "遊戲Game"), pageReady]).then(reveal);
+    })();
+  </script>
+  <script src="./wiki-navigation.js?v=20261024-navigation2" defer></script>
+  <script src="./wiki.js?v=20261018-partial1" defer></script>
+  <script src="./wiki-media.js?v=20261018-partial1" defer></script>
+  <script src="./wiki-search-index.js?v=20261016-cover1" defer></script>
+  <script src="./wiki-search.js?v=20261018-partial1" defer></script>
+</head>
+<body>
+  <div class="wiki-loading-overlay" role="status" aria-label="載入中"><i class="mfm-loading-hexes" aria-hidden="true"><b></b><b></b><b></b></i></div>
+  <a class="skip-link" href="#main-content">跳至主要內容</a>
+  <div class="site-shell">
+    <header class="site-head frame">
+      <a class="brand" href="./index.html" aria-label="Monster Fusion Masters · 百科首頁"><img src="./assets/mfm-wordmark.svg?v=20261018-white1" alt="Monster Fusion Masters" width="814.02" height="32.58"><span class="brand-tag">OFFICIAL<br>WIKI</span></a>
+      <div class="head-actions">
+        <nav class="language-switch" aria-label="語言切換">
+          <a href="./requirements.html?lang=zh-Hant" data-language="zh-Hant" lang="zh-Hant" hreflang="zh-Hant" aria-current="true" aria-label="繁體中文">繁中</a>
+          <a href="./en/requirements.html?lang=en" data-language="en" lang="en" hreflang="en" aria-label="English">EN</a>
+        </nav>
+      </div>
+    </header>
+    <div class="layout">
+      <aside class="left-rail">
+        <nav class="site-nav frame" aria-label="百科分類"><div class="panel-label">01 / 百科目錄</div><a class="nav-link" href="./index.html"><span class="nav-index">-</span><span>首頁<small>GAME WIKI</small></span><span class="nav-arrow" aria-hidden="true">›</span></a><a class="nav-link" href="./rules.html"><span class="nav-index">-</span><span>遊戲規則<small>RULES & SCORING</small></span><span class="nav-arrow" aria-hidden="true">›</span></a><a class="nav-link" href="./modes.html"><span class="nav-index">-</span><span>模式與競技<small>MODES & RANKED</small></span><span class="nav-arrow" aria-hidden="true">›</span></a><a class="nav-link" href="./requirements.html" aria-current="page"><span class="nav-index">-</span><span>系統需求<small>SYSTEM REQUIREMENTS</small></span><span class="nav-arrow" aria-hidden="true">›</span></a><a class="nav-link" href="./history.html"><span class="nav-index">-</span><span>開發歷史<small>DEVELOPMENT</small></span><span class="nav-arrow" aria-hidden="true">›</span></a></nav>
+        <div class="rail-note frame"><span class="panel-label">第一次遊玩？</span><p>從規則開始，或在遊戲裡跟著新手教學走一回合。</p><a class="pixel-btn cyan" href="https://mfm.monster-fusion-masters-online.workers.dev/">進入遊戲</a></div>
+        <div class="reference-card frame"><span class="panel-label">公開資料</span><p>原創桌遊，持續進化。</p><a href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM">SHOWCASE</a><a href="./history.html#sources">資料來源</a><a href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest">桌面版下載</a></div>
+      </aside>
+      <main class="page frame wiki-scroll-rail" id="main-content" tabindex="-1">
+<section class="hero" id="overview"><span class="eyebrow">PLAY / SYSTEM REQUIREMENTS</span><h1>遊玩與系統需求</h1>
+<p>Monster Fusion Masters（MFM）是免費線上回合制策略棋盤遊戲，可透過現代瀏覽器或 Windows 的 MFM Desktop 遊玩。</p>
+<p><strong>以下是初步硬體相容性參考，不是正式驗證的最低配備。</strong>實際效能取決於瀏覽器、硬體、解析度與畫面特效；不保證固定 FPS。</p></section>
+<section class="section" id="hardware"><span class="eyebrow">01 / HARDWARE</span><h2>配備參考</h2>
+<div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">項目</th><th scope="col">基本配備參考</th><th scope="col">建議配備（預估）</th></tr></thead><tbody>
+<tr><th scope="row">CPU</th><td>Intel Core 第 3 代（僅供實測參考）</td><td>Intel Core 第 8 代以上（預估）</td></tr>
+<tr><th scope="row">記憶體</th><td>8 GB（估算，尚未驗證）</td><td>16 GB</td></tr>
+<tr><th scope="row">顯示晶片</th><td>Intel HD Graphics 4000 等級（實測參考）</td><td>Intel UHD Graphics 630 等級或以上</td></tr>
+<tr><th scope="row">解析度</th><td>1280 × 720（參考）</td><td>1920 × 1080</td></tr>
+<tr><th scope="row">網路</th><td>穩定網際網路連線</td><td>穩定網際網路連線</td></tr>
+</tbody></table></div>
+<p>基本配備參考表示有接近此級別的電腦曾成功執行遊戲，<strong>不代表 8 GB RAM 或所有同級 CPU、GPU 已通過測試</strong>；建議配備也不保證能穩定達到 60 FPS。</p></section>
+<section class="section" id="platforms"><span class="eyebrow">02 / PLAY OPTIONS</span><h2>遊玩方式</h2><div class="card-grid">
+<article class="mode-card"><span class="eyebrow">BROWSER</span><h3>瀏覽器版</h3><p>建議使用更新版本的 Chrome、Edge 或 Firefox。各瀏覽器的 Canvas 2D、動畫與圖形合成效率可能不同。</p><p><a href="https://mfm.monster-fusion-masters-online.workers.dev/">線上遊玩</a></p></article>
+<article class="mode-card"><span class="eyebrow">WINDOWS X64</span><h3>MFM Desktop</h3><p>適用 Windows 10／11 64 位元，透過 Microsoft Edge WebView2 執行。需要 WebView2 Evergreen Runtime；完整解壓縮後可直接執行，無須額外安裝 .NET。</p><p><a href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest">下載桌面版</a> · <a href="https://developer.microsoft.com/microsoft-edge/webview2/">WebView2 Runtime</a></p></article>
+</div></section>
+<section class="section" id="performance"><span class="eyebrow">03 / PERFORMANCE</span><h2>實際效能參考</h2>
+<p>開發者的一台舊型筆電配備 Intel Core i7-3520M、Intel HD Graphics 4000、16 GB RAM，螢幕為 1366 × 768。使用 MFM Desktop（WebView2）時，一般畫面約 <strong>30 FPS</strong>，大量特效時曾下降到約 <strong>16 FPS</strong>。</p>
+<p>這是單一設備與場景的觀察，不是性能保證，也沒有驗證 8 GB RAM 的配備。遊戲提供的 30／60／120 FPS 動畫選項只設定更新率上限，不代表硬體一定能達成對應幀率。</p>
+<p>如果畫面不夠流暢，可先嘗試 30 FPS 動畫模式、降低解析度及減少背景程式；Firefox 若表現不佳，也可以試試 Chromium 系列瀏覽器或桌面版。</p></section>
+</main>
+      <aside class="right-rail">
+        <section class="search-panel frame" data-wiki-search hidden aria-label="搜尋百科">
+          <form role="search" aria-label="搜尋百科">
+            <label class="panel-label" for="wiki-search-input">搜尋 / SEARCH</label>
+            <div class="search-field"><input id="wiki-search-input" type="search" placeholder="封閉 / DEAD…" autocomplete="off" spellcheck="false" maxlength="160" aria-controls="wiki-search-results"><button class="search-clear" type="button" aria-label="清除搜尋" hidden>×</button></div>
+            
+          </form>
+          <p class="search-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+          <ol class="search-results" id="wiki-search-results" hidden></ol>
+        </section>
+        <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">02 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">-</span>說明</a></li><li><a href="#hardware"><span aria-hidden="true">-</span>硬體配備</a></li><li><a href="#platforms"><span aria-hidden="true">-</span>遊玩方式</a></li><li><a href="#performance"><span aria-hidden="true">-</span>效能參考</a></li></ol></details></nav>
+      
+        <section class="reference-card frame wiki-contribution" aria-label="百科修訂建議"><span class="panel-label">協助完善 MFM WIKI</span><p>發現內容錯誤、過時或有補充建議？歡迎提出修訂建議。</p><a class="pixel-btn cyan" href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new?template=wiki-suggestion.yml" target="_blank" rel="noopener noreferrer">提出修訂建議</a></section>
+      </aside>
+    </div>
+    <footer class="site-footer"><span>© 2026 DUODUO88 <span class="footer-divider">/</span> MONSTER FUSION MASTERS</span><nav class="footer-nav" aria-label="法律與網站資訊"><a href="https://mfm.monster-fusion-masters-online.workers.dev/terms?from=wiki&amp;lang=zh-Hant">使用條款</a><a href="https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&amp;lang=zh-Hant">隱私政策</a><a href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new/choose" target="_blank" rel="noopener noreferrer">聯絡</a><a href="./about.html">關於我們</a></nav></footer>
+  </div>
+<script src="./crt-filter-v2.js?v=20261018-game-ui1"></script>
+</body>
+</html>

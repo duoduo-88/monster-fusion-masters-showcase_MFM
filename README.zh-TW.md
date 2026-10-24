@@ -21,6 +21,18 @@ MFM Desktop 是使用 Microsoft Edge WebView2 的 Windows 免安裝桌面版本�
 
 Monster Fusion Masters 是一款原創競技策略棋盤遊戲。最初是我設計的實體桌遊，後來由 Codex 協助把既有設計逐步實作成軟體。
 
+## 系統需求（初步估算）
+
+| 項目 | 基本配備參考 | 建議配備（預估） |
+| --- | --- | --- |
+| CPU | Intel Core 第 3 代（僅供實測參考） | Intel Core 第 8 代以上（預估） |
+| RAM | 8 GB（未驗證） | 16 GB |
+| GPU | Intel HD Graphics 4000 等級（實測參考） | Intel UHD Graphics 630 或以上 |
+
+開發者的 i7-3520M + Intel HD 4000 + 16 GB RAM 舊筆電在 WebView2 上一般約 30 FPS，特效密集時曾掉到約 16 FPS。這不是固定 FPS 保證；8 GB RAM 及其他硬體組合尚未完整驗證。桌面版需要 Windows 10／11 64 位元及 WebView2 Runtime。
+
+詳見 [MFM 系統需求 Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/requirements.html)。
+
 ## 遊戲功能
 
 - 免費遊玩，使用瀏覽器即可開始
