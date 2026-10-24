@@ -25,7 +25,7 @@ Monster Fusion Masters is an original competitive strategy board game. I designe
 
 | Component | Basic reference | Suggested (estimated) |
 | --- | --- | --- |
-| CPU | Intel Core i7-3520M class (observed) | 8th-generation Intel Core i5 or equivalent |
+| CPU | 3rd-generation Intel Core (observed reference only) | 8th-generation Intel Core or newer (estimated) |
 | RAM | 8 GB (not validated) | 16 GB |
 | GPU | Intel HD Graphics 4000 class (observed) | Intel UHD Graphics 630 class or better |
 

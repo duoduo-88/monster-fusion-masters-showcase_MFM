@@ -25,7 +25,7 @@ Monster Fusion Masters 是一款原創競技策略棋盤遊戲。最初是我設
 
 | 項目 | 基本配備參考 | 建議配備（預估） |
 | --- | --- | --- |
-| CPU | Intel Core i7-3520M 等級（實測參考） | Intel Core i5 第 8 代或同級 |
+| CPU | Intel Core 第 3 代（僅供實測參考） | Intel Core 第 8 代以上（預估） |
 | RAM | 8 GB（未驗證） | 16 GB |
 | GPU | Intel HD Graphics 4000 等級（實測參考） | Intel UHD Graphics 630 或以上 |
 
