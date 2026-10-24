@@ -21,6 +21,18 @@ This release is not code-signed, so Windows may show a SmartScreen warning for a
 
 Monster Fusion Masters is an original competitive strategy board game. I designed it first as a physical tabletop game; Codex later helped turn that existing design into working software.
 
+## System requirements (preliminary)
+
+| Component | Basic reference | Suggested (estimated) |
+| --- | --- | --- |
+| CPU | Intel Core i7-3520M class (observed) | 8th-generation Intel Core i5 or equivalent |
+| RAM | 8 GB (not validated) | 16 GB |
+| GPU | Intel HD Graphics 4000 class (observed) | Intel UHD Graphics 630 class or better |
+
+On one laptop with i7-3520M + Intel HD 4000 + 16 GB RAM, MFM Desktop (WebView2) generally showed around 30 FPS and sometimes dropped to approximately 16 FPS during heavy effects. This is not a fixed-FPS guarantee; 8 GB RAM and other combinations remain unvalidated. The desktop version requires 64-bit Windows 10/11 and WebView2 Runtime.
+
+See the [MFM system requirements Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/requirements.html).
+
 ## Features
 
 - Free-to-play, browser-based gameplay
