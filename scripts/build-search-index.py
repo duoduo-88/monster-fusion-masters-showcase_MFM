@@ -5,7 +5,7 @@ import json
 import sys
 
 ROOT = Path(__file__).resolve().parents[1] / "docs"
-PAGES = ("index.html", "rules.html", "modes.html", "history.html")
+PAGES = ("index.html", "rules.html", "modes.html", "requirements.html", "history.html")
 
 
 class Article(HTMLParser):

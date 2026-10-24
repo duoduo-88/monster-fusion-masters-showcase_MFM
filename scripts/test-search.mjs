@@ -51,6 +51,7 @@ test('the real wiki index searches both languages across articles',()=>{
     ['closure scoring','zh-Hant','rules.html?lang=zh-Hant#scoring'],
     ['觀戰','en','modes.html?lang=en#features'],
     ['Color Lab','zh-Hant','modes.html?lang=zh-Hant#features'],
+    ['system requirements','zh-Hant','requirements.html?lang=zh-Hant#overview'],
   ]) {
     assert.ok(search(actual,query,language).some(result=>result.href===want),query);
   }

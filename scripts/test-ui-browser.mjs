@@ -38,7 +38,7 @@ try {
       const page = await browser.newPage();
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
-      for (const locale of ['zh-Hant','en']) for (const file of ['index.html','rules.html','modes.html','history.html']) {
+      for (const locale of ['zh-Hant','en']) for (const file of ['index.html','rules.html','modes.html','requirements.html','history.html']) {
         for (const [width,height,frameWidth,frameHeight,gap,headerHeight] of desktops) {
           await page.setViewportSize({width,height});
           await page.goto(`${origin}/${locale === 'en' ? 'en/' : ''}${file}?lang=${locale}`);
@@ -140,7 +140,7 @@ try {
       assert.equal(await fallback.locator('h1').isVisible(),true);
       await fallback.close();
       assert.deepEqual(errors,[]);
-      console.log(`${name}: 8 bilingual pages, 10 desktop sizes, 2 mobile sizes, resizing, search, rail dragging and no-JS passed`);
+      console.log(`${name}: 10 bilingual pages, 10 desktop sizes, 2 mobile sizes, resizing, search, rail dragging and no-JS passed`);
     } finally { await browser.close(); }
   }
   console.log(`Wiki UI: ${cases} viewport/page cases passed; screenshots: ${output}`);
