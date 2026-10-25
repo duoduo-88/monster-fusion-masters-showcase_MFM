@@ -127,6 +127,44 @@ dialog:modal > :not([data-mfm-crt-layer]){
   const cabinet = makeOverlay("mfmCrtCabinetOverlay");
   const overlays = [scan, phosphor, glass, cabinet];
 
+  // Keep the official rating mark free of scanlines, including when its body
+  // is scaled. A higher z-index on the image cannot escape that stacking context.
+  let ratingSymbol = document.querySelector(".rating-symbol");
+  let ratingClipFrame = 0;
+  const updateRatingClip = () => {
+    ratingClipFrame = 0;
+    if (!ratingSymbol?.getClientRects().length || scan.parentElement !== document.documentElement) {
+      scan.style.clipPath = "";
+      return;
+    }
+    const mark = ratingSymbol.getBoundingClientRect();
+    const layer = scan.getBoundingClientRect();
+    const left = mark.left - layer.left, top = mark.top - layer.top;
+    const right = mark.right - layer.left, bottom = mark.bottom - layer.top;
+    scan.style.clipPath = `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0,
+      ${left}px ${top}px, ${left}px ${bottom}px, ${right}px ${bottom}px,
+      ${right}px ${top}px, ${left}px ${top}px, 0 0)`;
+  };
+  const scheduleRatingClip = () => {
+    if (!ratingClipFrame) ratingClipFrame = requestAnimationFrame(updateRatingClip);
+  };
+  if (ratingSymbol) {
+    const ratingResize = new ResizeObserver(scheduleRatingClip);
+    const observeRatingLayout = () => {
+      ratingResize.disconnect();
+      ratingSymbol = document.querySelector(".rating-symbol");
+      for (let node = ratingSymbol; node; node = node.parentElement) ratingResize.observe(node);
+      const identityScreen = document.getElementById("identityScreen");
+      if (identityScreen) ratingResize.observe(identityScreen);
+      scheduleRatingClip();
+    };
+    observeRatingLayout();
+    document.addEventListener("wiki:navigated", observeRatingLayout);
+    document.addEventListener("scroll", scheduleRatingClip, { capture:true, passive:true });
+    window.addEventListener("resize", scheduleRatingClip, { passive:true });
+    window.addEventListener("mfm:desktop-scale-applied", scheduleRatingClip);
+  }
+
   // A modal dialog is painted in the browser's top layer. Keep the same
   // viewport overlays above it while it is open, then return them to the page.
   const syncOverlayHost = () => {
@@ -134,6 +172,7 @@ dialog:modal > :not([data-mfm-crt-layer]){
     const focused = document.activeElement?.closest?.("dialog:modal");
     const host = focused || modals[modals.length - 1] || document.documentElement;
     if (scan.parentElement !== host) host.append(...overlays);
+    if (ratingSymbol) scheduleRatingClip();
   };
   const dialogObserver = new MutationObserver(records => {
     if (records.some(record => record.type === "attributes" ||
