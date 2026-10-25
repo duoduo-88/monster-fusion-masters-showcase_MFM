@@ -37,7 +37,7 @@ try{
       const rating=page.locator('.site-footer .rating-summary');
       assert.equal(await rating.count(),1,'each article exposes one rating notice');
       const ratingText=await rating.innerText();
-      assert.ok(ratingText.includes(locale==='en'?'Taiwan rating registration pending':'分級登錄審核中'));
+      assert.ok(ratingText.includes(locale==='en'?'Rating registration in progress':'分級登錄中'));
       assert.ok(ratingText.includes('不得利用本遊戲進行賭博'),'Chinese warning present in both languages');
       const symbol=rating.locator('.rating-symbol');
       assert.equal(await symbol.getAttribute('width'),'52');
