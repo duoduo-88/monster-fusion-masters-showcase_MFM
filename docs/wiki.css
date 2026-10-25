@@ -194,7 +194,6 @@ li+li{margin-top:9px}
 .rail-note{padding:17px 18px}
 .rail-note p{font-size:14px;line-height:1.8;margin:11px 0 16px;color:var(--muted)}
 .rail-note .pixel-btn{display:flex;padding:8px;font-size:13px;gap:8px}
-.rail-note .requirements-link{display:block;margin-top:12px;font-size:13px;color:var(--copy)}
 .page{min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-gutter:stable;scroll-padding-top:18px;container:wiki-article / inline-size}
 .page:focus{outline:none}
 .hero{padding:27px 28px 26px}
