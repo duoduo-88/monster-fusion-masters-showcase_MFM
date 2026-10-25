@@ -28,7 +28,7 @@ try{
   const errors=[];page.on('pageerror',e=>errors.push(String(e)));
   for(const locale of ['zh-Hant','en'])for(const [width,height] of [[1920,1080],[1280,800],[800,600],[375,812]]){
     await page.setViewportSize({width,height});
-    for(const name of ['index','rules','modes','history','about']){
+    for(const name of ['index','rules','modes','history','requirements','about']){
       await page.goto(`${origin}${base}${locale==='en'?'en/':''}${name}.html?lang=${locale}`);
       await page.evaluate(()=>document.fonts.ready);
       await page.waitForFunction(()=>!document.documentElement.classList.contains('wiki-fonts-loading'));
