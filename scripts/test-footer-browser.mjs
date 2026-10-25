@@ -84,6 +84,10 @@ try{
   await page.evaluate(()=>{window.footerShell=document.querySelector('.site-shell')});
   await page.locator('[data-language="en"]').click();await page.waitForURL('**/en/about.html?lang=en*');
   assert.equal(await page.evaluate(()=>window.footerShell===document.querySelector('.site-shell')),true,'narrow About language switch preserves shell');
+  await page.waitForFunction(()=>{
+    const mark=document.querySelector('.rating-symbol'),scan=document.querySelector('#mfmCrtScanOverlay');
+    return mark?.isConnected&&scan?.style.clipPath.startsWith('polygon(');
+  });
   await page.locator('.brand').click();await page.waitForURL('**/en/index.html*');
   await page.locator('.footer-nav a').nth(3).click();await page.waitForURL('**/en/about.html*');
   await page.waitForFunction(()=>document.querySelector('h1').textContent==='About MFM');
