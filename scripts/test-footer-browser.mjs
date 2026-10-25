@@ -34,6 +34,21 @@ try{
       await page.waitForFunction(()=>!document.documentElement.classList.contains('wiki-fonts-loading'));
       const links=page.locator('.footer-nav a');
       assert.equal(await links.count(),4,'every article exposes four legal/info destinations');
+      const rating=page.locator('.site-footer .rating-summary');
+      assert.equal(await rating.count(),1,'each article exposes one rating notice');
+      const ratingText=await rating.innerText();
+      assert.ok(ratingText.includes(locale==='en'?'Taiwan rating registration pending':'分級登錄審核中'));
+      assert.ok(ratingText.includes('不得利用本遊戲進行賭博'),'Chinese warning present in both languages');
+      const symbol=rating.locator('.rating-symbol');
+      assert.equal(await symbol.getAttribute('width'),'52');
+      assert.ok(await symbol.evaluate(img=>img.complete&&img.naturalWidth>0),'rating asset loads');
+      const align=await page.evaluate(()=>{
+        const left=document.querySelector('.site-footer .footer-copyright').getBoundingClientRect();
+        const right=document.querySelector('.site-footer .footer-nav').getBoundingClientRect();
+        return {left:Math.abs(left.left-right.left),right:Math.abs(left.right-right.right)};
+      });
+      assert.ok(align.left<=1&&align.right<=1,'copyright and links share both horizontal edges');
+
       assert.deepEqual(await links.allTextContents(),locale==='en'?['TERMS','PRIVACY','CONTACT','ABOUT US']:['使用條款','隱私政策','聯絡','關於我們']);
       assert.equal(await links.nth(0).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/terms?from=wiki&lang=${locale}`);
       assert.equal(await links.nth(1).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&lang=${locale}`);
