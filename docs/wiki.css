@@ -105,7 +105,7 @@ li+li{margin-top:9px}
 .mfm-launch-actions .pixel-btn{min-width:0;text-align:center;overflow-wrap:anywhere;font-family:var(--font)}
 .mfm-launch-dialog .pixel-btn:focus-visible{outline:0;border-color:#e2e5d9;filter:brightness(1.5);box-shadow:3px 3px #303228,0 0 9px rgba(235,238,226,.42)}
 .layout{display:grid;grid-template-columns:228px minmax(0,1fr) 206px;align-items:stretch;gap:var(--wiki-frame-gap);margin-top:var(--wiki-frame-gap);flex:1 1 auto;min-height:0}
-.left-rail,.right-rail{display:grid;align-content:start;gap:var(--wiki-frame-gap);min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto}
+.left-rail,.right-rail{display:grid;grid-auto-rows:max-content;align-content:start;gap:var(--wiki-frame-gap);min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;scrollbar-width:none;scrollbar-gutter:auto}
 :is(.left-rail,.right-rail)::-webkit-scrollbar{display:none;width:0;height:0}
 /* Scrollbar palette and geometry mirror the game's retro-scrollbar.css.
    The article reserves its game rail in HTML; tables keep native scrollbar styling. */
