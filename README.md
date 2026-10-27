@@ -6,11 +6,11 @@
 
 ![Monster Fusion Masters showcase cover](assets/showcase-cover.png?v=d8be5338)
 
-**Play / Live Game:** [https://mfm.monster-fusion-masters-online.workers.dev/](https://mfm.monster-fusion-masters-online.workers.dev/)
+**Play / Live Game:** [https://monsterfusionmasters.com/](https://monsterfusionmasters.com/)
 
 ## Play Monster Fusion Masters
 
-- [Play Online — Browser Version](https://mfm.monster-fusion-masters-online.workers.dev/)
+- [Play Online — Browser Version](https://monsterfusionmasters.com/)
 - [Download MFM Desktop — Windows x64](https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest)
 
 MFM Desktop is a portable Windows application powered by Microsoft Edge WebView2. No installation is required: extract the ZIP and run `MFMDesktop.exe`.

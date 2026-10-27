@@ -6,11 +6,11 @@
 
 ![Monster Fusion Masters Showcase 封面](assets/showcase-cover.png?v=d8be5338)
 
-**遊玩／線上版本：** [https://mfm.monster-fusion-masters-online.workers.dev/](https://mfm.monster-fusion-masters-online.workers.dev/)
+**遊玩／線上版本：** [https://monsterfusionmasters.com/](https://monsterfusionmasters.com/)
 
 ## 遊玩 Monster Fusion Masters
 
-- [線上遊玩 — 瀏覽器版本](https://mfm.monster-fusion-masters-online.workers.dev/)
+- [線上遊玩 — 瀏覽器版本](https://monsterfusionmasters.com/)
 - [下載 MFM Desktop — Windows x64](https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/releases/latest)
 
 MFM Desktop 是使用 Microsoft Edge WebView2 的 Windows 免安裝桌面版本。下載 ZIP 並完整解壓縮後，執行 `MFMDesktop.exe` 即可。

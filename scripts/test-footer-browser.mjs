@@ -50,8 +50,8 @@ try{
       assert.ok(align.left<=1&&align.right<=1,'copyright and links share both horizontal edges');
 
       assert.deepEqual(await links.allTextContents(),locale==='en'?['TERMS','PRIVACY','CONTACT','ABOUT US']:['使用條款','隱私政策','聯絡','關於我們']);
-      assert.equal(await links.nth(0).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/terms?from=wiki&lang=${locale}`);
-      assert.equal(await links.nth(1).getAttribute('href'),`https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&lang=${locale}`);
+      assert.equal(await links.nth(0).getAttribute('href'),`https://monsterfusionmasters.com/terms?from=wiki&lang=${locale}`);
+      assert.equal(await links.nth(1).getAttribute('href'),`https://monsterfusionmasters.com/privacy?from=wiki&lang=${locale}`);
       assert.equal(await page.locator('.footer-credits').count(),0,'footer does not duplicate font attribution');
       assert.equal(await links.nth(2).getAttribute('target'),'_blank');
       assert.equal(await links.nth(2).getAttribute('href'),'https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new/choose');
@@ -65,7 +65,7 @@ try{
       assert.equal(geometry.clipped,false,'footer text remains inside footer');
       assert.ok(parseFloat(geometry.font)>=12);
       await links.nth(0).focus();await page.keyboard.press('Tab');
-      assert.equal(await page.evaluate(()=>document.activeElement.href),`https://mfm.monster-fusion-masters-online.workers.dev/privacy?from=wiki&lang=${locale}`);
+      assert.equal(await page.evaluate(()=>document.activeElement.href),`https://monsterfusionmasters.com/privacy?from=wiki&lang=${locale}`);
       assert.notEqual(await links.nth(1).evaluate(a=>getComputedStyle(a).outlineStyle),'none');
       await links.nth(0).hover();assert.equal(await links.nth(0).evaluate(a=>getComputedStyle(a).color),'rgb(183, 222, 215)');
       await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo(0,0)});

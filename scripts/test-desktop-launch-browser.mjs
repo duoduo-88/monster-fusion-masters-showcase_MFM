@@ -107,11 +107,11 @@ try {
           Object.defineProperty(navigator,'userAgentData',{value:{platform:'Linux'}});
           Object.defineProperty(navigator,'platform',{value:'Linux x86_64'});
         });
-        await context.route('https://mfm.monster-fusion-masters-online.workers.dev/**', route => route.fulfill({body:'Browser game fallback'}));
+        await context.route('https://monsterfusionmasters.com/**', route => route.fulfill({body:'Browser game fallback'}));
         const page = await context.newPage();
         await page.goto(`${origin}/en/index.html?lang=en`);
         await page.locator('[data-mfm-launch]').click();
-        await page.waitForURL('https://mfm.monster-fusion-masters-online.workers.dev/');
+        await page.waitForURL('https://monsterfusionmasters.com/');
         cases++;
         await context.close();
       }

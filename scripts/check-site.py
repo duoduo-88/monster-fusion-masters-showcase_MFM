@@ -49,7 +49,7 @@ class Page(HTMLParser):
 class WikiChecks(unittest.TestCase):
     def test_footer_destinations_and_about_language_metadata(self):
         base = "https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/"
-        game = "https://mfm.monster-fusion-masters-online.workers.dev"
+        game = "https://monsterfusionmasters.com"
         for folder in ("", "en"):
             for name in (*PAGES, "about.html"):
                 path = ROOT / folder / name

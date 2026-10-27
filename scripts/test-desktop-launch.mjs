@@ -82,7 +82,7 @@ test('Escape and reduced motion close immediately without animation', () => {
 test('both static home pages retain browser fallback, release download, labels and canonical assets', () => {
   for (const path of ['../docs/index.html', '../docs/en/index.html']) {
     const html = readFileSync(new URL(path, import.meta.url), 'utf8');
-    assert.match(html, /data-mfm-launch[^>]*href="https:\/\/mfm\.monster-fusion-masters-online\.workers\.dev\/"/);
+    assert.match(html, /data-mfm-launch[^>]*href="https:\/\/monsterfusionmasters\.com\/"/);
     assert.match(html, /<dialog[^>]*aria-labelledby="mfm-launch-title"[^>]*aria-describedby="mfm-launch-copy"/);
     assert.match(html, /releases\/latest/);
     assert.doesNotMatch(html, /data-mfm-launch-retry|>RETRY<|>重試啟動</);

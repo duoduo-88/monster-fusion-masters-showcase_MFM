@@ -7,7 +7,7 @@ const {chromium}=require(process.env.MFM_PLAYWRIGHT_MODULE||'playwright');
 assert.ok(process.env.MFM_GAME_DIST,'Set MFM_GAME_DIST to the companion game build directory');
 const wikiRoot=resolve('docs'),gameRoot=resolve(process.env.MFM_GAME_DIST);
 const wiki='https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/';
-const game='https://mfm.monster-fusion-masters-online.workers.dev';
+const game='https://monsterfusionmasters.com';
 const browser=await chromium.launch({channel:'msedge'});
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.ttf':'font/ttf','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
 try{
