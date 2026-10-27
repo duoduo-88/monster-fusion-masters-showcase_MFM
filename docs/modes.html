@@ -75,10 +75,20 @@
   <h2>一局與三局的差異</h2>
   <div class="table-wrap" tabindex="0" role="region" aria-label="可橫向捲動的資料表"><table class="data-table"><thead><tr><th scope="col">類型</th><th scope="col">局數</th><th scope="col">說明</th></tr></thead><tbody>
     <tr><td>Ranked</td><td>1 局</td><td>當局結果直接決定該場對戰結果。</td></tr>
-    <tr><td>一般對戰／AI 對戰</td><td>3 局</td><td>依完整對戰的局數與累積結果結算。</td></tr>
-    <tr><td>淘汰賽</td><td>3 局</td><td>晉級規則另有平手處理機制。</td></tr>
+    <tr><td>一般對戰／AI 對戰</td><td>3 局</td><td>以三局累積總分結算；雙人總分相同時可為平手。</td></tr>
+    <tr><td>淘汰賽</td><td>3 局</td><td>依序比較總分、局勝數；仍相同時抽棋決定晉級。</td></tr>
   </tbody></table></div>
   <p>一局制不代表使用不同的落子或封閉計分方式；差別在於對戰結果的判定時機。</p>
+  <h3>三局總分與「局勝」標記</h3>
+  <p>三局制會把每局取得的分數累積成整場總分；並不是先贏兩局就直接獲勝。畫面上玩家姓名旁的「局勝」小標記，記錄該玩家已贏下幾局。</p>
+  <p>在淘汰賽中，單局得分較高者獲得 1 次局勝；該局同分時，雙方都不增加局勝數。局勝數是整場總分相同時的第二順位判定。</p>
+  <h3>淘汰賽三局結束後，如何決定晉級？</h3>
+  <ol>
+    <li><strong>先比三局累積總分：</strong>總分較高者晉級；即使局勝數較少，只要總分較高，仍然獲勝。</li>
+    <li><strong>總分相同，再比局勝數：</strong>贏下較多局的玩家晉級。例如同為 30 分，局勝 2 次的玩家勝過局勝 1 次的玩家。</li>
+    <li><strong>總分與局勝數都相同，重新抽棋：</strong>雙方從四枚隱藏白邊數的棋子中，各選一枚不同的棋子；四枚棋子分別有 1、2、3、4 條白邊，揭曉後白邊數較多者晉級。逾時未選時，系統會自動代選。</li>
+  </ol>
+  <div class="note"><strong>抽棋只決定淘汰賽晉級：</strong>不會加打第四局，也不會改動三局已累積的分數。一般雙人／AI 對戰允許總分平手，不套用這套晉級抽棋流程；Ranked 的單局同分也可結算為平手。</div>
 <figure class="guide-figure small-detail"><img class="" src="./assets/media/match-status.webp" alt="對局中的 ROUND 顯示目前局數；圖例為一般三局制。" width="140" height="78" loading="lazy" decoding="async"><figcaption>對局中的 ROUND 顯示目前局數；圖例為一般三局制。</figcaption></figure></section>
 <section class="section" id="ranked">
   <span class="eyebrow">RATING / RTG</span>
