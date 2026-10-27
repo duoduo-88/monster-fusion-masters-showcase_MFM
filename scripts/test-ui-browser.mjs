@@ -56,7 +56,7 @@ try {
               shell:rect('.site-shell'), head:rect('.site-head'), layout:rect('.layout'),
               padding:parseFloat(getComputedStyle(shell).paddingLeft), gap:parseFloat(getComputedStyle(layout).gap),
               headPadding:getComputedStyle(head).padding,
-              frames:[...document.querySelectorAll('.frame')].map(el => ({color:getComputedStyle(el).borderTopColor,background:getComputedStyle(el).backgroundColor,width:getComputedStyle(el).borderTopWidth})),
+              frames:[...document.querySelectorAll('.frame')].map(el => ({color:getComputedStyle(el).borderTopColor,background:getComputedStyle(el).backgroundColor,width:getComputedStyle(el).borderTopWidth,shadow:getComputedStyle(el).boxShadow})),
               logoFill:svg.documentElement.getAttribute('fill'),
               logo:rect('.brand img'), actions:rect('.head-actions'),
               articleWidth:article.clientWidth, articleOverflow:article.scrollWidth > article.clientWidth + 1,
@@ -80,7 +80,7 @@ try {
           near(geometry.layout.y-geometry.head.bottom,gap,`${label} banner/content gap`);
           near(geometry.gap,gap,`${label} column gap`);
           assert.equal(geometry.headPadding,'7px 7px 7px 14px',`${label} banner padding`);
-          assert.ok(geometry.frames.every(f => f.color === 'rgb(69, 69, 60)' && f.width === '3px' && f.background === 'rgb(0, 0, 0)'),`${label} game panel palette: ${JSON.stringify(geometry.frames)}`);
+          assert.ok(geometry.frames.every(f => f.color === 'rgb(72, 72, 63)' && f.width === '3px' && f.background === 'rgb(0, 0, 0)' && /rgb\(17, 17, 17\) 5px 5px/.test(f.shadow) && /rgb\(9, 9, 9\).*inset/.test(f.shadow)),`${label} game panel palette: ${JSON.stringify(geometry.frames)}`);
           assert.equal(geometry.logoFill,'#fff',`${label} game white logo`);
           assert.ok(geometry.logo.right < geometry.actions.x,`${label} logo must not collide with language controls`);
           assert.ok(geometry.articleWidth > 280,`${label} article remains readable`);
