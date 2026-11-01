@@ -1,6 +1,8 @@
 # Monster Fusion Masters
 
-**Official game wiki (rules, scoring and development history):** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)
+**Official game wiki (basic play, competitive rules and scoring):** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)
+
+[繁體中文](README.zh-TW.md) · [Design and technical tour](DESIGN.md) · [Code example guide](examples/README.md)
 
 **Showcase repository:** `monster-fusion-masters-showcase_MFM`
 
@@ -20,6 +22,20 @@ Requires the Microsoft Edge WebView2 Evergreen Runtime. It is included with Wind
 This release is not code-signed, so Windows may show a SmartScreen warning for an unrecognized app.
 
 Monster Fusion Masters is an original competitive strategy board game. I designed it first as a physical tabletop game; Codex later helped turn that existing design into working software.
+
+## Where to start
+
+The Wiki introduces the game and provides the official rules reference. Showcase presents the work's design, development history, and implementation achievements.
+
+| What you want to understand | Start here |
+| --- | --- |
+| Basic play, legal moves, scoring, and special cases | [Wiki: game rules](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/rules.html) |
+| Match formats and competitive systems | [Wiki: modes and competition](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/en/modes.html) |
+| How an original tabletop game became an online project | The design and development history on this page |
+| How the features and technologies fit together | [Design and technical tour](DESIGN.md) |
+| Generic examples of hex coordinates, rotation, and UI state | [Code example guide](examples/README.md) |
+
+To build a game using the same rules, start with the official rules in the Wiki, then consult the production overview in Showcase. The examples demonstrate individual technical concepts; use the Wiki's rules explanations as the reference for game decisions.
 
 ## System requirements (preliminary)
 
@@ -69,11 +85,13 @@ Design a player color with a pattern, base and accent colors, and fine controls 
 
 The battle screen centers on a 61-cell hex board. Select a tile from your hand, rotate it, preview a placement, and place it on a legal cell. The side panel tracks the deck, player scores, and game log; the top of the board shows the round and turn.
 
-## Build process
+## Design and development history
 
 ### 1. Original tabletop game — 2020
 
 Monster Fusion Masters began as an original tabletop strategy game I designed. The core concept, board and tile designs, rules, scoring, balance decisions, and physical edition existed before the current AI-assisted development. In 2020, I published a 3D-printable version: [Monster Fusion Masters V1 board game](https://www.printables.com/model/35556-monster-fusion-masters-v1board-game).
+
+![The original MFM 3D-printed tabletop game from 2020](docs/assets/media/original-tabletop-2020.webp)
 
 ### 2. The idea of a digital version
 
@@ -141,6 +159,6 @@ The examples in this folder are small, general-purpose demonstrations. They are 
 
 ## Showcase assets
 
-The `assets/` folder contains the showcase cover and the four interface screenshots used above. A photo of the original physical edition can be added later.
+The `assets/` folder contains the showcase cover and the four interface screenshots used above. The tabletop photo is shared with the Wiki at `docs/assets/media/original-tabletop-2020.webp`; see the [Wiki media notes](docs/assets/media/README.md) for source information.
 
 
