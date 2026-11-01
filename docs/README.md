@@ -10,6 +10,7 @@
 
 - `index.html`、`rules.html`、`modes.html`、`requirements.html`、`history.html`：繁體中文。
 - `en/`：相同五篇文章的完整英文版。
+- `modes.html#color-lab` 與 `en/modes.html#color-lab`：色彩實驗室逐步教學，包含調色、棋盤試看、Lab 色彩庫、代碼分享、房間套用及本機／賽季保存差異；首頁與文章目錄均提供入口。
 - `wiki.css`：本站唯一的版面樣式來源。
 - `crt-filter-v2.js`：遊戲 CRT 純顯示層的靜態副本，提供相同的光暈、掃描線、磷光顆粒與偏青玻璃效果；不含遊戲邏輯、帳號、網路請求或遊戲設定。它只擁有視覺濾鏡，不擁有 Wiki 排版。遊戲更新這層效果時需一併同步副本。比對紀錄見 `../validation/game-ui.md`。
 - `wiki-search.js`：跨中英文的全文關鍵字搜尋，點選結果跳至對應語言的文章章節。索引只含公開百科內容，搜尋不傳送到外部服務。

@@ -32,7 +32,7 @@
   <script src="./wiki-navigation.js?v=20261025-requirements1" defer></script>
   <script src="./wiki.js?v=20261018-partial1" defer></script>
   <script src="./wiki-media.js?v=20261018-partial1" defer></script>
-  <script src="./wiki-search-index.js?v=20261016-cover1" defer></script>
+  <script src="./wiki-search-index.js?v=20261102-color-lab" defer></script>
   <script src="./wiki-search.js?v=20261018-partial1" defer></script>
 </head>
 <body>
@@ -104,11 +104,56 @@
     <li><strong>新手教學：</strong>引導初次遊玩的玩家了解棋盤與對戰流程。</li>
     <li><strong>觀戰：</strong>不進入玩家席也能觀看進行中的房間對局。</li>
     <li><strong>重播：</strong>觀看與回顧已保存的對局。</li>
-    <li><strong>色彩實驗室：</strong>調整個人棋子顏色、圖案與視覺樣式。</li>
+    <li><strong><a href="#color-lab">色彩實驗室：</a></strong>調整個人棋子顏色、圖案與視覺樣式，跟著教學製作並套用配色。</li>
     <li><strong>玩家歷史與徽章：</strong>在玩家資料中查看賽季及活動相關紀錄。</li>
   </ul>
   <p>所有功能是否開放、可用數量與限制可能隨遊戲更新調整。</p>
-<div class="feature-gallery"><figure class="guide-figure "><img class="" src="./assets/media/spectator-seats.webp" alt="房間有獨立的 WATCH 觀戰席。" width="618" height="305" loading="lazy" decoding="async"><figcaption>房間有獨立的 WATCH 觀戰席。</figcaption></figure><figure class="guide-figure "><img class="" src="./assets/media/color-lab.webp" alt="色彩實驗室：調整棋子的配色與圖案。" width="382" height="580" loading="lazy" decoding="async"><figcaption>色彩實驗室：調整棋子的配色與圖案。</figcaption></figure><figure class="guide-figure "><img class="" src="./assets/media/game-log.webp" alt="對局紀錄：依回合追蹤落子與得分。" width="260" height="304" loading="lazy" decoding="async"><figcaption>對局紀錄：依回合追蹤落子與得分。</figcaption></figure></div></section>
+<div class="feature-gallery"><figure class="guide-figure "><img class="" src="./assets/media/spectator-seats.webp" alt="房間有獨立的 WATCH 觀戰席。" width="618" height="305" loading="lazy" decoding="async"><figcaption>房間有獨立的 WATCH 觀戰席。</figcaption></figure><figure class="guide-figure "><img class="" src="./assets/media/game-log.webp" alt="對局紀錄：依回合追蹤落子與得分。" width="260" height="304" loading="lazy" decoding="async"><figcaption>對局紀錄：依回合追蹤落子與得分。</figcaption></figure></div></section>
+<section class="section" id="color-lab">
+  <h2>色彩實驗室教學</h2>
+  <p>Color Lab 可以製作棋子的配色與圖案，並在練習棋盤上試看。這些設定改變外觀，遊戲的合法落子、連通與計分規則維持相同。</p>
+  <figure class="guide-figure"><img src="./assets/media/color-lab-guide.png" alt="Color Lab 操作介面：左側練習棋盤與手牌，右側色彩庫、色彩控制、代碼與儲存按鈕。" width="1600" height="1200" loading="lazy" decoding="async"><figcaption>先從色彩庫挑一個樣式，再用右側控制項調整。<a href="./assets/media/color-lab-guide.png" target="_blank" rel="noopener noreferrer">放大操作畫面</a></figcaption></figure>
+
+  <h3>1. 開啟並選擇起始樣式</h3>
+  <p>先以正式帳號登入遊戲，從大廳點選「色彩實驗室（COLOR LAB）」，或在房間新增色彩的視窗點「開啟色彩實驗室（OPEN COLOR LAB）」。也可直接<a href="https://monsterfusionmasters.com/color-lab" target="_blank" rel="noopener noreferrer">開啟 Color Lab</a>；尚未登入時會返回登入頁。在「色彩庫（PALETTE LIBRARY）」點選一枚官方或已儲存色票，作為編輯起點。</p>
+
+  <h3>2. 調整顏色與圖案</h3>
+  <div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">控制項</th><th scope="col">怎麼使用</th></tr></thead><tbody>
+    <tr><td>樣式（PATTERN）</td><td>選擇純色、條紋、波紋、迷彩等圖案。先選圖案，再微調細節。</td></tr>
+    <tr><td>基底／強調色（BASE / ACCENT）</td><td>點顏色方塊，使用色環與中央色塊選色後按「確定（CONFIRM）」；也可輸入 HEX 色碼。純色樣式會停用不需要的強調色、尺寸與比例。</td></tr>
+    <tr><td>尺寸／強調比例／角度／粗糙度（SIZE / ACCENT AMOUNT / ANGLE / ROUGH）</td><td>調整圖案的大小、強調色比例、方向與紋理變化，邊調邊看棋子效果。</td></tr>
+    <tr><td>種子／隨機（SEED / RANDOM）</td><td>保留配色、改變紋理分布。喜歡目前的分布時，可記住種子，或直接保留完整色彩代碼。</td></tr>
+    <tr><td>進階設定（ADVANCED SETTINGS）</td><td>展開目前圖案的細部參數；可調整項目隨樣式不同。初次使用可先完成基本調整。</td></tr>
+  </tbody></table></div>
+
+  <h3>3. 在棋盤上試看</h3>
+  <p>選取下方手牌，用 LEFT／RIGHT 旋轉棋子，在左側棋盤試看或放置。比較單顆棋子與相鄰棋子的辨識度，再繼續調整配色。REF 可更換測試手牌；RESET 可清空棋盤重新試看。</p>
+
+  <h3>4. 儲存到 Lab 色彩庫</h3>
+  <p>按「儲存色彩（SAVE COLOR）」，將目前設計加入這個瀏覽環境的 Lab 色彩庫，最多可儲存 64 個自訂色彩。之後點選色票即可繼續編輯；自訂色票可拖曳排序、按右鍵刪除。官方色彩已經在庫中，相同設計不會重複儲存。</p>
+
+  <h3>5. 複製、分享或載入設計</h3>
+  <p>按「複製（COPY）」取得完整的 <code>MFMPC1...</code> 色彩代碼，貼到文字檔備份或分享給朋友。若瀏覽器無法自動複製，代碼會被選取，可手動複製。要開啟別人的設計，將完整代碼貼入「色彩代碼（COLOR CODE）」，再按「載入（LOAD）」；想保留到 Lab 色彩庫時，還要再按 SAVE COLOR。</p>
+  <div class="note"><strong>色彩代碼與 HEX 不同：</strong>HEX 只代表一個顏色；MFMPC1 代碼包含整套圖案、配色與材質設定。分享時請複製完整代碼。</div>
+
+  <h3>6. 在對戰房間套用</h3>
+  <ol>
+    <li>在 Lab 按 COPY，取得要使用的色彩代碼。</li>
+    <li>以正式帳號登入遊戲並進入房間，在「玩家色彩（PLAYER COLOR）」色票列按 <strong>＋</strong>。</li>
+    <li>將代碼貼入「新增玩家色彩（ADD PLAYER COLOR）」視窗，按「新增（ADD）」。</li>
+    <li>點選色票列中新加入的色票，選為本場玩家配色。</li>
+  </ol>
+  <div class="note"><strong>儲存與套用是兩個步驟：</strong>SAVE COLOR 儲存到 Lab 色彩庫；房間的「＋ → 新增 → 選取」才會套用到對戰。房間自訂配色依這個瀏覽環境、帳號與當前賽季保存，新賽季需要重新加入。Lab 色彩庫另行保存，不隨房間的賽季清單一起清除。</div>
+
+  <h3>常見問題</h3>
+  <ul>
+    <li><strong>換電腦、換瀏覽器或改用桌面版找不到色彩？</strong>色彩庫存於本機瀏覽環境，不會隨帳號自動同步。使用完整代碼搬移；清除網站資料也可能移除本機色彩庫。</li>
+    <li><strong>代碼無法載入？</strong>確認貼上的是完整 MFMPC1 代碼，而不是 HEX 色碼、截斷的預覽文字或一張圖片。</li>
+    <li><strong>顯示色彩已存在或色彩庫已滿？</strong>已儲存的設計可直接選取；達到上限時，先備份代碼再刪除不需要的自訂色票。</li>
+    <li><strong>編輯後要離開？</strong>先儲存或複製代碼。尚未儲存的設計離開時會提示確認。</li>
+  </ul>
+</section>
+
 <section class="section" id="next"><span class="eyebrow">NEXT / 相關頁面</span><h2>進一步閱讀</h2><p><a href="./rules.html">遊戲核心規則與封閉計分 →</a></p><p><a href="https://monsterfusionmasters.com/">立即進入 MFM 線上遊戲 </a></p></section>
 </main>
       <aside class="right-rail">
@@ -121,7 +166,7 @@
           <p class="search-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
           <ol class="search-results" id="wiki-search-results" hidden></ol>
         </section>
-        <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">02 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">-</span>模式簡介</a></li><li><a href="#game-modes"><span aria-hidden="true">-</span>遊戲模式</a></li><li><a href="#rounds"><span aria-hidden="true">-</span>對局局數</a></li><li><a href="#ranked"><span aria-hidden="true">-</span>Ranked 與 RTG</a></li><li><a href="#features"><span aria-hidden="true">-</span>輔助功能</a></li><li><a href="#next"><span aria-hidden="true">-</span>延伸閱讀</a></li></ol></details></nav>
+        <nav class="contents-panel frame" aria-label="本頁章節"><details open><summary class="panel-label">02 / 本頁章節<span class="collapse-icon" aria-hidden="true"></span></summary><ol class="toc"><li><a href="#overview"><span aria-hidden="true">-</span>模式簡介</a></li><li><a href="#game-modes"><span aria-hidden="true">-</span>遊戲模式</a></li><li><a href="#rounds"><span aria-hidden="true">-</span>對局局數</a></li><li><a href="#ranked"><span aria-hidden="true">-</span>Ranked 與 RTG</a></li><li><a href="#features"><span aria-hidden="true">-</span>輔助功能</a></li><li><a href="#color-lab"><span aria-hidden="true">-</span>色彩實驗室教學</a></li><li><a href="#next"><span aria-hidden="true">-</span>延伸閱讀</a></li></ol></details></nav>
       
         <section class="reference-card frame wiki-contribution" aria-label="百科修訂建議"><span class="panel-label">協助完善 MFM WIKI</span><p>發現內容錯誤、過時或有補充建議？歡迎提出修訂建議。</p><a class="pixel-btn cyan" href="https://github.com/duoduo-88/monster-fusion-masters-showcase_MFM/issues/new?template=wiki-suggestion.yml" target="_blank" rel="noopener noreferrer">提出修訂建議</a></section>
       </aside>
