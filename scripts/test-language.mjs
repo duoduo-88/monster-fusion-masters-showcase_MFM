@@ -5,7 +5,7 @@ import { test } from 'node:test';
 
 const script = readFileSync(new URL('../docs/wiki.js', import.meta.url), 'utf8');
 // A small browser boundary for running the actual enhancement script in Node.
-function page({ language = 'zh-Hant', saved, search = '', hash = '', blocked = false, desktop = false, scrollHost = false } = {}) {
+function page({ language = 'zh-Hant', saved, search = '', hash = '', blocked = false, desktop = false, scrollHost = false, browserLanguages = ['zh-TW'], browserLanguage = 'zh-TW' } = {}) {
   const base = 'https://example.test/project/';
   const location = new URL(`${base}${language === 'en' ? 'en/' : ''}rules.html${search}${hash}`);
   let redirect;
@@ -59,6 +59,7 @@ function page({ language = 'zh-Hant', saved, search = '', hash = '', blocked = f
   };
   runInNewContext(script, {
     document, window, location, URL, URLSearchParams,
+    navigator: { languages: browserLanguages, language: browserLanguage },
     requestAnimationFrame: callback => callback(),
     localStorage: {
       getItem(key) { if (blocked) throw Error('Storage disabled'); return storage.get(key); },
@@ -78,6 +79,61 @@ function page({ language = 'zh-Hant', saved, search = '', hash = '', blocked = f
     resizeToMobile() { desktopMedia.matches = false; desktopMedia.onChange(); }
   };
 }
+
+test('a first English-browser visit opens the matching article and remembers the choice', () => {
+  const actual = page({ browserLanguages: ['en-US'], search: '?ref=home', hash: '#scoring' });
+  assert.equal(actual.redirect(), 'https://example.test/project/en/rules.html?ref=home&lang=en#scoring');
+  assert.equal(actual.storage.get('mfm:wiki:language'), 'en');
+});
+
+test('Chinese browser variants choose Traditional Chinese, including from an English article', () => {
+  for (const tag of ['zh', 'zh-TW', 'zh-HK', 'zh-Hant', 'zh-CN', 'zh-Hans-CN', 'ZH_tw']) {
+    const actual = page({ language: 'en', browserLanguages: [tag], hash: '#board' });
+    assert.equal(actual.redirect(), 'https://example.test/project/rules.html?lang=zh-Hant#board', tag);
+    assert.equal(actual.storage.get('mfm:wiki:language'), 'zh-Hant');
+  }
+});
+
+test('browser preference order wins among supported languages and others fall back to English', () => {
+  for (const [languages, expected] of [
+    [['en-US', 'zh-TW'], 'en'],
+    [['zh-HK', 'en-US'], 'zh-Hant'],
+    [['ja-JP', 'zh-TW', 'en'], 'zh-Hant'],
+    [['fr-FR', 'ja-JP'], 'en'],
+  ]) {
+    const actual = page({ browserLanguages: languages });
+    assert.equal(actual.storage.get('mfm:wiki:language'), expected);
+    assert.equal(actual.redirect(), expected === 'en' ? 'https://example.test/project/en/rules.html?lang=en' : undefined);
+  }
+});
+
+test('navigator.language is used when the browser preference list is unavailable or empty', () => {
+  for (const browserLanguages of [null, []]) {
+    const actual = page({ browserLanguages, browserLanguage: 'en-GB' });
+    assert.equal(actual.redirect(), 'https://example.test/project/en/rules.html?lang=en');
+  }
+});
+
+test('an invalid saved language is replaced by the browser choice', () => {
+  const actual = page({ saved: 'fr', browserLanguages: ['en-US'] });
+  assert.equal(actual.redirect(), 'https://example.test/project/en/rules.html?lang=en');
+  assert.equal(actual.storage.get('mfm:wiki:language'), 'en');
+});
+
+test('explicit URLs and remembered manual selections override browser preferences', () => {
+  const explicit = page({ search: '?lang=en', browserLanguages: ['zh-TW'] });
+  assert.equal(explicit.redirect(), 'https://example.test/project/en/rules.html?lang=en');
+  const remembered = page({ saved: 'zh-Hant', browserLanguages: ['en-US'] });
+  assert.equal(remembered.redirect(), undefined);
+  assert.equal(remembered.storage.get('mfm:wiki:language'), 'zh-Hant');
+});
+
+test('browser choice still redirects once when storage is blocked, then the explicit destination wins', () => {
+  const first = page({ blocked: true, browserLanguages: ['en-US'], hash: '#board' });
+  assert.equal(first.redirect(), 'https://example.test/project/en/rules.html?lang=en#board');
+  const destination = page({ blocked: true, language: 'en', search: '?lang=en', browserLanguages: ['zh-TW'] });
+  assert.equal(destination.redirect(), undefined);
+});
 
 test('remembered English preserves the project path, article, query and section', () => {
   const actual = page({ saved: 'en', search: '?ref=home', hash: '#scoring' });
