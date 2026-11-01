@@ -22,6 +22,15 @@
     savedLanguage = requestedLanguage;
     try { localStorage.setItem(storageKey, requestedLanguage); } catch { /* Optional preference. */ }
   }
+  // First visit: use the first supported browser preference, then remember it.
+  // Chinese variants share the Traditional Chinese edition; other languages fall back to English.
+  if (!languageLinks.some(link => link.dataset.language === savedLanguage)) {
+    const browser = globalThis.navigator;
+    const preferences = browser?.languages?.length ? browser.languages : [browser?.language];
+    const preferred = [...preferences].find(value => /^(?:zh|en)(?:[-_]|$)/i.test(String(value || "")));
+    savedLanguage = /^zh(?:[-_]|$)/i.test(String(preferred || "")) ? "zh-Hant" : "en";
+    try { localStorage.setItem(storageKey, savedLanguage); } catch { /* Links still work without storage. */ }
+  }
   const preferredLink = languageLinks.find(link => link.dataset.language === savedLanguage);
   if (preferredLink && savedLanguage !== currentLanguage) {
     location.replace(destination(preferredLink).href);
