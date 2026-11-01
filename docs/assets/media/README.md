@@ -1,6 +1,8 @@
 # Wiki game illustrations
 
-These assets are local crops and animation exports of Monster Fusion Masters, captured on 2026-10-16.
+The original illustration set consists of local crops and animation exports of Monster Fusion Masters, captured on 2026-10-16. Later additions are dated below.
+
+- `color-lab-guide.png` is a 1600 × 1200 screenshot of the actual Color Lab interface, captured locally on 2026-11-02 (Asia/Taipei) for the bilingual guide. It uses an isolated browser and local demonstration authentication responses, with no production account or match data. It shows the palette library, basic controls, seed, advanced-settings entry, color code, COPY / LOAD / SAVE COLOR, and practice board.
 
 - `board`, `tiles-*`, `connection-*`, `score-*`, and `move-*` use the actual game's board and tile renderer. They are controlled demonstration positions, not recordings of another player's private match.
 - The seven tile families include the arrangements and center connections displayed by the in-game deck. Illustrated variants are not deck quantities.
