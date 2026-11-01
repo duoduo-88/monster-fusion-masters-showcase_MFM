@@ -1,6 +1,8 @@
 # Monster Fusion Masters
 
-**官方遊戲百科（規則、計分與開發歷史）：** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)
+**官方遊戲百科（基本玩法、競技規則與計分）：** [MFM Wiki](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/)
+
+[English](README.md) · [設計與技術導覽](DESIGN.zh-TW.md) · [程式範例說明](examples/README.zh-TW.md)
 
 **Showcase 儲存庫名稱：** `monster-fusion-masters-showcase_MFM`
 
@@ -20,6 +22,20 @@ MFM Desktop 是使用 Microsoft Edge WebView2 的 Windows 免安裝桌面版本�
 此版本尚未進行程式碼簽署，Windows 可能會對尚未建立信譽的應用程式顯示 SmartScreen 警告。
 
 Monster Fusion Masters 是一款原創競技策略棋盤遊戲。最初是我設計的實體桌遊，後來由 Codex 協助把既有設計逐步實作成軟體。
+
+## 從哪裡開始閱讀
+
+Wiki 負責介紹遊戲與提供正式規則依據；Showcase 展示這個作品的設計、開發歷程與實作成果。
+
+| 想了解的內容 | 閱讀入口 |
+| --- | --- |
+| 基本玩法、合法落子、計分與特殊判定 | [Wiki：遊戲規則](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/rules.html) |
+| 對局模式與競技制度 | [Wiki：模式與競技](https://duoduo-88.github.io/monster-fusion-masters-showcase_MFM/modes.html) |
+| 原創桌遊如何成為線上作品 | 本頁的設計與開發歷程 |
+| 各項功能與技術如何組成這個作品 | [設計與技術導覽](DESIGN.zh-TW.md) |
+| 六角座標、旋轉與介面狀態的通用示範 | [程式範例說明](examples/README.zh-TW.md) |
+
+如果想製作同樣規則的遊戲，請先閱讀 Wiki 的正式規則，再參考 Showcase 的製作說明。範例只示範個別技術概念，遊戲判定以 Wiki 的規則說明為依據。
 
 ## 系統需求（初步估算）
 
@@ -69,11 +85,13 @@ Monster Fusion Masters 是一款原創競技策略棋盤遊戲。最初是我設
 
 戰鬥以 61 格六角棋盤為核心。從手牌選取棋子、旋轉方向、預覽落點，再放到合法位置；側欄可查看牌庫、玩家分數與遊戲紀錄，棋盤上方則顯示回合資訊。
 
-## Build process
+## 設計與開發歷程
 
 ### 1. 原始實體桌遊 — 2020
 
 Monster Fusion Masters 最初是我設計的原創策略桌遊。核心概念、棋盤與棋子設計、規則、計分方式、平衡設計和實體版本，都早於這次 AI 輔助的開發。2020 年，我公開了可 3D 列印的版本：[Monster Fusion Masters V1 棋盤遊戲](https://www.printables.com/model/35556-monster-fusion-masters-v1board-game)。
+
+![2020 年 MFM 原創 3D 列印實體桌遊](docs/assets/media/original-tabletop-2020.webp)
 
 ### 2. 數位版本的構想
 
@@ -141,6 +159,6 @@ Monster Fusion Masters 已成為免費遊玩的瀏覽器線上競技策略遊戲
 
 ## Showcase 圖片素材
 
-`assets/` 資料夾包含 Showcase 封面與上方四張介面截圖；之後也可補上實體棋盤照片。
+`assets/` 資料夾包含 Showcase 封面與上方四張介面截圖。實體桌遊照片沿用 `docs/assets/media/original-tabletop-2020.webp`；素材來源說明見 [Wiki 素材紀錄](docs/assets/media/README.md)。
 
 
